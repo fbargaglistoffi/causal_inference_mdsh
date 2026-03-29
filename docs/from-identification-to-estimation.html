@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 From Identification to Estimation | Causal-Inference-Graduate.knit</title>
+  <meta name="description" content="An undergraduate course on causal inference" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 From Identification to Estimation | Causal-Inference-Graduate.knit" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An undergraduate course on causal inference" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 From Identification to Estimation | Causal-Inference-Graduate.knit" />
+  
+  <meta name="twitter:description" content="An undergraduate course on causal inference" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-causal-diagrams-dags.html"/>
+<link rel="next" href="effect-modification-and-interaction.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Causal Inference</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i>Course Description</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instructor"><i class="fa fa-check"></i>Instructor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#teaching-assistants"><i class="fa fa-check"></i>Teaching Assistants</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-logistics"><i class="fa fa-check"></i>Course Logistics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#upon-successful-completion-of-this-course-students-will-be-able-to"><i class="fa fa-check"></i>Upon successful completion of this course, students will be able to:</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#office-hours"><i class="fa fa-check"></i>Office Hours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#office-hours-1"><i class="fa fa-check"></i>Office Hours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tools"><i class="fa fa-check"></i>Tools</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-links"><i class="fa fa-check"></i>Useful Links</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#installing-and-using-required-packages"><i class="fa fa-check"></i>Installing and Using Required Packages</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#difference-between-install.packages-and-library"><i class="fa fa-check"></i>Difference Between install.packages() and library()</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#why-include-this"><i class="fa fa-check"></i>Why include this?</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#base-r-version-simple"><i class="fa fa-check"></i>Base R version (simple)</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html"><i class="fa fa-check"></i><b>1</b> Foundations of Causal Thinking</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#association-vs.-causation"><i class="fa fa-check"></i><b>1.1</b> Association vs. Causation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#simulating-simpsons-paradox"><i class="fa fa-check"></i><b>1.1.1</b> Simulating Simpson’s Paradox</a></li>
+<li class="chapter" data-level="1.1.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#visualizing-simpsons-paradox"><i class="fa fa-check"></i><b>1.1.2</b> Visualizing Simpson’s Paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#why-we-use-simulations"><i class="fa fa-check"></i><b>1.2</b> Why We Use Simulations</a></li>
+<li class="chapter" data-level="1.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#introduction-to-counterfactuals-and-potential-outcomes"><i class="fa fa-check"></i><b>1.3</b> Introduction to Counterfactuals and Potential Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#notation"><i class="fa fa-check"></i><b>1.3.1</b> Notation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#the-potential-outcomes-table"><i class="fa fa-check"></i><b>1.3.2</b> The Potential Outcomes Table</a></li>
+<li class="chapter" data-level="1.3.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#what-happens-when-treatment-is-assigned"><i class="fa fa-check"></i><b>1.3.3</b> What Happens When Treatment Is Assigned?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#causal-estimands-and-identification"><i class="fa fa-check"></i><b>1.4</b> Causal Estimands and Identification</a></li>
+<li class="chapter" data-level="1.5" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#measuring-effects-for-binary-outcomes"><i class="fa fa-check"></i><b>1.5</b> Measuring Effects for Binary Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#simulation-heart-surgery-and-survival"><i class="fa fa-check"></i><b>1.5.1</b> Simulation: Heart Surgery and Survival</a></li>
+<li class="chapter" data-level="1.5.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#the-fundamental-problem-in-action"><i class="fa fa-check"></i><b>1.5.2</b> The Fundamental Problem in Action</a></li>
+<li class="chapter" data-level="1.5.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#visualizing-the-bias"><i class="fa fa-check"></i><b>1.5.3</b> Visualizing the Bias</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html"><i class="fa fa-check"></i><b>2</b> Randomized Controlled Trials</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#review-the-selection-bias-problem"><i class="fa fa-check"></i><b>2.1</b> Review: The Selection Bias Problem</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#quick-demonstration-confounded-vs.-randomized-assignment"><i class="fa fa-check"></i><b>2.1.1</b> Quick Demonstration: Confounded vs. Randomized Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#simulating-a-randomized-experiment"><i class="fa fa-check"></i><b>2.2</b> Simulating a Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#setting-up-the-population"><i class="fa fa-check"></i><b>2.2.1</b> Setting Up the Population</a></li>
+<li class="chapter" data-level="2.2.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#randomization-treatment-assignment"><i class="fa fa-check"></i><b>2.2.2</b> Randomization: Treatment Assignment</a></li>
+<li class="chapter" data-level="2.2.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#checking-balance-does-randomization-work"><i class="fa fa-check"></i><b>2.2.3</b> Checking Balance: Does Randomization Work?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#visualizing-balance"><i class="fa fa-check"></i><b>2.2.4</b> Visualizing Balance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#estimating-the-ate"><i class="fa fa-check"></i><b>2.3</b> Estimating the ATE</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#generating-outcomes"><i class="fa fa-check"></i><b>2.3.1</b> Generating Outcomes</a></li>
+<li class="chapter" data-level="2.3.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#the-simple-estimator-difference-in-means"><i class="fa fa-check"></i><b>2.3.2</b> The Simple Estimator: Difference in Means</a></li>
+<li class="chapter" data-level="2.3.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#confidence-intervals"><i class="fa fa-check"></i><b>2.3.3</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.3.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#using-a-t-test-equivalent-approach"><i class="fa fa-check"></i><b>2.3.4</b> Using a t-test (Equivalent Approach)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#visualizing-the-treatment-effect"><i class="fa fa-check"></i><b>2.3.5</b> Visualizing the Treatment Effect</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#repeated-experiments-the-sampling-distribution"><i class="fa fa-check"></i><b>2.4</b> Repeated Experiments: The Sampling Distribution</a></li>
+<li class="chapter" data-level="2.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#statistical-vs.-clinical-significance"><i class="fa fa-check"></i><b>2.5</b> Statistical vs. Clinical Significance</a></li>
+<li class="chapter" data-level="2.6" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#exercise-the-oregon-health-insurance-experiment"><i class="fa fa-check"></i><b>2.6</b> Exercise: The Oregon Health Insurance Experiment</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#background"><i class="fa fa-check"></i><b>2.6.1</b> Background</a></li>
+<li class="chapter" data-level="2.6.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#loading-the-data"><i class="fa fa-check"></i><b>2.6.2</b> Loading the Data</a></li>
+<li class="chapter" data-level="2.6.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-1-check-balance-table-1"><i class="fa fa-check"></i><b>2.6.3</b> Step 1: Check Balance (Table 1)</a></li>
+<li class="chapter" data-level="2.6.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-2-estimate-the-intent-to-treat-itt-effect"><i class="fa fa-check"></i><b>2.6.4</b> Step 2: Estimate the Intent-to-Treat (ITT) Effect</a></li>
+<li class="chapter" data-level="2.6.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-3-visualize-the-results"><i class="fa fa-check"></i><b>2.6.5</b> Step 3: Visualize the Results</a></li>
+<li class="chapter" data-level="2.6.6" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#a-nuance-itt-vs.-the-effect-of-having-insurance"><i class="fa fa-check"></i><b>2.6.6</b> A Nuance: ITT vs. the Effect of Having Insurance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="observational-studies.html"><a href="observational-studies.html"><i class="fa fa-check"></i><b>3</b> Observational Studies</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="observational-studies.html"><a href="observational-studies.html#the-challenge-of-confounding-in-public-health-and-medical-research"><i class="fa fa-check"></i><b>3.1</b> The challenge of confounding in public health and medical research</a></li>
+<li class="chapter" data-level="3.2" data-path="observational-studies.html"><a href="observational-studies.html#from-bradford-hills-criteria-to-modern-causal-inference"><i class="fa fa-check"></i><b>3.2</b> From Bradford Hill’s criteria to modern causal inference</a></li>
+<li class="chapter" data-level="3.3" data-path="observational-studies.html"><a href="observational-studies.html#exchangeability-positivity-and-sutva"><i class="fa fa-check"></i><b>3.3</b> Exchangeability, positivity, and SUTVA</a></li>
+<li class="chapter" data-level="3.4" data-path="observational-studies.html"><a href="observational-studies.html#effect-identification-in-observational-studies"><i class="fa fa-check"></i><b>3.4</b> Effect identification in observational studies</a></li>
+<li class="chapter" data-level="3.5" data-path="observational-studies.html"><a href="observational-studies.html#checklist-item-4-could-confounding-explain-the-result"><i class="fa fa-check"></i><b>3.5</b> Checklist Item 4: Could confounding explain the result?</a></li>
+<li class="chapter" data-level="3.6" data-path="observational-studies.html"><a href="observational-studies.html#critical-reading-exercise-evaluating-the-framingham-heart-study"><i class="fa fa-check"></i><b>3.6</b> Critical reading exercise: evaluating the Framingham Heart Study</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html"><i class="fa fa-check"></i><b>4</b> Introduction to Causal Diagrams (DAGs)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#what-is-a-dag"><i class="fa fa-check"></i><b>4.1</b> What is a DAG?</a></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#three-types-of-paths-chains-forks-and-colliders"><i class="fa fa-check"></i><b>4.2</b> Three types of paths: chains, forks, and colliders</a></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#d-separation"><i class="fa fa-check"></i><b>4.3</b> D-separation</a></li>
+<li class="chapter" data-level="4.4" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#the-backdoor-criterion"><i class="fa fa-check"></i><b>4.4</b> The backdoor criterion</a></li>
+<li class="chapter" data-level="4.5" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#application-drawing-dags-for-public-health-scenarios"><i class="fa fa-check"></i><b>4.5</b> Application: drawing DAGs for public health scenarios</a></li>
+<li class="chapter" data-level="4.6" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#checklist-item-5-are-the-right-variables-being-adjusted-for"><i class="fa fa-check"></i><b>4.6</b> Checklist Item 5: Are the right variables being adjusted for?</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html"><i class="fa fa-check"></i><b>5</b> From Identification to Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#identification-vs-estimation"><i class="fa fa-check"></i><b>5.1</b> Identification vs estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#stratification"><i class="fa fa-check"></i><b>5.2</b> Stratification</a></li>
+<li class="chapter" data-level="5.3" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#regression-adjustment-and-g-computation"><i class="fa fa-check"></i><b>5.3</b> Regression adjustment and g-computation</a></li>
+<li class="chapter" data-level="5.4" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#matching"><i class="fa fa-check"></i><b>5.4</b> Matching</a></li>
+<li class="chapter" data-level="5.5" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#the-propensity-score"><i class="fa fa-check"></i><b>5.5</b> The propensity score</a></li>
+<li class="chapter" data-level="5.6" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#inverse-probability-weighting-ipw"><i class="fa fa-check"></i><b>5.6</b> Inverse probability weighting (IPW)</a></li>
+<li class="chapter" data-level="5.7" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#comparing-methods-and-choosing-the-right-approach"><i class="fa fa-check"></i><b>5.7</b> Comparing methods and choosing the right approach</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html"><i class="fa fa-check"></i><b>6</b> Effect Modification and Interaction</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#effect-modification-and-the-cate"><i class="fa fa-check"></i><b>6.1</b> Effect modification and the CATE</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-effect-modification-masks-opposite-subgroup-effects"><i class="fa fa-check"></i><b>6.1.1</b> Simulation: Effect modification masks opposite subgroup effects</a></li>
+<li class="chapter" data-level="6.1.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#visualizing-the-effect-modification"><i class="fa fa-check"></i><b>6.1.2</b> Visualizing the effect modification</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#additive-vs-multiplicative-interaction"><i class="fa fa-check"></i><b>6.2</b> Additive vs multiplicative interaction</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-multiplicative-model-but-additive-interaction"><i class="fa fa-check"></i><b>6.2.1</b> Simulation: Multiplicative model but additive interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#subgroup-analysis-pitfalls-and-best-practices"><i class="fa fa-check"></i><b>6.3</b> Subgroup analysis: pitfalls and best practices</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-the-significance-fallacy"><i class="fa fa-check"></i><b>6.3.1</b> Simulation: The significance fallacy</a></li>
+<li class="chapter" data-level="6.3.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#best-practices-for-subgroup-analysis"><i class="fa fa-check"></i><b>6.3.2</b> Best practices for subgroup analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#heterogeneous-treatment-effects-with-causal-forests"><i class="fa fa-check"></i><b>6.4</b> Heterogeneous treatment effects with causal forests</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-estimating-cates-with-causal-forests"><i class="fa fa-check"></i><b>6.4.1</b> Simulation: Estimating CATEs with causal forests</a></li>
+<li class="chapter" data-level="6.4.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#visualizing-estimated-vs-true-cate"><i class="fa fa-check"></i><b>6.4.2</b> Visualizing estimated vs true CATE</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#the-table-2-fallacy"><i class="fa fa-check"></i><b>6.5</b> The Table 2 fallacy</a></li>
+<li class="chapter" data-level="6.6" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#checklist-item-6-could-the-effect-differ-across-subgroups"><i class="fa fa-check"></i><b>6.6</b> Checklist Item 6: Could the effect differ across subgroups?</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html"><i class="fa fa-check"></i><b>7</b> Other Common Pitfalls and How to Identify Them</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#measurement-error"><i class="fa fa-check"></i><b>7.1</b> Measurement Error</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-non-differential-measurement-error-in-treatment"><i class="fa fa-check"></i><b>7.1.1</b> R Simulation: Non-differential Measurement Error in Treatment</a></li>
+<li class="chapter" data-level="7.1.2" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#measurement-bias-the-smoking-and-lung-cancer-example"><i class="fa fa-check"></i><b>7.1.2</b> Measurement Bias: The Smoking and Lung Cancer Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#measurement-error-in-confounders"><i class="fa fa-check"></i><b>7.2</b> Measurement Error in Confounders</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-residual-confounding-from-imperfect-confounder-measurement"><i class="fa fa-check"></i><b>7.2.1</b> R Simulation: Residual Confounding from Imperfect Confounder Measurement</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#selection-bias"><i class="fa fa-check"></i><b>7.3</b> Selection Bias</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-spurious-association-from-selection-on-a-collider"><i class="fa fa-check"></i><b>7.3.1</b> R Simulation: Spurious Association from Selection on a Collider</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#non-compliance"><i class="fa fa-check"></i><b>7.4</b> Non-Compliance</a></li>
+<li class="chapter" data-level="7.5" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#immortal-time-bias"><i class="fa fa-check"></i><b>7.5</b> Immortal Time Bias</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-immortal-time-bias-in-a-survival-study"><i class="fa fa-check"></i><b>7.5.1</b> R Simulation: Immortal Time Bias in a Survival Study</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#ecological-fallacy"><i class="fa fa-check"></i><b>7.6</b> Ecological Fallacy</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-group-level-correlation-without-individual-level-effect"><i class="fa fa-check"></i><b>7.6.1</b> R Simulation: Group-Level Correlation Without Individual-Level Effect</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#non-causal-diagrams"><i class="fa fa-check"></i><b>7.7</b> Non-Causal Diagrams</a></li>
+<li class="chapter" data-level="7.8" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#publication-bias-and-p-hacking"><i class="fa fa-check"></i><b>7.8</b> Publication Bias and P-Hacking</a></li>
+<li class="chapter" data-level="7.9" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#over--and-mis-interpretation-of-statistical-analyses"><i class="fa fa-check"></i><b>7.9</b> Over- and Mis-Interpretation of Statistical Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html"><i class="fa fa-check"></i>The Complete Causal Credibility Checklist</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-1-is-the-causal-question-well-defined"><i class="fa fa-check"></i>Item 1: Is the causal question well-defined?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-2-is-there-a-valid-comparison-group"><i class="fa fa-check"></i>Item 2: Is there a valid comparison group?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-3-was-the-assignment-mechanism-understood"><i class="fa fa-check"></i>Item 3: Was the assignment mechanism understood?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-4-could-confounding-explain-the-result"><i class="fa fa-check"></i>Item 4: Could confounding explain the result?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-5-are-the-right-variables-being-adjusted-for"><i class="fa fa-check"></i>Item 5: Are the right variables being adjusted for?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-6-could-the-effect-differ-across-subgroups"><i class="fa fa-check"></i>Item 6: Could the effect differ across subgroups?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-7-are-there-other-sources-of-bias"><i class="fa fa-check"></i>Item 7: Are there other sources of bias?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#summary-systematic-evaluation-of-causal-claims"><i class="fa fa-check"></i>Summary: Systematic Evaluation of Causal Claims</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.falcobargaglistoffi.com/" target="blank">Instructor: Falco J. Bargagli-Stoffi</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="from-identification-to-estimation" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> From Identification to Estimation<a href="from-identification-to-estimation.html#from-identification-to-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<blockquote>
+<h2 id="class-materials-4" class="hasAnchor">Class materials<a href="from-identification-to-estimation.html#class-materials-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Slides: <a href="https://drive.google.com/drive/folders/14Iymvk2FlZqVsWrtbDLmwSzR5aNS-Mcg?usp=sharing"><strong>Module 5</strong></a></p>
+</blockquote>
+<blockquote>
+<h2 id="textbook-reading-4" class="hasAnchor">Textbook reading<a href="from-identification-to-estimation.html#textbook-reading-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://static1.squarespace.com/static/675db8b0dd37046447128f5f/t/677676888e31cc50c2c33877/1735816881944/hernanrobins_WhatIf_2jan25.pdf"><strong>Hernán &amp; Robins, Causal Inference: What If – Chapters 12–15</strong></a></p>
+</blockquote>
+<blockquote>
+<h2 id="supplementary-reading-3" class="hasAnchor">Supplementary reading<a href="from-identification-to-estimation.html#supplementary-reading-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://academic.oup.com/biomet/article/70/1/41/284423"><strong>Rosenbaum PR, Rubin DB. (1983). The Central Role of the Propensity Score in Observational Studies for Causal Effects. Biometrika, 70(1), 41–55.</strong></a><br />
+<a href="https://projecteuclid.org/journals/statistical-science/volume-25/issue-1/Matching-Methods-for-Causal-Inference--A-Review-and-a/10.1214/09-STS313.full"><strong>Stuart EA. (2010). Matching Methods for Causal Inference: A Review and a Look Forward. Statistical Science, 25(1), 1–21.</strong></a></p>
+</blockquote>
+<blockquote>
+<h2 id="topics-covered-4" class="hasAnchor">Topics covered<a href="from-identification-to-estimation.html#topics-covered-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Identification vs estimation: why they are separate tasks</li>
+<li>Stratification and the curse of dimensionality</li>
+<li>Regression adjustment and g-computation</li>
+<li>Matching: exact, nearest-neighbor, propensity score, and coarsened exact</li>
+<li>The propensity score as a unifying concept</li>
+<li>Inverse probability weighting (IPW)</li>
+<li>Comparing methods: when to use what</li>
+<li>When the backdoor criterion cannot be satisfied: IV, DiD, RDD</li>
+</ul>
+</blockquote>
+<div id="identification-vs-estimation" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Identification vs estimation<a href="from-identification-to-estimation.html#identification-vs-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Every causal analysis involves two fundamentally different tasks, and conflating them is one of the most common mistakes in applied research.</p>
+<p><strong>Identification</strong> asks: can we express the causal quantity in terms of observable data? This is a conceptual question that does not depend on the dataset or sample size. It is answered by the tools from Module 4 — DAGs, the backdoor criterion, d-separation. For example: “If we adjust for age and smoking status, is the causal effect of the treatment on mortality identifiable?” If the answer is no (because of unmeasured confounders, collider bias, or some other structural problem), then no statistical method can rescue the analysis.</p>
+<p><strong>Estimation</strong> asks: given that identification holds, how do we compute the answer from a finite sample? This is a statistical question that depends on the data, the sample size, and our modeling choices. It is answered by the methods we will study in this module: stratification, regression, matching, IPW, and g-computation.</p>
+<p>The key insight is that these are separate tasks with a strict ordering: identification must come first. A brilliant estimation strategy cannot rescue a failed identification argument. Conversely, a valid identification argument can be undermined by a poor estimator, but at least the conceptual foundation is sound.</p>
+<p>In much applied research, the workflow jumps straight to estimation: collect data, run a regression “controlling for” available covariates, and report the treatment coefficient. This skips identification entirely — no DAG is drawn, no argument is made for <em>why</em> these variables (and not others) should be in the model. Some of the “control variables” may in fact be colliders or mediators, and adjusting for them can introduce bias rather than remove it.</p>
+<p>This module assumes that identification has been established via the tools from Module 4. Our question from here on is: <strong>given</strong> the right adjustment set, what is the best way to estimate the causal effect?</p>
+</div>
+<div id="stratification" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Stratification<a href="from-identification-to-estimation.html#stratification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Stratification is the most intuitive approach to confounding adjustment: divide the data into subgroups (strata) defined by confounders, estimate the treatment effect within each stratum, then combine the stratum-specific estimates into an overall effect. This is precisely the adjustment formula from Module 3:</p>
+<p><span class="math display">\[
+\text{ATE} = \sum_x \Big\{ E[Y \mid W = 1, X = x] - E[Y \mid W = 0, X = x] \Big\} \Pr(X = x)
+\]</span></p>
+<p>Stratification is transparent and requires no modeling assumptions. However, it suffers from the curse of dimensionality: with many confounders, the number of strata grows exponentially (5 binary confounders produce 32 strata; 10 produce 1,024), and most strata will be empty or contain too few observations for meaningful comparisons. This makes stratification impractical as the sole adjustment strategy in most real-world studies, motivating the more scalable methods below.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="from-identification-to-estimation.html#cb190-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb190-2"><a href="from-identification-to-estimation.html#cb190-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb190-3"><a href="from-identification-to-estimation.html#cb190-3" tabindex="-1"></a>age_group <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Young&quot;</span>, <span class="st">&quot;Old&quot;</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb190-4"><a href="from-identification-to-estimation.html#cb190-4" tabindex="-1"></a><span class="co"># Confounding: older patients more likely to be treated</span></span>
+<span id="cb190-5"><a href="from-identification-to-estimation.html#cb190-5" tabindex="-1"></a>treat_prob <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(age_group <span class="sc">==</span> <span class="st">&quot;Old&quot;</span>, <span class="fl">0.7</span>, <span class="fl">0.3</span>)</span>
+<span id="cb190-6"><a href="from-identification-to-estimation.html#cb190-6" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, treat_prob)</span>
+<span id="cb190-7"><a href="from-identification-to-estimation.html#cb190-7" tabindex="-1"></a><span class="co"># True treatment effect = -5 (reduces BP), but old have higher baseline BP</span></span>
+<span id="cb190-8"><a href="from-identification-to-estimation.html#cb190-8" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">120</span> <span class="sc">+</span> <span class="dv">15</span> <span class="sc">*</span> (age_group <span class="sc">==</span> <span class="st">&quot;Old&quot;</span>) <span class="sc">-</span> <span class="dv">5</span> <span class="sc">*</span> W <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb190-9"><a href="from-identification-to-estimation.html#cb190-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age_group, W, Y)</span>
+<span id="cb190-10"><a href="from-identification-to-estimation.html#cb190-10" tabindex="-1"></a></span>
+<span id="cb190-11"><a href="from-identification-to-estimation.html#cb190-11" tabindex="-1"></a><span class="co"># Naive estimate (biased by confounding)</span></span>
+<span id="cb190-12"><a href="from-identification-to-estimation.html#cb190-12" tabindex="-1"></a>naive <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb190-13"><a href="from-identification-to-estimation.html#cb190-13" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Naive estimate:&quot;</span>, <span class="fu">round</span>(naive, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Naive estimate: 1.29</code></pre>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="from-identification-to-estimation.html#cb192-1" tabindex="-1"></a><span class="co"># Stratified estimate</span></span>
+<span id="cb192-2"><a href="from-identification-to-estimation.html#cb192-2" tabindex="-1"></a>strata <span class="ot">&lt;-</span> <span class="fu">split</span>(df, df<span class="sc">$</span>age_group)</span>
+<span id="cb192-3"><a href="from-identification-to-estimation.html#cb192-3" tabindex="-1"></a>effects <span class="ot">&lt;-</span> <span class="fu">sapply</span>(strata, <span class="cf">function</span>(s) <span class="fu">mean</span>(s<span class="sc">$</span>Y[s<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(s<span class="sc">$</span>Y[s<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>]))</span>
+<span id="cb192-4"><a href="from-identification-to-estimation.html#cb192-4" tabindex="-1"></a>weights <span class="ot">&lt;-</span> <span class="fu">sapply</span>(strata, nrow) <span class="sc">/</span> n</span>
+<span id="cb192-5"><a href="from-identification-to-estimation.html#cb192-5" tabindex="-1"></a>stratified <span class="ot">&lt;-</span> <span class="fu">sum</span>(effects <span class="sc">*</span> weights)</span>
+<span id="cb192-6"><a href="from-identification-to-estimation.html#cb192-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Stratified estimate:&quot;</span>, <span class="fu">round</span>(stratified, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Stratified estimate: -4.38</code></pre>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="from-identification-to-estimation.html#cb194-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;True effect: -5</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## True effect: -5</code></pre>
+<p>The naive estimate is biased because older patients (who have higher baseline blood pressure) are more likely to receive treatment. The stratified estimate, which compares treated and control patients within each age group before averaging, recovers an estimate close to the true effect of -5.</p>
+</div>
+<div id="regression-adjustment-and-g-computation" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Regression adjustment and g-computation<a href="from-identification-to-estimation.html#regression-adjustment-and-g-computation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Regression adjustment is the most common approach to confounding control in applied research. The basic idea is to fit a model that includes both the treatment and the confounders, then interpret the treatment coefficient as the adjusted causal effect:</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1 W_i + \beta_2 X_i + \varepsilon_i
+\]</span></p>
+<p>Under this model, <span class="math inline">\(\beta_1\)</span> represents the treatment effect “adjusted for” <span class="math inline">\(X\)</span>. However, this interpretation relies on assumptions that are often left unstated: linearity (the effect of <span class="math inline">\(X\)</span> on <span class="math inline">\(Y\)</span> is linear), no interaction (the treatment effect is the same at every level of <span class="math inline">\(X\)</span>), and correct specification (no omitted confounders, no unnecessary variables). When these assumptions fail, the regression coefficient may not correspond to any meaningful causal estimand.</p>
+<p><strong>G-computation</strong> (also called standardization or the parametric g-formula) offers a more principled alternative. Rather than reading off a coefficient, g-computation proceeds in three steps: (1) fit a model for <span class="math inline">\(E[Y \mid W, X]\)</span> that can include interactions and nonlinearities, (2) predict each person’s outcome under treatment (<span class="math inline">\(W=1\)</span>) and under control (<span class="math inline">\(W=0\)</span>), and (3) average the individual-level contrasts. This approach explicitly targets the ATE and allows for treatment effect heterogeneity.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="from-identification-to-estimation.html#cb196-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb196-2"><a href="from-identification-to-estimation.html#cb196-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">3000</span></span>
+<span id="cb196-3"><a href="from-identification-to-estimation.html#cb196-3" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb196-4"><a href="from-identification-to-estimation.html#cb196-4" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fu">plogis</span>(<span class="fl">0.5</span> <span class="sc">*</span> X))</span>
+<span id="cb196-5"><a href="from-identification-to-estimation.html#cb196-5" tabindex="-1"></a><span class="co"># True effect varies with X: ATE = E[2 + 0.5*X] = 2</span></span>
+<span id="cb196-6"><a href="from-identification-to-estimation.html#cb196-6" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> (<span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.5</span> <span class="sc">*</span> X) <span class="sc">*</span> W <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> X <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb196-7"><a href="from-identification-to-estimation.html#cb196-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X, W, Y)</span>
+<span id="cb196-8"><a href="from-identification-to-estimation.html#cb196-8" tabindex="-1"></a></span>
+<span id="cb196-9"><a href="from-identification-to-estimation.html#cb196-9" tabindex="-1"></a><span class="co"># Standard regression (assumes constant effect)</span></span>
+<span id="cb196-10"><a href="from-identification-to-estimation.html#cb196-10" tabindex="-1"></a>reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> W <span class="sc">+</span> X, <span class="at">data =</span> df)</span>
+<span id="cb196-11"><a href="from-identification-to-estimation.html#cb196-11" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Regression coefficient for W:&quot;</span>, <span class="fu">round</span>(<span class="fu">coef</span>(reg)[<span class="st">&quot;W&quot;</span>], <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Regression coefficient for W: 1.985</code></pre>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="from-identification-to-estimation.html#cb198-1" tabindex="-1"></a><span class="co"># G-computation (allows heterogeneous effects)</span></span>
+<span id="cb198-2"><a href="from-identification-to-estimation.html#cb198-2" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> W <span class="sc">*</span> X, <span class="at">data =</span> df)</span>
+<span id="cb198-3"><a href="from-identification-to-estimation.html#cb198-3" tabindex="-1"></a>df<span class="sc">$</span>Y1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">transform</span>(df, <span class="at">W =</span> <span class="dv">1</span>))</span>
+<span id="cb198-4"><a href="from-identification-to-estimation.html#cb198-4" tabindex="-1"></a>df<span class="sc">$</span>Y0 <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> <span class="fu">transform</span>(df, <span class="at">W =</span> <span class="dv">0</span>))</span>
+<span id="cb198-5"><a href="from-identification-to-estimation.html#cb198-5" tabindex="-1"></a>gcomp_ate <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y1 <span class="sc">-</span> df<span class="sc">$</span>Y0)</span>
+<span id="cb198-6"><a href="from-identification-to-estimation.html#cb198-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;G-computation ATE:&quot;</span>, <span class="fu">round</span>(gcomp_ate, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## G-computation ATE: 1.981</code></pre>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="from-identification-to-estimation.html#cb200-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;True ATE: 2</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## True ATE: 2</code></pre>
+<p>Both the standard regression and g-computation recover estimates close to the true ATE of 2 in this example. However, g-computation is more transparent about what it estimates: it explicitly constructs counterfactual predictions for each individual, making the estimand clear. In settings with strong treatment effect heterogeneity or nonlinear confounding, g-computation can outperform simple regression adjustment.</p>
+</div>
+<div id="matching" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Matching<a href="from-identification-to-estimation.html#matching" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Matching tries to reconstruct what a randomized experiment would have looked like by finding, for each treated unit, one or more control units with similar confounder values. The treatment effect is then estimated by comparing outcomes within matched pairs.</p>
+<p>There are several matching approaches: <strong>exact matching</strong> requires identical confounder values (perfect balance but often infeasible), <strong>nearest-neighbor matching</strong> pairs units based on a distance metric like Mahalanobis distance, <strong>propensity score matching</strong> reduces the problem to matching on the estimated probability of treatment, and <strong>coarsened exact matching (CEM)</strong> bins confounders into categories before exact matching. Each approach has trade-offs between balance quality, feasibility, and sample size retention.</p>
+<p>A critical step after any matching procedure is checking <strong>covariate balance</strong>: comparing the distribution of each confounder between the matched treated and control groups. Standardized mean differences (SMDs) below 0.1 are generally considered acceptable. If balance is poor, the matching has failed and the effect estimate will be biased.</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="from-identification-to-estimation.html#cb202-1" tabindex="-1"></a><span class="co"># install.packages(&quot;MatchIt&quot;) # if needed</span></span>
+<span id="cb202-2"><a href="from-identification-to-estimation.html#cb202-2" tabindex="-1"></a><span class="fu">library</span>(MatchIt)</span>
+<span id="cb202-3"><a href="from-identification-to-estimation.html#cb202-3" tabindex="-1"></a></span>
+<span id="cb202-4"><a href="from-identification-to-estimation.html#cb202-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb202-5"><a href="from-identification-to-estimation.html#cb202-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb202-6"><a href="from-identification-to-estimation.html#cb202-6" tabindex="-1"></a>X1 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb202-7"><a href="from-identification-to-estimation.html#cb202-7" tabindex="-1"></a>X2 <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb202-8"><a href="from-identification-to-estimation.html#cb202-8" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fu">plogis</span>(<span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> <span class="fl">0.8</span> <span class="sc">*</span> X1 <span class="sc">+</span> <span class="fl">0.6</span> <span class="sc">*</span> X2))</span>
+<span id="cb202-9"><a href="from-identification-to-estimation.html#cb202-9" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> W <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> <span class="fu">rnorm</span>(n)  <span class="co"># True ATE = 3</span></span>
+<span id="cb202-10"><a href="from-identification-to-estimation.html#cb202-10" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X1, X2, W, Y)</span>
+<span id="cb202-11"><a href="from-identification-to-estimation.html#cb202-11" tabindex="-1"></a></span>
+<span id="cb202-12"><a href="from-identification-to-estimation.html#cb202-12" tabindex="-1"></a><span class="co"># Naive estimate</span></span>
+<span id="cb202-13"><a href="from-identification-to-estimation.html#cb202-13" tabindex="-1"></a>naive <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb202-14"><a href="from-identification-to-estimation.html#cb202-14" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Naive estimate:&quot;</span>, <span class="fu">round</span>(naive, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Naive estimate: 4.46</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="from-identification-to-estimation.html#cb204-1" tabindex="-1"></a><span class="co"># Propensity score matching</span></span>
+<span id="cb204-2"><a href="from-identification-to-estimation.html#cb204-2" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">matchit</span>(W <span class="sc">~</span> X1 <span class="sc">+</span> X2, <span class="at">data =</span> df, <span class="at">method =</span> <span class="st">&quot;nearest&quot;</span>, <span class="at">ratio =</span> <span class="dv">1</span>)</span>
+<span id="cb204-3"><a href="from-identification-to-estimation.html#cb204-3" tabindex="-1"></a>matched_df <span class="ot">&lt;-</span> <span class="fu">match.data</span>(m)</span>
+<span id="cb204-4"><a href="from-identification-to-estimation.html#cb204-4" tabindex="-1"></a></span>
+<span id="cb204-5"><a href="from-identification-to-estimation.html#cb204-5" tabindex="-1"></a><span class="co"># Check balance</span></span>
+<span id="cb204-6"><a href="from-identification-to-estimation.html#cb204-6" tabindex="-1"></a><span class="fu">summary</span>(m)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## matchit(formula = W ~ X1 + X2, data = df, method = &quot;nearest&quot;, 
+##     ratio = 1)
+## 
+## Summary of Balance for All Data:
+##          Means Treated Means Control Std. Mean Diff. Var. Ratio eCDF Mean eCDF Max
+## distance        0.3916        0.2413          0.8204     1.4353    0.2423   0.3674
+## X1              0.4445       -0.1980          0.7041     0.8921    0.1850   0.2987
+## X2              0.3812       -0.1686          0.5492     1.0651    0.1567   0.2417
+## 
+## Summary of Balance for Matched Data:
+##          Means Treated Means Control Std. Mean Diff. Var. Ratio eCDF Mean eCDF Max Std. Pair Dist.
+## distance        0.3916        0.3648          0.1466     1.4242    0.0188   0.1127          0.1471
+## X1              0.4445        0.3885          0.0614     1.1145    0.0132   0.0440          0.7915
+## X2              0.3812        0.2621          0.1189     1.2269    0.0332   0.0951          0.8820
+## 
+## Sample Sizes:
+##           Control Treated
+## All          1432     568
+## Matched       568     568
+## Unmatched     864       0
+## Discarded       0       0</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="from-identification-to-estimation.html#cb206-1" tabindex="-1"></a><span class="co"># Estimate ATT from matched data</span></span>
+<span id="cb206-2"><a href="from-identification-to-estimation.html#cb206-2" tabindex="-1"></a>att <span class="ot">&lt;-</span> <span class="fu">mean</span>(matched_df<span class="sc">$</span>Y[matched_df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(matched_df<span class="sc">$</span>Y[matched_df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb206-3"><a href="from-identification-to-estimation.html#cb206-3" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Matched estimate (ATT):&quot;</span>, <span class="fu">round</span>(att, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Matched estimate (ATT): 3.12</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="from-identification-to-estimation.html#cb208-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;True effect: 3</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## True effect: 3</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="from-identification-to-estimation.html#cb210-1" tabindex="-1"></a><span class="co"># Visualize balance improvement</span></span>
+<span id="cb210-2"><a href="from-identification-to-estimation.html#cb210-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb210-3"><a href="from-identification-to-estimation.html#cb210-3" tabindex="-1"></a>balance_before <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb210-4"><a href="from-identification-to-estimation.html#cb210-4" tabindex="-1"></a>  <span class="at">Variable =</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>),</span>
+<span id="cb210-5"><a href="from-identification-to-estimation.html#cb210-5" tabindex="-1"></a>  <span class="at">SMD =</span> <span class="fu">c</span>(</span>
+<span id="cb210-6"><a href="from-identification-to-estimation.html#cb210-6" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">mean</span>(df<span class="sc">$</span>X1[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(df<span class="sc">$</span>X1[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])) <span class="sc">/</span> <span class="fu">sd</span>(df<span class="sc">$</span>X1),</span>
+<span id="cb210-7"><a href="from-identification-to-estimation.html#cb210-7" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">mean</span>(df<span class="sc">$</span>X2[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(df<span class="sc">$</span>X2[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])) <span class="sc">/</span> <span class="fu">sd</span>(df<span class="sc">$</span>X2)</span>
+<span id="cb210-8"><a href="from-identification-to-estimation.html#cb210-8" tabindex="-1"></a>  ),</span>
+<span id="cb210-9"><a href="from-identification-to-estimation.html#cb210-9" tabindex="-1"></a>  <span class="at">Stage =</span> <span class="st">&quot;Before Matching&quot;</span></span>
+<span id="cb210-10"><a href="from-identification-to-estimation.html#cb210-10" tabindex="-1"></a>)</span>
+<span id="cb210-11"><a href="from-identification-to-estimation.html#cb210-11" tabindex="-1"></a>balance_after <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb210-12"><a href="from-identification-to-estimation.html#cb210-12" tabindex="-1"></a>  <span class="at">Variable =</span> <span class="fu">c</span>(<span class="st">&quot;X1&quot;</span>, <span class="st">&quot;X2&quot;</span>),</span>
+<span id="cb210-13"><a href="from-identification-to-estimation.html#cb210-13" tabindex="-1"></a>  <span class="at">SMD =</span> <span class="fu">c</span>(</span>
+<span id="cb210-14"><a href="from-identification-to-estimation.html#cb210-14" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">mean</span>(matched_df<span class="sc">$</span>X1[matched_df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(matched_df<span class="sc">$</span>X1[matched_df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])) <span class="sc">/</span> <span class="fu">sd</span>(matched_df<span class="sc">$</span>X1),</span>
+<span id="cb210-15"><a href="from-identification-to-estimation.html#cb210-15" tabindex="-1"></a>    <span class="fu">abs</span>(<span class="fu">mean</span>(matched_df<span class="sc">$</span>X2[matched_df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(matched_df<span class="sc">$</span>X2[matched_df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])) <span class="sc">/</span> <span class="fu">sd</span>(matched_df<span class="sc">$</span>X2)</span>
+<span id="cb210-16"><a href="from-identification-to-estimation.html#cb210-16" tabindex="-1"></a>  ),</span>
+<span id="cb210-17"><a href="from-identification-to-estimation.html#cb210-17" tabindex="-1"></a>  <span class="at">Stage =</span> <span class="st">&quot;After Matching&quot;</span></span>
+<span id="cb210-18"><a href="from-identification-to-estimation.html#cb210-18" tabindex="-1"></a>)</span>
+<span id="cb210-19"><a href="from-identification-to-estimation.html#cb210-19" tabindex="-1"></a>balance <span class="ot">&lt;-</span> <span class="fu">rbind</span>(balance_before, balance_after)</span>
+<span id="cb210-20"><a href="from-identification-to-estimation.html#cb210-20" tabindex="-1"></a></span>
+<span id="cb210-21"><a href="from-identification-to-estimation.html#cb210-21" tabindex="-1"></a><span class="fu">ggplot</span>(balance, <span class="fu">aes</span>(<span class="at">x =</span> Variable, <span class="at">y =</span> SMD, <span class="at">fill =</span> Stage)) <span class="sc">+</span></span>
+<span id="cb210-22"><a href="from-identification-to-estimation.html#cb210-22" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>, <span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb210-23"><a href="from-identification-to-estimation.html#cb210-23" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.1</span>, <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb210-24"><a href="from-identification-to-estimation.html#cb210-24" tabindex="-1"></a>  <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fl">2.4</span>, <span class="at">y =</span> <span class="fl">0.12</span>, <span class="at">label =</span> <span class="st">&quot;SMD = 0.1 threshold&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb210-25"><a href="from-identification-to-estimation.html#cb210-25" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Covariate Balance Before and After Matching&quot;</span>,</span>
+<span id="cb210-26"><a href="from-identification-to-estimation.html#cb210-26" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Standardized Mean Difference&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb210-27"><a href="from-identification-to-estimation.html#cb210-27" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>The naive estimate overestimates the treatment effect because confounders <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are associated with both treatment and outcome. After propensity score matching, the standardized mean differences drop below the 0.1 threshold, indicating good balance. The matched estimate recovers a value close to the true effect of 3. The balance plot makes it easy to assess whether matching succeeded — a key advantage of matching as a design strategy.</p>
+</div>
+<div id="the-propensity-score" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> The propensity score<a href="from-identification-to-estimation.html#the-propensity-score" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The propensity score, <span class="math inline">\(e(X) = \Pr(W = 1 \mid X)\)</span>, is the probability of receiving treatment given the observed confounders. The foundational result of Rosenbaum and Rubin (1983) shows that if treatment is conditionally ignorable given confounders <span class="math inline">\(X\)</span>, then it is also conditionally ignorable given the propensity score alone:</p>
+<p><span class="math display">\[
+Y(0), Y(1) \perp W \mid X \quad \Longrightarrow \quad Y(0), Y(1) \perp W \mid e(X)
+\]</span></p>
+<p>This reduces a potentially high-dimensional adjustment problem (many confounders) to a one-dimensional problem (the propensity score). The propensity score is not a method itself — it is a tool that can be used within matching, weighting, stratification, or regression. In practice, the propensity score is estimated using logistic regression or machine learning methods (random forests, gradient boosting). The goal is not to predict treatment assignment as accurately as possible, but to achieve covariate balance between treated and control groups. A propensity score model that perfectly predicts treatment can actually be harmful, producing extreme weights that inflate variance.</p>
+</div>
+<div id="inverse-probability-weighting-ipw" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Inverse probability weighting (IPW)<a href="from-identification-to-estimation.html#inverse-probability-weighting-ipw" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Inverse probability weighting takes a different approach from matching: instead of selecting comparable units, it reweights each observation to create a pseudo-population where treatment is independent of confounders. The IPW estimator for the ATE is:</p>
+<p><span class="math display">\[
+\widehat{\text{ATE}}_{\text{IPW}} = \frac{1}{n}\sum_{i=1}^n \frac{W_i Y_i}{\hat{e}(X_i)} - \frac{1}{n}\sum_{i=1}^n \frac{(1 - W_i) Y_i}{1 - \hat{e}(X_i)}
+\]</span></p>
+<p>The intuition is straightforward: if a treated person had a low probability of being treated, they represent many similar people who were not treated, so we upweight them. This reweighting creates a pseudo-population where treatment is balanced across confounder levels, mimicking what an RCT would have produced.</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="from-identification-to-estimation.html#cb211-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb211-2"><a href="from-identification-to-estimation.html#cb211-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">3000</span></span>
+<span id="cb211-3"><a href="from-identification-to-estimation.html#cb211-3" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb211-4"><a href="from-identification-to-estimation.html#cb211-4" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fu">plogis</span>(<span class="fl">0.8</span> <span class="sc">*</span> X))</span>
+<span id="cb211-5"><a href="from-identification-to-estimation.html#cb211-5" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> W <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> X <span class="sc">+</span> <span class="fu">rnorm</span>(n)  <span class="co"># True ATE = 2</span></span>
+<span id="cb211-6"><a href="from-identification-to-estimation.html#cb211-6" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X, W, Y)</span>
+<span id="cb211-7"><a href="from-identification-to-estimation.html#cb211-7" tabindex="-1"></a></span>
+<span id="cb211-8"><a href="from-identification-to-estimation.html#cb211-8" tabindex="-1"></a><span class="co"># Estimate propensity score</span></span>
+<span id="cb211-9"><a href="from-identification-to-estimation.html#cb211-9" tabindex="-1"></a>ps_model <span class="ot">&lt;-</span> <span class="fu">glm</span>(W <span class="sc">~</span> X, <span class="at">data =</span> df, <span class="at">family =</span> binomial)</span>
+<span id="cb211-10"><a href="from-identification-to-estimation.html#cb211-10" tabindex="-1"></a>df<span class="sc">$</span>ps <span class="ot">&lt;-</span> <span class="fu">predict</span>(ps_model, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb211-11"><a href="from-identification-to-estimation.html#cb211-11" tabindex="-1"></a></span>
+<span id="cb211-12"><a href="from-identification-to-estimation.html#cb211-12" tabindex="-1"></a><span class="co"># IPW weights</span></span>
+<span id="cb211-13"><a href="from-identification-to-estimation.html#cb211-13" tabindex="-1"></a>df<span class="sc">$</span>weight <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>, <span class="dv">1</span> <span class="sc">/</span> df<span class="sc">$</span>ps, <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">-</span> df<span class="sc">$</span>ps))</span>
+<span id="cb211-14"><a href="from-identification-to-estimation.html#cb211-14" tabindex="-1"></a></span>
+<span id="cb211-15"><a href="from-identification-to-estimation.html#cb211-15" tabindex="-1"></a><span class="co"># IPW estimate</span></span>
+<span id="cb211-16"><a href="from-identification-to-estimation.html#cb211-16" tabindex="-1"></a>ipw_ate <span class="ot">&lt;-</span> <span class="fu">weighted.mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>], df<span class="sc">$</span>weight[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span></span>
+<span id="cb211-17"><a href="from-identification-to-estimation.html#cb211-17" tabindex="-1"></a>           <span class="fu">weighted.mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>], df<span class="sc">$</span>weight[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb211-18"><a href="from-identification-to-estimation.html#cb211-18" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;IPW estimate:&quot;</span>, <span class="fu">round</span>(ipw_ate, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## IPW estimate: 2.02</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="from-identification-to-estimation.html#cb213-1" tabindex="-1"></a><span class="co"># Compare to naive and regression</span></span>
+<span id="cb213-2"><a href="from-identification-to-estimation.html#cb213-2" tabindex="-1"></a>naive <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb213-3"><a href="from-identification-to-estimation.html#cb213-3" tabindex="-1"></a>reg <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(Y <span class="sc">~</span> W <span class="sc">+</span> X, <span class="at">data =</span> df))[<span class="st">&quot;W&quot;</span>]</span>
+<span id="cb213-4"><a href="from-identification-to-estimation.html#cb213-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Naive estimate:&quot;</span>, <span class="fu">round</span>(naive, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Naive estimate: 3.09</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="from-identification-to-estimation.html#cb215-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Regression estimate:&quot;</span>, <span class="fu">round</span>(reg, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Regression estimate: 2</code></pre>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="from-identification-to-estimation.html#cb217-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;True ATE: 2</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## True ATE: 2</code></pre>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="from-identification-to-estimation.html#cb219-1" tabindex="-1"></a><span class="co"># Visualize propensity score distributions</span></span>
+<span id="cb219-2"><a href="from-identification-to-estimation.html#cb219-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> ps, <span class="at">fill =</span> <span class="fu">factor</span>(W))) <span class="sc">+</span></span>
+<span id="cb219-3"><a href="from-identification-to-estimation.html#cb219-3" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">position =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">bins =</span> <span class="dv">40</span>) <span class="sc">+</span></span>
+<span id="cb219-4"><a href="from-identification-to-estimation.html#cb219-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Propensity Score Distributions by Treatment Group&quot;</span>,</span>
+<span id="cb219-5"><a href="from-identification-to-estimation.html#cb219-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Propensity Score&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Treatment&quot;</span>) <span class="sc">+</span></span>
+<span id="cb219-6"><a href="from-identification-to-estimation.html#cb219-6" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="st">&quot;#d62728&quot;</span>, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;#1f77b4&quot;</span>),</span>
+<span id="cb219-7"><a href="from-identification-to-estimation.html#cb219-7" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treated&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb219-8"><a href="from-identification-to-estimation.html#cb219-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>The propensity score histogram reveals the overlap between treated and control groups. Good overlap (substantial region where both distributions have mass) is essential for IPW to work well. When propensity scores are near 0 or 1, weights become extreme and estimates become unstable — a signal of positivity violation. Practical remedies include trimming (dropping units with extreme scores) and stabilized weights (multiplying by the marginal probability of treatment).</p>
+</div>
+<div id="comparing-methods-and-choosing-the-right-approach" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Comparing methods and choosing the right approach<a href="from-identification-to-estimation.html#comparing-methods-and-choosing-the-right-approach" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>No single adjustment method is always best. Stratification is transparent but limited to few confounders. Regression is the most common but relies on functional form assumptions. Matching is intuitive and nonparametric but typically estimates the ATT rather than the ATE. IPW uses all observations and can target either estimand but is sensitive to extreme propensity scores. <strong>Doubly robust</strong> estimators combine regression and IPW, providing consistent estimates if either the outcome model or the propensity score model is correctly specified — a powerful insurance policy.</p>
+<p>The most important insight from this module is that the choice of which variables to adjust for (Module 4’s backdoor criterion) matters more than the choice of how to adjust. A perfect matching algorithm applied to the wrong set of variables will still produce biased results. Conversely, even simple regression on the right set of variables can yield credible estimates.</p>
+<p>When the backdoor criterion cannot be satisfied — because there are unmeasured confounders that cannot be adjusted for — researchers must turn to alternative identification strategies. <strong>Instrumental variables (IV)</strong> exploit a source of exogenous variation that affects treatment but not the outcome directly. <strong>Difference-in-differences (DiD)</strong> uses before/after comparisons with a control group to difference out time-invariant confounders. <strong>Regression discontinuity (RDD)</strong> exploits threshold rules for treatment assignment. These quasi-experimental designs relax the no-unmeasured-confounding assumption but require different, often equally strong, assumptions. We will revisit these strategies in Module 7.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-causal-diagrams-dags.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="effect-modification-and-interaction.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": false,
+  "fontsettings": {
+    "theme": "night",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/05_identification_estimation.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/05_identification_estimation.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+library(bookdown)
+library(cobalt)
+library(bnlearn)
+library(igraph)
+render_book("index.Rmd")
+browseURL("docs/index.html")

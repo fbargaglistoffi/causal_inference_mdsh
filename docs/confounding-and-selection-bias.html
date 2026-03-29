@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Confounding and Selection Bias | Causal-Inference-Graduate.knit</title>
+  <meta name="description" content="An undergraduate course on causal inference" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Confounding and Selection Bias | Causal-Inference-Graduate.knit" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An undergraduate course on causal inference" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Confounding and Selection Bias | Causal-Inference-Graduate.knit" />
+  
+  <meta name="twitter:description" content="An undergraduate course on causal inference" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="introduction-to-causal-diagrams.html"/>
+<link rel="next" href="other-common-pitfalls-of-causal-analyses.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Causal Inference</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i>Course Description</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instructor"><i class="fa fa-check"></i>Instructor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#teaching-assistants"><i class="fa fa-check"></i>Teaching Assistants</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-logistics"><i class="fa fa-check"></i>Course Logistics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#required-materials"><i class="fa fa-check"></i>Required Materials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#upon-successful-completion-of-this-course-students-will-be-able-to"><i class="fa fa-check"></i>Upon successful completion of this course, students will be able to:</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tools"><i class="fa fa-check"></i>Tools</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-links"><i class="fa fa-check"></i>Useful Links</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#installing-and-using-required-packages"><i class="fa fa-check"></i>Installing and Using Required Packages</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#difference-between-install.packages-and-library"><i class="fa fa-check"></i>Difference Between install.packages() and library()</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#why-include-this"><i class="fa fa-check"></i>Why include this?</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#base-r-version-simple"><i class="fa fa-check"></i>Base R version (simple)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="causal-dictionary.html"><a href="causal-dictionary.html"><i class="fa fa-check"></i>Causal Dictionary</a></li>
+<li class="chapter" data-level="1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html"><i class="fa fa-check"></i><b>1</b> Foundations of Causal Thinking</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#association-vs.-causation"><i class="fa fa-check"></i><b>1.1</b> Association vs. Causation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#simulating-simpsons-paradox"><i class="fa fa-check"></i><b>1.1.1</b> Simulating Simpson’s Paradox</a></li>
+<li class="chapter" data-level="1.1.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#visualizing-simpsons-paradox"><i class="fa fa-check"></i><b>1.1.2</b> Visualizing Simpson’s Paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#why-we-use-simulations"><i class="fa fa-check"></i><b>1.2</b> Why We Use Simulations</a></li>
+<li class="chapter" data-level="1.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#introduction-to-counterfactuals-and-potential-outcomes"><i class="fa fa-check"></i><b>1.3</b> Introduction to Counterfactuals and Potential Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#notation"><i class="fa fa-check"></i><b>1.3.1</b> Notation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#the-potential-outcomes-table"><i class="fa fa-check"></i><b>1.3.2</b> The Potential Outcomes Table</a></li>
+<li class="chapter" data-level="1.3.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#what-happens-when-treatment-is-assigned"><i class="fa fa-check"></i><b>1.3.3</b> What Happens When Treatment Is Assigned?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#causal-estimands-and-identification"><i class="fa fa-check"></i><b>1.4</b> Causal Estimands and Identification</a></li>
+<li class="chapter" data-level="1.5" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#measuring-effects-for-binary-outcomes"><i class="fa fa-check"></i><b>1.5</b> Measuring Effects for Binary Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#simulation-heart-surgery-and-survival"><i class="fa fa-check"></i><b>1.5.1</b> Simulation: Heart Surgery and Survival</a></li>
+<li class="chapter" data-level="1.5.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#the-fundamental-problem-in-action"><i class="fa fa-check"></i><b>1.5.2</b> The Fundamental Problem in Action</a></li>
+<li class="chapter" data-level="1.5.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#visualizing-the-bias"><i class="fa fa-check"></i><b>1.5.3</b> Visualizing the Bias</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html"><i class="fa fa-check"></i><b>2</b> Randomized Controlled Trials</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#review-the-selection-bias-problem"><i class="fa fa-check"></i><b>2.1</b> Review: The Selection Bias Problem</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#quick-demonstration-confounded-vs.-randomized-assignment"><i class="fa fa-check"></i><b>2.1.1</b> Quick Demonstration: Confounded vs. Randomized Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#simulating-a-randomized-experiment"><i class="fa fa-check"></i><b>2.2</b> Simulating a Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#setting-up-the-population"><i class="fa fa-check"></i><b>2.2.1</b> Setting Up the Population</a></li>
+<li class="chapter" data-level="2.2.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#randomization-treatment-assignment"><i class="fa fa-check"></i><b>2.2.2</b> Randomization: Treatment Assignment</a></li>
+<li class="chapter" data-level="2.2.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#checking-balance-does-randomization-work"><i class="fa fa-check"></i><b>2.2.3</b> Checking Balance: Does Randomization Work?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#visualizing-balance"><i class="fa fa-check"></i><b>2.2.4</b> Visualizing Balance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#estimating-the-ate"><i class="fa fa-check"></i><b>2.3</b> Estimating the ATE</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#generating-outcomes"><i class="fa fa-check"></i><b>2.3.1</b> Generating Outcomes</a></li>
+<li class="chapter" data-level="2.3.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#the-simple-estimator-difference-in-means"><i class="fa fa-check"></i><b>2.3.2</b> The Simple Estimator: Difference in Means</a></li>
+<li class="chapter" data-level="2.3.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#confidence-intervals"><i class="fa fa-check"></i><b>2.3.3</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.3.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#using-a-t-test-equivalent-approach"><i class="fa fa-check"></i><b>2.3.4</b> Using a t-test (Equivalent Approach)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#visualizing-the-treatment-effect"><i class="fa fa-check"></i><b>2.3.5</b> Visualizing the Treatment Effect</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#repeated-experiments-the-sampling-distribution"><i class="fa fa-check"></i><b>2.4</b> Repeated Experiments: The Sampling Distribution</a></li>
+<li class="chapter" data-level="2.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#statistical-vs.-clinical-significance"><i class="fa fa-check"></i><b>2.5</b> Statistical vs. Clinical Significance</a></li>
+<li class="chapter" data-level="2.6" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#exercise-the-oregon-health-insurance-experiment"><i class="fa fa-check"></i><b>2.6</b> Exercise: The Oregon Health Insurance Experiment</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#background"><i class="fa fa-check"></i><b>2.6.1</b> Background</a></li>
+<li class="chapter" data-level="2.6.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#loading-the-data"><i class="fa fa-check"></i><b>2.6.2</b> Loading the Data</a></li>
+<li class="chapter" data-level="2.6.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-1-check-balance-table-1"><i class="fa fa-check"></i><b>2.6.3</b> Step 1: Check Balance (Table 1)</a></li>
+<li class="chapter" data-level="2.6.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-2-estimate-the-intent-to-treat-itt-effect"><i class="fa fa-check"></i><b>2.6.4</b> Step 2: Estimate the Intent-to-Treat (ITT) Effect</a></li>
+<li class="chapter" data-level="2.6.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-3-visualize-the-results"><i class="fa fa-check"></i><b>2.6.5</b> Step 3: Visualize the Results</a></li>
+<li class="chapter" data-level="2.6.6" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#a-nuance-itt-vs.-the-effect-of-having-insurance"><i class="fa fa-check"></i><b>2.6.6</b> A Nuance: ITT vs. the Effect of Having Insurance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="observational-studies.html"><a href="observational-studies.html"><i class="fa fa-check"></i><b>3</b> Observational Studies</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="observational-studies.html"><a href="observational-studies.html#the-challenge-of-confounding-in-public-health-and-medical-research"><i class="fa fa-check"></i><b>3.1</b> The challenge of confounding in public health and medical research</a></li>
+<li class="chapter" data-level="3.2" data-path="observational-studies.html"><a href="observational-studies.html#from-bradford-hills-criteria-to-modern-causal-inference"><i class="fa fa-check"></i><b>3.2</b> From Bradford Hill’s criteria to modern causal inference</a></li>
+<li class="chapter" data-level="3.3" data-path="observational-studies.html"><a href="observational-studies.html#exchangeability-positivity-and-sutva"><i class="fa fa-check"></i><b>3.3</b> Exchangeability, positivity, and SUTVA</a></li>
+<li class="chapter" data-level="3.4" data-path="observational-studies.html"><a href="observational-studies.html#effect-identification-in-observational-studies"><i class="fa fa-check"></i><b>3.4</b> Effect identification in observational studies</a></li>
+<li class="chapter" data-level="3.5" data-path="observational-studies.html"><a href="observational-studies.html#checklist-item-4-could-confounding-explain-the-result"><i class="fa fa-check"></i><b>3.5</b> Checklist Item 4: Could confounding explain the result?</a></li>
+<li class="chapter" data-level="3.6" data-path="observational-studies.html"><a href="observational-studies.html#critical-reading-exercise-evaluating-the-framingham-heart-study"><i class="fa fa-check"></i><b>3.6</b> Critical reading exercise: evaluating the Framingham Heart Study</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html"><i class="fa fa-check"></i><b>4</b> Effect Modification and Interaction</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#effect-modification-and-adjustment-methods"><i class="fa fa-check"></i><b>4.1</b> Effect Modification and Adjustment Methods</a></li>
+<li class="chapter" data-level="4.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#interaction"><i class="fa fa-check"></i><b>4.2</b> Interaction</a></li>
+<li class="chapter" data-level="4.3" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#identifying-interaction"><i class="fa fa-check"></i><b>4.3</b> Identifying Interaction</a></li>
+<li class="chapter" data-level="4.4" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#effect-modification-vs-interaction"><i class="fa fa-check"></i><b>4.4</b> Effect Modification vs Interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-causal-diagrams.html"><a href="introduction-to-causal-diagrams.html"><i class="fa fa-check"></i><b>5</b> Introduction to Causal Diagrams</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introduction-to-causal-diagrams.html"><a href="introduction-to-causal-diagrams.html#basic-principles-of-directed-acyclic-graphs-dags"><i class="fa fa-check"></i><b>5.1</b> Basic principles of directed acyclic graphs (DAGs)</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-causal-diagrams.html"><a href="introduction-to-causal-diagrams.html#common-causal-structures-in-public-health"><i class="fa fa-check"></i><b>5.2</b> Common Causal Structures in Public Health</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction-to-causal-diagrams.html"><a href="introduction-to-causal-diagrams.html#application-drawing-dags-for-public-health-scenarios"><i class="fa fa-check"></i><b>5.3</b> Application: drawing DAGs for public health scenarios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="confounding-and-selection-bias.html"><a href="confounding-and-selection-bias.html"><i class="fa fa-check"></i><b>6</b> Confounding and Selection Bias</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="confounding-and-selection-bias.html"><a href="confounding-and-selection-bias.html#the-form-of-selection-bias"><i class="fa fa-check"></i><b>6.1</b> The Form of Selection Bias</a></li>
+<li class="chapter" data-level="6.2" data-path="confounding-and-selection-bias.html"><a href="confounding-and-selection-bias.html#how-to-adjust-for-selection-bias"><i class="fa fa-check"></i><b>6.2</b> How to Adjust for Selection Bias</a></li>
+<li class="chapter" data-level="6.3" data-path="confounding-and-selection-bias.html"><a href="confounding-and-selection-bias.html#the-structure-of-confounding"><i class="fa fa-check"></i><b>6.3</b> The Structure of Confounding</a></li>
+<li class="chapter" data-level="6.4" data-path="confounding-and-selection-bias.html"><a href="confounding-and-selection-bias.html#how-to-adjust-for-confounding"><i class="fa fa-check"></i><b>6.4</b> How to Adjust for Confounding</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html"><i class="fa fa-check"></i><b>7</b> Other Common Pitfalls of Causal Analyses</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html#measurement-bias"><i class="fa fa-check"></i><b>7.1</b> Measurement Bias</a></li>
+<li class="chapter" data-level="7.2" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html#non-compliance"><i class="fa fa-check"></i><b>7.2</b> Non-compliance</a></li>
+<li class="chapter" data-level="7.3" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html#non-causal-diagrams"><i class="fa fa-check"></i><b>7.3</b> Non-Causal Diagrams</a></li>
+<li class="chapter" data-level="7.4" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html#publication-bias-and-p-hacking"><i class="fa fa-check"></i><b>7.4</b> Publication Bias and P-Hacking</a></li>
+<li class="chapter" data-level="7.5" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html#over--and-mis-interpretation-of-statistical-analyses"><i class="fa fa-check"></i><b>7.5</b> Over- and Mis-Interpretation of Statistical Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html"><i class="fa fa-check"></i><b>8</b> From Identification to Estimation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#identification-and-estimation"><i class="fa fa-check"></i><b>8.1</b> Identification and Estimation</a></li>
+<li class="chapter" data-level="8.2" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#estimation-of-causal-effects"><i class="fa fa-check"></i><b>8.2</b> Estimation of causal effects</a></li>
+<li class="chapter" data-level="8.3" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#taxonomy-of-estimation-models"><i class="fa fa-check"></i><b>8.3</b> Taxonomy of estimation models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="applications-of-causal-inference-in-public-health-and-medical-research.html"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html"><i class="fa fa-check"></i><b>9</b> Applications of Causal Inference in Public Health and Medical Research</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="applications-of-causal-inference-in-public-health-and-medical-research.html"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#public-health-policy-evaluation"><i class="fa fa-check"></i><b>9.1</b> Public health policy evaluation</a></li>
+<li class="chapter" data-level="9.2" data-path="applications-of-causal-inference-in-public-health-and-medical-research.html"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#environmental-exposure-studies"><i class="fa fa-check"></i><b>9.2</b> Environmental exposure studies</a></li>
+<li class="chapter" data-level="9.3" data-path="applications-of-causal-inference-in-public-health-and-medical-research.html"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#health-disparities-research"><i class="fa fa-check"></i><b>9.3</b> Health disparities research</a></li>
+<li class="chapter" data-level="9.4" data-path="applications-of-causal-inference-in-public-health-and-medical-research.html"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#prevention-program-evaluation"><i class="fa fa-check"></i><b>9.4</b> Prevention program evaluation</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="presentation-of-final-projects.html"><a href="presentation-of-final-projects.html"><i class="fa fa-check"></i><b>10</b> Presentation of Final Projects</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="presentation-of-final-projects.html"><a href="presentation-of-final-projects.html#final-project"><i class="fa fa-check"></i><b>10.1</b> Final Project</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.falcobargaglistoffi.com/" target="blank">Instructor: Falco J. Bargagli-Stoffi</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="confounding-and-selection-bias" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Confounding and Selection Bias<a href="confounding-and-selection-bias.html#confounding-and-selection-bias" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<blockquote>
+<h2 id="class-materials-5" class="hasAnchor">Class materials<a href="confounding-and-selection-bias.html#class-materials-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Slides: <a href="https://drive.google.com/drive/folders/14Iymvk2FlZqVsWrtbDLmwSzR5aNS-Mcg?usp=sharing"><strong>Module 6</strong></a></p>
+<p>Recording: <a href="https://your-recording-link.com"><strong>Module 6, Part 1</strong></a></p>
+<p>Recording: <a href="https://your-recording-link.com"><strong>Module 6, Part 2</strong></a></p>
+</blockquote>
+<blockquote>
+<h2 id="textbook-reading-5" class="hasAnchor">Textbook reading<a href="confounding-and-selection-bias.html#textbook-reading-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://static1.squarespace.com/static/675db8b0dd37046447128f5f/t/677676888e31cc50c2c33877/1735816881944/hernanrobins_WhatIf_2jan25.pdf"><strong>Hernán &amp; Robins, Causal Inference: What If – Chapter 7-8</strong></a></p>
+</blockquote>
+<blockquote>
+<h2 id="supplementary-reading-5" class="hasAnchor">Supplementary reading<a href="confounding-and-selection-bias.html#supplementary-reading-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://academic.oup.com/ije/article/41/2/514/709435"><strong>Knol, M. J., &amp; VanderWeele, T. J. (2012). Recommendations for presenting analyses of effect modification and interaction. International Journal of Epidemiology, 41(2), 514–520.</strong></a><br />
+Real-world public health examples of effect modification</p>
+</blockquote>
+<blockquote>
+<h2 id="topics-covered-5" class="hasAnchor">Topics Covered<a href="confounding-and-selection-bias.html#topics-covered-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>The form of selection bias</li>
+<li>How to adjust for selection bias</li>
+<li>The structure of confounding</li>
+<li>How to adjust for confounding</li>
+<li>Critical reading exercise: sources of confounding and selection bias in public health</li>
+</ul>
+</blockquote>
+<div id="the-form-of-selection-bias" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> The Form of Selection Bias<a href="confounding-and-selection-bias.html#the-form-of-selection-bias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Selection bias</strong> occurs when the probability of being included in the study or analysis depends on a factor that affects the association between the treatment and the outcome. Selection bias occurs when we condition (by stratifying or controlling) on a collider or mediator. When we unintentionally condition on these causal structures, we make our estimates biased. Conditioning on a collider opens up a backdoor path, biasing our estimate. Conditioning on a mediator blocks a path that captures the effect an exposure can have on an outcome through the mediator, also biasing our estimate.</p>
+<p>In our simulation, we are interested in studying the effect of having a high income on whether a person gets regular exercise or not. We also have data on healthcare visits for each patient, which is affected both by whether they have high income and whether they exercise. For this example, assume that we do not know the true effect of income on exercise, but in reality, there is no causal effect. Since we believe there is an effect, we will show this causal relationship in our DAG.</p>
+<p>The DAG for this scenario is shown below.</p>
+<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>We introduce selection bias by adjusting on healthcare visits (a collider) in our regression. By conditioning on healthcare visits, our estimated effect will contain the association from the backdoor path.</p>
+<p>The code below estimates the effect of heart health on exercise using two models. The first model does not control for healthcare visits and unbiasedly estimates the true causal effect of 0. The second model controls for healthcare visits and suffers from selection bias.</p>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="confounding-and-selection-bias.html#cb189-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb189-2"><a href="confounding-and-selection-bias.html#cb189-2" tabindex="-1"></a></span>
+<span id="cb189-3"><a href="confounding-and-selection-bias.html#cb189-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
+<span id="cb189-4"><a href="confounding-and-selection-bias.html#cb189-4" tabindex="-1"></a></span>
+<span id="cb189-5"><a href="confounding-and-selection-bias.html#cb189-5" tabindex="-1"></a><span class="co"># Income and exercise are independent (no true causal effect for this example)</span></span>
+<span id="cb189-6"><a href="confounding-and-selection-bias.html#cb189-6" tabindex="-1"></a>high_income <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.4</span>)  <span class="co"># 40% have high income</span></span>
+<span id="cb189-7"><a href="confounding-and-selection-bias.html#cb189-7" tabindex="-1"></a>regular_exercise <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.3</span>)  <span class="co"># 30% exercise regularly</span></span>
+<span id="cb189-8"><a href="confounding-and-selection-bias.html#cb189-8" tabindex="-1"></a></span>
+<span id="cb189-9"><a href="confounding-and-selection-bias.html#cb189-9" tabindex="-1"></a><span class="co"># Healthcare_visits is a collider of high_income and regular_exercise</span></span>
+<span id="cb189-10"><a href="confounding-and-selection-bias.html#cb189-10" tabindex="-1"></a>healthcare_visits <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fl">1.5</span> <span class="sc">*</span> high_income <span class="sc">+</span> <span class="fl">1.2</span> <span class="sc">*</span> regular_exercise <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="fl">0.8</span>)</span>
+<span id="cb189-11"><a href="confounding-and-selection-bias.html#cb189-11" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb189-12"><a href="confounding-and-selection-bias.html#cb189-12" tabindex="-1"></a>  <span class="at">high_income =</span> high_income,</span>
+<span id="cb189-13"><a href="confounding-and-selection-bias.html#cb189-13" tabindex="-1"></a>  <span class="at">regular_exercise =</span> regular_exercise,</span>
+<span id="cb189-14"><a href="confounding-and-selection-bias.html#cb189-14" tabindex="-1"></a>  <span class="at">healthcare_visits =</span> healthcare_visits</span>
+<span id="cb189-15"><a href="confounding-and-selection-bias.html#cb189-15" tabindex="-1"></a>)</span>
+<span id="cb189-16"><a href="confounding-and-selection-bias.html#cb189-16" tabindex="-1"></a></span>
+<span id="cb189-17"><a href="confounding-and-selection-bias.html#cb189-17" tabindex="-1"></a><span class="co"># Model 1 — No adjustment (baseline)</span></span>
+<span id="cb189-18"><a href="confounding-and-selection-bias.html#cb189-18" tabindex="-1"></a>model_unadjusted <span class="ot">&lt;-</span> <span class="fu">lm</span>(regular_exercise <span class="sc">~</span> high_income, <span class="at">data =</span> df)</span>
+<span id="cb189-19"><a href="confounding-and-selection-bias.html#cb189-19" tabindex="-1"></a></span>
+<span id="cb189-20"><a href="confounding-and-selection-bias.html#cb189-20" tabindex="-1"></a><span class="co"># Model 2 — Adjusting for the collider (bad)</span></span>
+<span id="cb189-21"><a href="confounding-and-selection-bias.html#cb189-21" tabindex="-1"></a>model_adjusted_collider <span class="ot">&lt;-</span> <span class="fu">lm</span>(regular_exercise <span class="sc">~</span> high_income <span class="sc">+</span> healthcare_visits, <span class="at">data =</span> df)</span>
+<span id="cb189-22"><a href="confounding-and-selection-bias.html#cb189-22" tabindex="-1"></a></span>
+<span id="cb189-23"><a href="confounding-and-selection-bias.html#cb189-23" tabindex="-1"></a><span class="co"># Extract coefficients</span></span>
+<span id="cb189-24"><a href="confounding-and-selection-bias.html#cb189-24" tabindex="-1"></a>coef_unadjusted <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_unadjusted)<span class="sc">$</span>coefficients[<span class="st">&quot;high_income&quot;</span>, <span class="st">&quot;Estimate&quot;</span>]</span>
+<span id="cb189-25"><a href="confounding-and-selection-bias.html#cb189-25" tabindex="-1"></a>coef_adjusted <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_adjusted_collider)<span class="sc">$</span>coefficients[<span class="st">&quot;high_income&quot;</span>, <span class="st">&quot;Estimate&quot;</span>]</span>
+<span id="cb189-26"><a href="confounding-and-selection-bias.html#cb189-26" tabindex="-1"></a></span>
+<span id="cb189-27"><a href="confounding-and-selection-bias.html#cb189-27" tabindex="-1"></a><span class="co"># Compare results</span></span>
+<span id="cb189-28"><a href="confounding-and-selection-bias.html#cb189-28" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Coefficient without adjustment (true effect):&quot;</span>, coef_unadjusted, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Coefficient without adjustment (true effect): 0.004749401</code></pre>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="confounding-and-selection-bias.html#cb191-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Coefficient with collider adjustment (biased):&quot;</span>, coef_adjusted, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Coefficient with collider adjustment (biased): -0.3942755</code></pre>
+<p>The previous scenario where we condition on a collider is more specifically known as <strong>collider bias</strong>. Had we conditioned on a mediator, this would have been <strong>mediator bias</strong>. In the example about the effect of exercise on diabetes risk, if we were to condition on weight loss when estimating our causal effect, we would block the causal path of exercise <span class="math inline">\(\rightarrow\)</span> weight loss <span class="math inline">\(\rightarrow\)</span> diabetes risk and not be able to estimate the effect of exercise on diabetes risk, mediated by weight loss.</p>
+<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="how-to-adjust-for-selection-bias" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> How to Adjust for Selection Bias<a href="confounding-and-selection-bias.html#how-to-adjust-for-selection-bias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Adjusting for selection bias is more challenging than adjusting for confounding, because selection bias arises when the sample being analyzed is not representative of the target population due to a systematic inclusion process. This often happens when selection into the dataset depends on variables related to both the exposure and the outcome, introducing a spurious association that distorts causal estimates. Unlike confounding, which can often be handled by conditioning on measured variables, selection bias may require more complex strategies such as inverse probability weighting (IPW), sensitivity analysis, or explicitly modeling the selection mechanism. The key to adjusting for selection bias is understanding why and how certain individuals are excluded or included in the analysis — and then incorporating that information to correct the bias.</p>
+</div>
+<div id="the-structure-of-confounding" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> The Structure of Confounding<a href="confounding-and-selection-bias.html#the-structure-of-confounding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Confounding occurs when an external variable influences both the exposure and the outcome, making it difficult to determine whether the observed association is truly causal. This third variable — the confounder — can create a misleading impression that the exposure causes the outcome, when in fact, the association may be driven entirely or partially by the confounder. The key structural feature of confounding is that the confounder must be related to both the exposure and the outcome. To obtain an accurate estimate of the exposure’s causal effect, researchers must adjust for confounding variables using methods like stratification, regression, or matching.</p>
+<p>In our simulation, age acts as a confounder because it affects both smoking behavior and lung cancer risk. Older individuals are more likely to smoke and also more likely to develop lung cancer, which can make smoking appear more harmful (or even less harmful) than it actually is if age isn’t taken into account. The naive model, which includes only smoking, produces a biased estimate because it doesn’t separate the effect of smoking from the effect of age. The adjusted model includes both smoking and age and provides a more accurate estimate of smoking’s effect by accounting for this confounding influence. This example highlights how confounding can distort findings and why controlling for related background variables is essential in observational research. For this simulation, assume smoking has a true effect of 3 on lung cancer.</p>
+<p>The DAG for this scenario is below:</p>
+<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="confounding-and-selection-bias.html#cb193-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb193-2"><a href="confounding-and-selection-bias.html#cb193-2" tabindex="-1"></a></span>
+<span id="cb193-3"><a href="confounding-and-selection-bias.html#cb193-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb193-4"><a href="confounding-and-selection-bias.html#cb193-4" tabindex="-1"></a></span>
+<span id="cb193-5"><a href="confounding-and-selection-bias.html#cb193-5" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">2000</span>, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb193-6"><a href="confounding-and-selection-bias.html#cb193-6" tabindex="-1"></a></span>
+<span id="cb193-7"><a href="confounding-and-selection-bias.html#cb193-7" tabindex="-1"></a>smoking <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> age <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb193-8"><a href="confounding-and-selection-bias.html#cb193-8" tabindex="-1"></a></span>
+<span id="cb193-9"><a href="confounding-and-selection-bias.html#cb193-9" tabindex="-1"></a>lung_cancer <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> smoking <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> age <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb193-10"><a href="confounding-and-selection-bias.html#cb193-10" tabindex="-1"></a></span>
+<span id="cb193-11"><a href="confounding-and-selection-bias.html#cb193-11" tabindex="-1"></a>genetic_marker <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="at">prob =</span> <span class="fu">plogis</span>(<span class="fl">0.01</span> <span class="sc">*</span> smoking <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb193-12"><a href="confounding-and-selection-bias.html#cb193-12" tabindex="-1"></a></span>
+<span id="cb193-13"><a href="confounding-and-selection-bias.html#cb193-13" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb193-14"><a href="confounding-and-selection-bias.html#cb193-14" tabindex="-1"></a>  <span class="at">Age =</span> age,</span>
+<span id="cb193-15"><a href="confounding-and-selection-bias.html#cb193-15" tabindex="-1"></a>  <span class="at">Smoking =</span> smoking,</span>
+<span id="cb193-16"><a href="confounding-and-selection-bias.html#cb193-16" tabindex="-1"></a>  <span class="at">Lung_Cancer =</span> lung_cancer,</span>
+<span id="cb193-17"><a href="confounding-and-selection-bias.html#cb193-17" tabindex="-1"></a>  <span class="at">Genetic_Marker =</span> genetic_marker</span>
+<span id="cb193-18"><a href="confounding-and-selection-bias.html#cb193-18" tabindex="-1"></a>)</span>
+<span id="cb193-19"><a href="confounding-and-selection-bias.html#cb193-19" tabindex="-1"></a></span>
+<span id="cb193-20"><a href="confounding-and-selection-bias.html#cb193-20" tabindex="-1"></a>model_naive <span class="ot">&lt;-</span> <span class="fu">lm</span>(lung_cancer <span class="sc">~</span> smoking, <span class="at">data =</span> df)</span>
+<span id="cb193-21"><a href="confounding-and-selection-bias.html#cb193-21" tabindex="-1"></a></span>
+<span id="cb193-22"><a href="confounding-and-selection-bias.html#cb193-22" tabindex="-1"></a>model_adjusted <span class="ot">&lt;-</span> <span class="fu">lm</span>(lung_cancer <span class="sc">~</span> smoking <span class="sc">+</span> age, <span class="at">data =</span> df)</span>
+<span id="cb193-23"><a href="confounding-and-selection-bias.html#cb193-23" tabindex="-1"></a></span>
+<span id="cb193-24"><a href="confounding-and-selection-bias.html#cb193-24" tabindex="-1"></a>coef_naive <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_naive)<span class="sc">$</span>coefficients[<span class="st">&quot;smoking&quot;</span>, <span class="st">&quot;Estimate&quot;</span>]</span>
+<span id="cb193-25"><a href="confounding-and-selection-bias.html#cb193-25" tabindex="-1"></a></span>
+<span id="cb193-26"><a href="confounding-and-selection-bias.html#cb193-26" tabindex="-1"></a>coef_adjusted <span class="ot">&lt;-</span> <span class="fu">summary</span>(model_adjusted)<span class="sc">$</span>coefficients[<span class="st">&quot;smoking&quot;</span>, <span class="st">&quot;Estimate&quot;</span>]</span>
+<span id="cb193-27"><a href="confounding-and-selection-bias.html#cb193-27" tabindex="-1"></a></span>
+<span id="cb193-28"><a href="confounding-and-selection-bias.html#cb193-28" tabindex="-1"></a>coef_naive</span></code></pre></div>
+<pre><code>## [1] 4.995915</code></pre>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="confounding-and-selection-bias.html#cb195-1" tabindex="-1"></a>coef_adjusted</span></code></pre></div>
+<pre><code>## [1] 3.014671</code></pre>
+<p>Through this simulation, we learned that controlling for confounders via adjusting for them in the regression model helps prevent our estimates from being biased. Practically, in the context of public health, there will always be unobserved confounders that we can’t control for. This makes it impossible to control for all confounders. This does not mean that it is impossible to have credible causal estimates. Instead of trying to get an unbiased estimate by controlling for all confounders (which is infeasible), researchers acknowledge that unobserved confounders exist and can affect their estimates. Through a process called <strong>sensitivity analysis</strong> researchers can observe how strong a confounder has to be in order to invalidate their results.</p>
+<p>In the example above, our estimated effect after properly controlling for age is around 3. However, it is possible that we forgot to account for a genetic marker that is a confounder of smoking and lung cancer. In practice, it is infeasible to control for the genetic marker of each individual in our study, so we use sensitivity analysis to see how robust our estimates are. In the code below, we simulate how strong the association between genetic marker on smoking and the association between genetic marker and lung cancer has to be in order to invalidate our results. The heatmap shows the effect estimates for varying strengths of confounding on the exposure and outcome.</p>
+<p>Our new DAG including the genetic marker would look like the following:</p>
+<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="confounding-and-selection-bias.html#cb197-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb197-2"><a href="confounding-and-selection-bias.html#cb197-2" tabindex="-1"></a></span>
+<span id="cb197-3"><a href="confounding-and-selection-bias.html#cb197-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb197-4"><a href="confounding-and-selection-bias.html#cb197-4" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb197-5"><a href="confounding-and-selection-bias.html#cb197-5" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>()</span>
+<span id="cb197-6"><a href="confounding-and-selection-bias.html#cb197-6" tabindex="-1"></a></span>
+<span id="cb197-7"><a href="confounding-and-selection-bias.html#cb197-7" tabindex="-1"></a>a_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>)   <span class="co"># strength of genetic_marker on smoking</span></span>
+<span id="cb197-8"><a href="confounding-and-selection-bias.html#cb197-8" tabindex="-1"></a>b_vals <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="at">by =</span> <span class="sc">-</span><span class="dv">1</span>)   <span class="co"># strength of genetic_marker on lung_cancer</span></span>
+<span id="cb197-9"><a href="confounding-and-selection-bias.html#cb197-9" tabindex="-1"></a></span>
+<span id="cb197-10"><a href="confounding-and-selection-bias.html#cb197-10" tabindex="-1"></a><span class="cf">for</span> (a <span class="cf">in</span> a_vals) {</span>
+<span id="cb197-11"><a href="confounding-and-selection-bias.html#cb197-11" tabindex="-1"></a>  <span class="cf">for</span> (b <span class="cf">in</span> b_vals) {</span>
+<span id="cb197-12"><a href="confounding-and-selection-bias.html#cb197-12" tabindex="-1"></a>    genetic_marker <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb197-13"><a href="confounding-and-selection-bias.html#cb197-13" tabindex="-1"></a></span>
+<span id="cb197-14"><a href="confounding-and-selection-bias.html#cb197-14" tabindex="-1"></a>    smoking_resid <span class="ot">&lt;-</span> a <span class="sc">*</span> genetic_marker <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb197-15"><a href="confounding-and-selection-bias.html#cb197-15" tabindex="-1"></a>    smoking_resid <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">scale</span>(smoking_resid))   <span class="co"># Fix variance to 1 to avoid inflating variance of smoking</span></span>
+<span id="cb197-16"><a href="confounding-and-selection-bias.html#cb197-16" tabindex="-1"></a>    smoking <span class="ot">&lt;-</span> <span class="dv">4</span> <span class="sc">*</span> age <span class="sc">+</span> smoking_resid</span>
+<span id="cb197-17"><a href="confounding-and-selection-bias.html#cb197-17" tabindex="-1"></a></span>
+<span id="cb197-18"><a href="confounding-and-selection-bias.html#cb197-18" tabindex="-1"></a>    lung_cancer <span class="ot">&lt;-</span> <span class="dv">3</span> <span class="sc">*</span> smoking <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> age <span class="sc">+</span> b <span class="sc">*</span> genetic_marker <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb197-19"><a href="confounding-and-selection-bias.html#cb197-19" tabindex="-1"></a></span>
+<span id="cb197-20"><a href="confounding-and-selection-bias.html#cb197-20" tabindex="-1"></a>    df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(lung_cancer, smoking, age)</span>
+<span id="cb197-21"><a href="confounding-and-selection-bias.html#cb197-21" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">lm</span>(lung_cancer <span class="sc">~</span> smoking <span class="sc">+</span> age, <span class="at">data =</span> df)</span>
+<span id="cb197-22"><a href="confounding-and-selection-bias.html#cb197-22" tabindex="-1"></a>    est <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(model))[<span class="st">&quot;smoking&quot;</span>, <span class="st">&quot;Estimate&quot;</span>]</span>
+<span id="cb197-23"><a href="confounding-and-selection-bias.html#cb197-23" tabindex="-1"></a>    se  <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">summary</span>(model))[<span class="st">&quot;smoking&quot;</span>, <span class="st">&quot;Std. Error&quot;</span>]</span>
+<span id="cb197-24"><a href="confounding-and-selection-bias.html#cb197-24" tabindex="-1"></a></span>
+<span id="cb197-25"><a href="confounding-and-selection-bias.html#cb197-25" tabindex="-1"></a>    results <span class="ot">&lt;-</span> <span class="fu">rbind</span>(results, <span class="fu">data.frame</span>(<span class="at">a =</span> a, <span class="at">b =</span> b,</span>
+<span id="cb197-26"><a href="confounding-and-selection-bias.html#cb197-26" tabindex="-1"></a>                                         <span class="at">smoking_estimate =</span> est, <span class="at">se =</span> se))</span>
+<span id="cb197-27"><a href="confounding-and-selection-bias.html#cb197-27" tabindex="-1"></a>  }</span>
+<span id="cb197-28"><a href="confounding-and-selection-bias.html#cb197-28" tabindex="-1"></a>}</span>
+<span id="cb197-29"><a href="confounding-and-selection-bias.html#cb197-29" tabindex="-1"></a></span>
+<span id="cb197-30"><a href="confounding-and-selection-bias.html#cb197-30" tabindex="-1"></a><span class="fu">ggplot</span>(results, <span class="fu">aes</span>(<span class="at">x =</span> a, <span class="at">y =</span> b, <span class="at">fill =</span> smoking_estimate)) <span class="sc">+</span></span>
+<span id="cb197-31"><a href="confounding-and-selection-bias.html#cb197-31" tabindex="-1"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb197-32"><a href="confounding-and-selection-bias.html#cb197-32" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(</span>
+<span id="cb197-33"><a href="confounding-and-selection-bias.html#cb197-33" tabindex="-1"></a>    <span class="at">low =</span> <span class="st">&quot;white&quot;</span>, <span class="at">high =</span> <span class="st">&quot;Blue&quot;</span>,</span>
+<span id="cb197-34"><a href="confounding-and-selection-bias.html#cb197-34" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">3</span>, <span class="sc">-</span><span class="dv">6</span>, <span class="at">by =</span> <span class="sc">-</span><span class="fl">1.5</span>)</span>
+<span id="cb197-35"><a href="confounding-and-selection-bias.html#cb197-35" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb197-36"><a href="confounding-and-selection-bias.html#cb197-36" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb197-37"><a href="confounding-and-selection-bias.html#cb197-37" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&quot;Strength of Confounder on Smoking&quot;</span>,</span>
+<span id="cb197-38"><a href="confounding-and-selection-bias.html#cb197-38" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&quot;Strength of Confounder on Lung Cancer&quot;</span>,</span>
+<span id="cb197-39"><a href="confounding-and-selection-bias.html#cb197-39" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">&quot;Smoking Effect&quot;</span>,</span>
+<span id="cb197-40"><a href="confounding-and-selection-bias.html#cb197-40" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Effect of Smoking Estimate by Confounder Strength&quot;</span></span>
+<span id="cb197-41"><a href="confounding-and-selection-bias.html#cb197-41" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb197-42"><a href="confounding-and-selection-bias.html#cb197-42" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb197-43"><a href="confounding-and-selection-bias.html#cb197-43" tabindex="-1"></a>  <span class="fu">scale_y_reverse</span>()</span></code></pre></div>
+<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>When identifying a causal effect by assuming conditional exchangeability, sensitivity analysis is incredibly important to defending claims of causality. For example, based off this graph, one could argue that the strength of the genetic marker is likely not strong enough to change our result that smoking increases the chance of lung cancer.</p>
+</div>
+<div id="how-to-adjust-for-confounding" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> How to Adjust for Confounding<a href="confounding-and-selection-bias.html#how-to-adjust-for-confounding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Adjusting for confounding is essential when estimating causal effects from observational data. Since confounders are variables that influence both the exposure and the outcome, failing to account for them can lead to biased and misleading conclusions. One of the most common ways to adjust for confounders is through multiple regression, where confounders are included as covariates in the model. Other methods include stratification, where analyses are performed within levels of the confounder, and matching, where exposed and unexposed individuals are paired based on similar values of the confounding variable. These approaches aim to isolate the effect of the exposure by holding confounders constant, thereby mimicking the balance achieved in randomized experiments.</p>
+<p>In our simulation, we demonstrated adjustment for confounding using regression. The variable age was a confounder because it influenced both smoking and lung cancer. When we fit a naive model that only included smoking, the effect estimate was biased because it reflected both smoking’s and age’s contributions to lung cancer. By including age in the model as an additional predictor, we were able to adjust for its influence. This adjustment allowed us to estimate the effect of smoking on lung cancer more accurately, as if age were held constant. This simple regression approach illustrates a key principle in observational research: if you can measure the confounder and include it in your analysis, you can often remove its biasing effect and get closer to the true causal relationship.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="introduction-to-causal-diagrams.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="other-common-pitfalls-of-causal-analyses.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": false,
+  "fontsettings": {
+    "theme": "night",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/06_confounding_bias.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/06_confounding_bias.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

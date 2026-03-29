@@ -1,0 +1,112 @@
+---
+# title: "The Science of Why: Causal Inference for Public Health"
+# author: "Falco J. Bargagli-Stoffi"
+# date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+# bibliography: [book.bib, packages.bib]
+# url: your book url like https://bookdown.org/yihui/bookdown
+# cover-image: path to the social sharing image like images/cover.jpg
+description: |
+  An undergraduate course on causal inference
+# biblio-style: apalike
+# csl: chicago-fullnote-bibliography.csl
+---
+
+# Welcome {.unnumbered}
+
+Welcome to the course website for **The Science of Why: Causal Inference for Public Health**. This course introduces the foundations of causal inference in public health and medical sciences, with an emphasis on distinguishing between association and causation in real-world research.
+
+## Course Description {.unnumbered}
+
+In this course, students will: 
+
+- Explore foundational concepts such as counterfactuals, causal estimands, and identification strategies.  
+- Learn how to critically evaluate causal claims in the medical and public health literature.  
+- Understand and apply experimental and observational study designs, causal diagrams, and bias adjustment methods.  
+- Develop practical skills through R-based tutorials and case studies.  
+
+This course is ideal for students interested in public health, epidemiology, biostatistics, or social science research. 
+
+## Instructor {.unnumbered}
+
+**[Falco J. Bargagli-Stoffi](https://www.falcobargaglistoffi.com/)**  
+Assistant Professor  
+Department of Biostatistics  
+UCLA Fielding School of Public Health  
+[falco\@ucla.edu](mailto:falco@ucla.edu)  
+
+## Teaching Assistants {.unnumbered}  
+
+**[Cindy Pang](https://cindyjpang.github.io/)**
+
+PhD Candidate
+Department of Biostatistics  
+UCLA Fielding School of Public Health  
+[cindypang@g.ucla.edu](mailto:cindypang@g.ucla.edu)  
+
+
+## Course Logistics {.unnumbered}  
+
+-   **Offered**: Spring Term  
+-   **Meetings**: Lecture (3 hours), Discussion (1 hour) — in-person unless otherwise announced  
+-   **Assignments**: Posted on the course website, due before 8 PM on specified dates  
+-   **Final Project**: Group presentation + written report during finals week  
+
+## Materials {.unnumbered}  
+
+**Primary Textbook**:  
+Hernán MA, Robins JM. (2023) *Causal Inference: What If*  
+[Free PDF available here](https://static1.squarespace.com/static/675db8b0dd37046447128f5f/t/677676888e31cc50c2c33877/1735816881944/hernanrobins_WhatIf_2jan25.pdf)  
+
+**Secondary (Recommended) Texts**: - Rosenbaum PR. *Causal Inference*. MIT Press.  
+- Pearl J., Mackenzie D. *The Book of Why*. Basic Books.  
+
+**Supplementary Readings**:  
+Will be shared throughout the course.  
+
+## Learning Objectives {.unnumbered}  
+
+This course introduces students to the foundations of causal inference in public health and medical sciences, with a strong emphasis on the difference between **association and causation**. Students will learn to critically evaluate causal claims, understand causal diagrams (DAGs), and assess study design choices in both randomized and observational studies.  
+
+We will explore how causal effects are identified and estimated, how to detect and adjust for biases (like confounding and selection bias), and how to use critical thinking tools when reviewing public health research. Students will also be introduced to concepts like effect modification, interaction, and systems thinking through real-world applications.  
+
+## Upon successful completion of this course, students will be able to: {.unnumbered}  
+
+-   Communicate medical and public health findings and causal claims in written and oral forms  
+-   Evaluate causal claims in academic and public health literature  
+-   Design and assess both randomized trials and observational studies  
+-   Construct and analyze causal diagrams for identifying sources of bias  
+-   Apply concepts of effect modification, interaction, and confounding  
+-   Interpret findings within the context of public health policy and practice  
+-   Work independently and collaboratively to assess causal research  
+
+## Office Hours {.unnumbered}  
+
+## Office Hours {-} 
+
+Falco J. Bargagli-Stoffi (course, final project):
+
+- Wednesdays: 2:00pm to 3:00pm on [Zoom](https://ucla.zoom.us/my/falco)
+
+Cindy Pang (assignments, grading):
+
+- Via email at [cindypang@g.ucla.edu](mailto:cindypang@g.ucla.edu)  
+
+
+## Tools {.unnumbered}  
+
+This course will make use of:   
+- **R** and **RStudio**   
+- Interactive R tutorials and guided analysis   
+- GitHub for accessing materials and submitting assignments    
+
+## Useful Links {.unnumbered}  
+
+-   [UCLA Center for Accessible Education](http://www.cae.ucla.edu)  
+-   [UCLA Equity, Diversity, and Inclusion](https://equity.ucla.edu)  
+-   [FSPH Inclusive Excellence Initiative](https://ph.ucla.edu/about-fsph/fsph-equity-diversity-and-inclusion-taking-action-together) 
+
+## Acknowledgments {-}
+
+Special thanks to [Shravani Chiddarwar](https://www.linkedin.com/in/shravani-chiddarwar/), [Kevin Ngo](https://kevoinno.github.io/), and [Charlie Wang](https://www.linkedin.com/in/charliewang4615/) for their invaluable help in preparing this course.

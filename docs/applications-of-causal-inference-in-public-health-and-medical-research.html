@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>9 Applications of Causal Inference in Public Health and Medical Research | Causal-Inference-Graduate.knit</title>
+  <meta name="description" content="An undergraduate course on causal inference" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="9 Applications of Causal Inference in Public Health and Medical Research | Causal-Inference-Graduate.knit" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An undergraduate course on causal inference" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="9 Applications of Causal Inference in Public Health and Medical Research | Causal-Inference-Graduate.knit" />
+  
+  <meta name="twitter:description" content="An undergraduate course on causal inference" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="from-identification-to-estimation.html"/>
+<link rel="next" href="presentation-of-final-projects.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Causal Inference</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i>Course Description</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instructor"><i class="fa fa-check"></i>Instructor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#teaching-assistants"><i class="fa fa-check"></i>Teaching Assistants</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-logistics"><i class="fa fa-check"></i>Course Logistics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#required-materials"><i class="fa fa-check"></i>Required Materials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#upon-successful-completion-of-this-course-students-will-be-able-to"><i class="fa fa-check"></i>Upon successful completion of this course, students will be able to:</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tools"><i class="fa fa-check"></i>Tools</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-links"><i class="fa fa-check"></i>Useful Links</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#installing-and-using-required-packages"><i class="fa fa-check"></i>Installing and Using Required Packages</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#difference-between-install.packages-and-library"><i class="fa fa-check"></i>Difference Between install.packages() and library()</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#why-include-this"><i class="fa fa-check"></i>Why include this?</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#base-r-version-simple"><i class="fa fa-check"></i>Base R version (simple)</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="causal-dictionary.html"><a href="causal-dictionary.html"><i class="fa fa-check"></i>Causal Dictionary</a></li>
+<li class="chapter" data-level="1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html"><i class="fa fa-check"></i><b>1</b> Foundations of Causal Thinking</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#association-vs.-causation"><i class="fa fa-check"></i><b>1.1</b> Association vs. Causation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#simulating-simpsons-paradox"><i class="fa fa-check"></i><b>1.1.1</b> Simulating Simpson’s Paradox</a></li>
+<li class="chapter" data-level="1.1.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#visualizing-simpsons-paradox"><i class="fa fa-check"></i><b>1.1.2</b> Visualizing Simpson’s Paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#why-we-use-simulations"><i class="fa fa-check"></i><b>1.2</b> Why We Use Simulations</a></li>
+<li class="chapter" data-level="1.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#introduction-to-counterfactuals-and-potential-outcomes"><i class="fa fa-check"></i><b>1.3</b> Introduction to Counterfactuals and Potential Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#notation"><i class="fa fa-check"></i><b>1.3.1</b> Notation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#the-potential-outcomes-table"><i class="fa fa-check"></i><b>1.3.2</b> The Potential Outcomes Table</a></li>
+<li class="chapter" data-level="1.3.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#what-happens-when-treatment-is-assigned"><i class="fa fa-check"></i><b>1.3.3</b> What Happens When Treatment Is Assigned?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#causal-estimands-and-identification"><i class="fa fa-check"></i><b>1.4</b> Causal Estimands and Identification</a></li>
+<li class="chapter" data-level="1.5" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#measuring-effects-for-binary-outcomes"><i class="fa fa-check"></i><b>1.5</b> Measuring Effects for Binary Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#simulation-heart-surgery-and-survival"><i class="fa fa-check"></i><b>1.5.1</b> Simulation: Heart Surgery and Survival</a></li>
+<li class="chapter" data-level="1.5.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#the-fundamental-problem-in-action"><i class="fa fa-check"></i><b>1.5.2</b> The Fundamental Problem in Action</a></li>
+<li class="chapter" data-level="1.5.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#visualizing-the-bias"><i class="fa fa-check"></i><b>1.5.3</b> Visualizing the Bias</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html"><i class="fa fa-check"></i><b>2</b> Randomized Controlled Trials</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#review-the-selection-bias-problem"><i class="fa fa-check"></i><b>2.1</b> Review: The Selection Bias Problem</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#quick-demonstration-confounded-vs.-randomized-assignment"><i class="fa fa-check"></i><b>2.1.1</b> Quick Demonstration: Confounded vs. Randomized Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#simulating-a-randomized-experiment"><i class="fa fa-check"></i><b>2.2</b> Simulating a Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#setting-up-the-population"><i class="fa fa-check"></i><b>2.2.1</b> Setting Up the Population</a></li>
+<li class="chapter" data-level="2.2.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#randomization-treatment-assignment"><i class="fa fa-check"></i><b>2.2.2</b> Randomization: Treatment Assignment</a></li>
+<li class="chapter" data-level="2.2.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#checking-balance-does-randomization-work"><i class="fa fa-check"></i><b>2.2.3</b> Checking Balance: Does Randomization Work?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#visualizing-balance"><i class="fa fa-check"></i><b>2.2.4</b> Visualizing Balance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#estimating-the-ate"><i class="fa fa-check"></i><b>2.3</b> Estimating the ATE</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#generating-outcomes"><i class="fa fa-check"></i><b>2.3.1</b> Generating Outcomes</a></li>
+<li class="chapter" data-level="2.3.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#the-simple-estimator-difference-in-means"><i class="fa fa-check"></i><b>2.3.2</b> The Simple Estimator: Difference in Means</a></li>
+<li class="chapter" data-level="2.3.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#confidence-intervals"><i class="fa fa-check"></i><b>2.3.3</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.3.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#using-a-t-test-equivalent-approach"><i class="fa fa-check"></i><b>2.3.4</b> Using a t-test (Equivalent Approach)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#visualizing-the-treatment-effect"><i class="fa fa-check"></i><b>2.3.5</b> Visualizing the Treatment Effect</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#repeated-experiments-the-sampling-distribution"><i class="fa fa-check"></i><b>2.4</b> Repeated Experiments: The Sampling Distribution</a></li>
+<li class="chapter" data-level="2.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#statistical-vs.-clinical-significance"><i class="fa fa-check"></i><b>2.5</b> Statistical vs. Clinical Significance</a></li>
+<li class="chapter" data-level="2.6" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#exercise-the-oregon-health-insurance-experiment"><i class="fa fa-check"></i><b>2.6</b> Exercise: The Oregon Health Insurance Experiment</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#background"><i class="fa fa-check"></i><b>2.6.1</b> Background</a></li>
+<li class="chapter" data-level="2.6.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#loading-the-data"><i class="fa fa-check"></i><b>2.6.2</b> Loading the Data</a></li>
+<li class="chapter" data-level="2.6.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-1-check-balance-table-1"><i class="fa fa-check"></i><b>2.6.3</b> Step 1: Check Balance (Table 1)</a></li>
+<li class="chapter" data-level="2.6.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-2-estimate-the-intent-to-treat-itt-effect"><i class="fa fa-check"></i><b>2.6.4</b> Step 2: Estimate the Intent-to-Treat (ITT) Effect</a></li>
+<li class="chapter" data-level="2.6.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-3-visualize-the-results"><i class="fa fa-check"></i><b>2.6.5</b> Step 3: Visualize the Results</a></li>
+<li class="chapter" data-level="2.6.6" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#a-nuance-itt-vs.-the-effect-of-having-insurance"><i class="fa fa-check"></i><b>2.6.6</b> A Nuance: ITT vs. the Effect of Having Insurance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="observational-studies.html"><a href="observational-studies.html"><i class="fa fa-check"></i><b>3</b> Observational Studies</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="observational-studies.html"><a href="observational-studies.html#the-challenge-of-confounding-in-public-health-and-medical-research"><i class="fa fa-check"></i><b>3.1</b> The challenge of confounding in public health and medical research</a></li>
+<li class="chapter" data-level="3.2" data-path="observational-studies.html"><a href="observational-studies.html#from-bradford-hills-criteria-to-modern-causal-inference"><i class="fa fa-check"></i><b>3.2</b> From Bradford Hill’s criteria to modern causal inference</a></li>
+<li class="chapter" data-level="3.3" data-path="observational-studies.html"><a href="observational-studies.html#exchangeability-positivity-and-sutva"><i class="fa fa-check"></i><b>3.3</b> Exchangeability, positivity, and SUTVA</a></li>
+<li class="chapter" data-level="3.4" data-path="observational-studies.html"><a href="observational-studies.html#effect-identification-in-observational-studies"><i class="fa fa-check"></i><b>3.4</b> Effect identification in observational studies</a></li>
+<li class="chapter" data-level="3.5" data-path="observational-studies.html"><a href="observational-studies.html#checklist-item-4-could-confounding-explain-the-result"><i class="fa fa-check"></i><b>3.5</b> Checklist Item 4: Could confounding explain the result?</a></li>
+<li class="chapter" data-level="3.6" data-path="observational-studies.html"><a href="observational-studies.html#critical-reading-exercise-evaluating-the-framingham-heart-study"><i class="fa fa-check"></i><b>3.6</b> Critical reading exercise: evaluating the Framingham Heart Study</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html"><i class="fa fa-check"></i><b>4</b> Effect Modification and Interaction</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#effect-modification-and-adjustment-methods"><i class="fa fa-check"></i><b>4.1</b> Effect Modification and Adjustment Methods</a></li>
+<li class="chapter" data-level="4.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#interaction"><i class="fa fa-check"></i><b>4.2</b> Interaction</a></li>
+<li class="chapter" data-level="4.3" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#identifying-interaction"><i class="fa fa-check"></i><b>4.3</b> Identifying Interaction</a></li>
+<li class="chapter" data-level="4.4" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#effect-modification-vs-interaction"><i class="fa fa-check"></i><b>4.4</b> Effect Modification vs Interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="introduction-to-causal-diagrams.html"><a href="introduction-to-causal-diagrams.html"><i class="fa fa-check"></i><b>5</b> Introduction to Causal Diagrams</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="introduction-to-causal-diagrams.html"><a href="introduction-to-causal-diagrams.html#basic-principles-of-directed-acyclic-graphs-dags"><i class="fa fa-check"></i><b>5.1</b> Basic principles of directed acyclic graphs (DAGs)</a></li>
+<li class="chapter" data-level="5.2" data-path="introduction-to-causal-diagrams.html"><a href="introduction-to-causal-diagrams.html#common-causal-structures-in-public-health"><i class="fa fa-check"></i><b>5.2</b> Common Causal Structures in Public Health</a></li>
+<li class="chapter" data-level="5.3" data-path="introduction-to-causal-diagrams.html"><a href="introduction-to-causal-diagrams.html#application-drawing-dags-for-public-health-scenarios"><i class="fa fa-check"></i><b>5.3</b> Application: drawing DAGs for public health scenarios</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="confounding-and-selection-bias.html"><a href="confounding-and-selection-bias.html"><i class="fa fa-check"></i><b>6</b> Confounding and Selection Bias</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="confounding-and-selection-bias.html"><a href="confounding-and-selection-bias.html#the-form-of-selection-bias"><i class="fa fa-check"></i><b>6.1</b> The Form of Selection Bias</a></li>
+<li class="chapter" data-level="6.2" data-path="confounding-and-selection-bias.html"><a href="confounding-and-selection-bias.html#how-to-adjust-for-selection-bias"><i class="fa fa-check"></i><b>6.2</b> How to Adjust for Selection Bias</a></li>
+<li class="chapter" data-level="6.3" data-path="confounding-and-selection-bias.html"><a href="confounding-and-selection-bias.html#the-structure-of-confounding"><i class="fa fa-check"></i><b>6.3</b> The Structure of Confounding</a></li>
+<li class="chapter" data-level="6.4" data-path="confounding-and-selection-bias.html"><a href="confounding-and-selection-bias.html#how-to-adjust-for-confounding"><i class="fa fa-check"></i><b>6.4</b> How to Adjust for Confounding</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html"><i class="fa fa-check"></i><b>7</b> Other Common Pitfalls of Causal Analyses</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html#measurement-bias"><i class="fa fa-check"></i><b>7.1</b> Measurement Bias</a></li>
+<li class="chapter" data-level="7.2" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html#non-compliance"><i class="fa fa-check"></i><b>7.2</b> Non-compliance</a></li>
+<li class="chapter" data-level="7.3" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html#non-causal-diagrams"><i class="fa fa-check"></i><b>7.3</b> Non-Causal Diagrams</a></li>
+<li class="chapter" data-level="7.4" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html#publication-bias-and-p-hacking"><i class="fa fa-check"></i><b>7.4</b> Publication Bias and P-Hacking</a></li>
+<li class="chapter" data-level="7.5" data-path="other-common-pitfalls-of-causal-analyses.html"><a href="other-common-pitfalls-of-causal-analyses.html#over--and-mis-interpretation-of-statistical-analyses"><i class="fa fa-check"></i><b>7.5</b> Over- and Mis-Interpretation of Statistical Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html"><i class="fa fa-check"></i><b>8</b> From Identification to Estimation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#identification-and-estimation"><i class="fa fa-check"></i><b>8.1</b> Identification and Estimation</a></li>
+<li class="chapter" data-level="8.2" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#estimation-of-causal-effects"><i class="fa fa-check"></i><b>8.2</b> Estimation of causal effects</a></li>
+<li class="chapter" data-level="8.3" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#taxonomy-of-estimation-models"><i class="fa fa-check"></i><b>8.3</b> Taxonomy of estimation models</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="applications-of-causal-inference-in-public-health-and-medical-research.html"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html"><i class="fa fa-check"></i><b>9</b> Applications of Causal Inference in Public Health and Medical Research</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="applications-of-causal-inference-in-public-health-and-medical-research.html"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#public-health-policy-evaluation"><i class="fa fa-check"></i><b>9.1</b> Public health policy evaluation</a></li>
+<li class="chapter" data-level="9.2" data-path="applications-of-causal-inference-in-public-health-and-medical-research.html"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#environmental-exposure-studies"><i class="fa fa-check"></i><b>9.2</b> Environmental exposure studies</a></li>
+<li class="chapter" data-level="9.3" data-path="applications-of-causal-inference-in-public-health-and-medical-research.html"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#health-disparities-research"><i class="fa fa-check"></i><b>9.3</b> Health disparities research</a></li>
+<li class="chapter" data-level="9.4" data-path="applications-of-causal-inference-in-public-health-and-medical-research.html"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#prevention-program-evaluation"><i class="fa fa-check"></i><b>9.4</b> Prevention program evaluation</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="presentation-of-final-projects.html"><a href="presentation-of-final-projects.html"><i class="fa fa-check"></i><b>10</b> Presentation of Final Projects</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="presentation-of-final-projects.html"><a href="presentation-of-final-projects.html#final-project"><i class="fa fa-check"></i><b>10.1</b> Final Project</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.falcobargaglistoffi.com/" target="blank">Instructor: Falco J. Bargagli-Stoffi</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="applications-of-causal-inference-in-public-health-and-medical-research" class="section level1 hasAnchor" number="9">
+<h1><span class="header-section-number">9</span> Applications of Causal Inference in Public Health and Medical Research<a href="applications-of-causal-inference-in-public-health-and-medical-research.html#applications-of-causal-inference-in-public-health-and-medical-research" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<blockquote>
+<h2 id="class-materials-8" class="hasAnchor">Class materials<a href="applications-of-causal-inference-in-public-health-and-medical-research.html#class-materials-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Slides: <a href="https://your-slide-link.com"><strong>Module 9</strong></a></p>
+<p>Recording: <a href="https://your-recording-link.com"><strong>Module 9, Part 1</strong></a></p>
+<p>Recording: <a href="https://your-recording-link.com"><strong>Module 9, Part 2</strong></a></p>
+</blockquote>
+<blockquote>
+<h2 id="textbook-reading-8" class="hasAnchor">Textbook reading<a href="applications-of-causal-inference-in-public-health-and-medical-research.html#textbook-reading-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://static1.squarespace.com/static/675db8b0dd37046447128f5f/t/677676888e31cc50c2c33877/1735816881944/hernanrobins_WhatIf_2jan25.pdf"><strong>Hernán &amp; Robins, Causal Inference: What If – Chapter 15</strong></a></p>
+</blockquote>
+<blockquote>
+<h2 id="supplementary-reading-8" class="hasAnchor">Supplementary reading<a href="applications-of-causal-inference-in-public-health-and-medical-research.html#supplementary-reading-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1470480/"><strong>Sterman, J. D. (2006). Learning from evidence in a complex world. American Journal of Public Health, 96(3), 505–514.</strong></a><br />
+Examples of systems-level interventions in public health and policy</p>
+</blockquote>
+<blockquote>
+<h2 id="topics-covered-8" class="hasAnchor">Topics covered<a href="applications-of-causal-inference-in-public-health-and-medical-research.html#topics-covered-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Public health policy evaluation</li>
+<li>Environmental exposure studies</li>
+<li>Health disparities research</li>
+<li>Prevention program evaluation</li>
+</ul>
+</blockquote>
+<div id="public-health-policy-evaluation" class="section level2 hasAnchor" number="9.1">
+<h2><span class="header-section-number">9.1</span> Public health policy evaluation<a href="applications-of-causal-inference-in-public-health-and-medical-research.html#public-health-policy-evaluation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-1" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb202-2"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-2" tabindex="-1"></a></span>
+<span id="cb202-3"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-3" tabindex="-1"></a>baseline_health <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="at">mean =</span> <span class="dv">50</span>, <span class="at">sd =</span> <span class="dv">10</span>)</span>
+<span id="cb202-4"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-4" tabindex="-1"></a></span>
+<span id="cb202-5"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-5" tabindex="-1"></a>policy <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(baseline_health <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">5</span>) <span class="sc">&lt;</span> <span class="dv">52</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb202-6"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-6" tabindex="-1"></a></span>
+<span id="cb202-7"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-7" tabindex="-1"></a>health_outcome <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="sc">*</span> policy <span class="sc">+</span> <span class="fl">0.6</span> <span class="sc">*</span> baseline_health <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="dv">0</span>, <span class="dv">5</span>)</span>
+<span id="cb202-8"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-8" tabindex="-1"></a></span>
+<span id="cb202-9"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-9" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb202-10"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-10" tabindex="-1"></a>  <span class="at">Policy =</span> <span class="fu">factor</span>(policy, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;No Policy&quot;</span>, <span class="st">&quot;Policy&quot;</span>)),</span>
+<span id="cb202-11"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-11" tabindex="-1"></a>  <span class="at">Baseline_Health =</span> baseline_health,</span>
+<span id="cb202-12"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-12" tabindex="-1"></a>  <span class="at">Health_Outcome =</span> health_outcome</span>
+<span id="cb202-13"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-13" tabindex="-1"></a>)</span>
+<span id="cb202-14"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-14" tabindex="-1"></a></span>
+<span id="cb202-15"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-15" tabindex="-1"></a>model_naive <span class="ot">&lt;-</span> <span class="fu">lm</span>(Health_Outcome <span class="sc">~</span> Policy, <span class="at">data =</span> df)</span>
+<span id="cb202-16"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-16" tabindex="-1"></a></span>
+<span id="cb202-17"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-17" tabindex="-1"></a>model_adjusted <span class="ot">&lt;-</span> <span class="fu">lm</span>(Health_Outcome <span class="sc">~</span> Policy <span class="sc">+</span> Baseline_Health, <span class="at">data =</span> df)</span>
+<span id="cb202-18"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-18" tabindex="-1"></a></span>
+<span id="cb202-19"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb202-19" tabindex="-1"></a><span class="fu">summary</span>(model_naive)<span class="sc">$</span>coefficients[<span class="st">&quot;PolicyPolicy&quot;</span>, ]</span></code></pre></div>
+<pre><code>##      Estimate    Std. Error       t value      Pr(&gt;|t|) 
+## -3.861950e+00  2.957099e-01 -1.305993e+01  1.821710e-37</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb204-1" tabindex="-1"></a><span class="fu">summary</span>(model_adjusted)<span class="sc">$</span>coefficients[<span class="st">&quot;PolicyPolicy&quot;</span>, ]</span></code></pre></div>
+<pre><code>##     Estimate   Std. Error      t value     Pr(&gt;|t|) 
+## 5.065309e+00 3.146141e-01 1.610007e+01 6.273699e-55</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb206-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb206-2"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb206-2" tabindex="-1"></a><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">x =</span> Policy, <span class="at">y =</span> Health_Outcome, <span class="at">fill =</span> Policy)) <span class="sc">+</span></span>
+<span id="cb206-3"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb206-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb206-4"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb206-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Simulated Impact of Public Health Policy&quot;</span>,</span>
+<span id="cb206-5"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb206-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Policy Implemented&quot;</span>,</span>
+<span id="cb206-6"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb206-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Health Outcome After 1 Year&quot;</span>) <span class="sc">+</span></span>
+<span id="cb206-7"><a href="applications-of-causal-inference-in-public-health-and-medical-research.html#cb206-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+</div>
+<div id="environmental-exposure-studies" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Environmental exposure studies<a href="applications-of-causal-inference-in-public-health-and-medical-research.html#environmental-exposure-studies" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Environmental exposure studies investigate how exposure to environmental factors—such as air pollution, contaminated water, radiation, or hazardous chemicals—affects human health. These studies aim to establish causal links between environmental conditions and outcomes like respiratory illness, cancer, or developmental disorders. Because randomizing exposure is often unethical or impractical, these studies typically rely on observational data, making careful adjustment for confounders and sources of bias essential. Tools like causal diagrams, regression models, and sensitivity analyses are often employed to assess whether the observed health effects are truly caused by the environmental exposure.</p>
+<p>In the policy simulation, the setup closely resembles an environmental exposure study where “policy” could be interpreted as an intervention to reduce environmental harm (e.g., enforcing clean air regulations). The simulation demonstrated how individuals exposed to the policy had lower average health outcomes, not because the policy failed, but because those individuals started with worse baseline health. This reflects a common challenge in environmental health research: exposure is often non-random and associated with other risk factors. Just like in environmental exposure studies, it is crucial to adjust for baseline differences—such as pre-existing health or socioeconomic status—to avoid incorrectly concluding that the exposure (or policy) caused harm.</p>
+</div>
+<div id="health-disparities-research" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Health disparities research<a href="applications-of-causal-inference-in-public-health-and-medical-research.html#health-disparities-research" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Health disparities research focuses on understanding and addressing differences in health outcomes across population groups defined by factors such as race, ethnicity, socioeconomic status, geography, gender, or disability. These disparities often stem from unequal access to care, systemic discrimination, environmental exposures, and social determinants of health. The goal is not only to document these differences but also to identify causal pathways and implement interventions that promote health equity. Causal inference tools are especially valuable in this field because they help distinguish between mere correlations and actual structural inequalities that can be targeted through policy and intervention.</p>
+<p>The simulation of public health policy can be directly applied to health disparities research by modeling how an intervention affects different subgroups. For instance, if a health policy is implemented in lower-income neighborhoods, those individuals might begin with worse baseline health, as shown by lower health outcomes in the policy group. Without adjusting for these baseline differences, the simulation might misleadingly suggest that the policy worsens outcomes. In reality, this reflects the importance of stratifying or adjusting for social determinants when evaluating interventions aimed at reducing disparities. The simulation thus highlights how easily misleading conclusions can arise if disparities are not properly accounted for in causal analysis.</p>
+</div>
+<div id="prevention-program-evaluation" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Prevention program evaluation<a href="applications-of-causal-inference-in-public-health-and-medical-research.html#prevention-program-evaluation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Prevention program evaluation involves assessing the effectiveness of initiatives designed to reduce the risk of adverse health outcomes before they occur. These programs might target behaviors (e.g., smoking cessation), environmental risks (e.g., air quality improvement), or access to services (e.g., vaccination campaigns). Evaluators aim to determine whether the program caused measurable changes in outcomes such as disease incidence, risk factor reduction, or health equity. This requires careful consideration of confounding factors, selection bias, and whether the observed differences can be attributed to the intervention itself — making causal inference tools central to prevention research.</p>
+<p>In our simulation, the public health policy acts like a prevention program aimed at improving long-term health outcomes. By comparing the health trajectories of individuals in the policy versus no-policy groups, we can estimate the effect of the intervention. However, the simulation also reveals a key challenge: even if a program targets at-risk populations, initial disparities (like poorer baseline health) may mask its true benefits unless we adjust for those differences. This mirrors real-world prevention evaluations, where randomized trials or proper covariate adjustment are essential to distinguish actual program impact from background variability.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="from-identification-to-estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="presentation-of-final-projects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": false,
+  "fontsettings": {
+    "theme": "night",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/09_public_health.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/09_public_health.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

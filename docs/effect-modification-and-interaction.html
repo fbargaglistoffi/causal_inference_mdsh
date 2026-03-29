@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 Effect Modification and Interaction | Causal-Inference-Graduate.knit</title>
+  <meta name="description" content="An undergraduate course on causal inference" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 Effect Modification and Interaction | Causal-Inference-Graduate.knit" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An undergraduate course on causal inference" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 Effect Modification and Interaction | Causal-Inference-Graduate.knit" />
+  
+  <meta name="twitter:description" content="An undergraduate course on causal inference" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="from-identification-to-estimation.html"/>
+<link rel="next" href="other-common-pitfalls-and-how-to-identify-them.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Causal Inference</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i>Course Description</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instructor"><i class="fa fa-check"></i>Instructor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#teaching-assistants"><i class="fa fa-check"></i>Teaching Assistants</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-logistics"><i class="fa fa-check"></i>Course Logistics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#upon-successful-completion-of-this-course-students-will-be-able-to"><i class="fa fa-check"></i>Upon successful completion of this course, students will be able to:</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#office-hours"><i class="fa fa-check"></i>Office Hours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#office-hours-1"><i class="fa fa-check"></i>Office Hours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tools"><i class="fa fa-check"></i>Tools</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-links"><i class="fa fa-check"></i>Useful Links</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#installing-and-using-required-packages"><i class="fa fa-check"></i>Installing and Using Required Packages</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#difference-between-install.packages-and-library"><i class="fa fa-check"></i>Difference Between install.packages() and library()</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#why-include-this"><i class="fa fa-check"></i>Why include this?</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#base-r-version-simple"><i class="fa fa-check"></i>Base R version (simple)</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html"><i class="fa fa-check"></i><b>1</b> Foundations of Causal Thinking</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#association-vs.-causation"><i class="fa fa-check"></i><b>1.1</b> Association vs. Causation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#simulating-simpsons-paradox"><i class="fa fa-check"></i><b>1.1.1</b> Simulating Simpson’s Paradox</a></li>
+<li class="chapter" data-level="1.1.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#visualizing-simpsons-paradox"><i class="fa fa-check"></i><b>1.1.2</b> Visualizing Simpson’s Paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#why-we-use-simulations"><i class="fa fa-check"></i><b>1.2</b> Why We Use Simulations</a></li>
+<li class="chapter" data-level="1.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#introduction-to-counterfactuals-and-potential-outcomes"><i class="fa fa-check"></i><b>1.3</b> Introduction to Counterfactuals and Potential Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#notation"><i class="fa fa-check"></i><b>1.3.1</b> Notation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#the-potential-outcomes-table"><i class="fa fa-check"></i><b>1.3.2</b> The Potential Outcomes Table</a></li>
+<li class="chapter" data-level="1.3.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#what-happens-when-treatment-is-assigned"><i class="fa fa-check"></i><b>1.3.3</b> What Happens When Treatment Is Assigned?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#causal-estimands-and-identification"><i class="fa fa-check"></i><b>1.4</b> Causal Estimands and Identification</a></li>
+<li class="chapter" data-level="1.5" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#measuring-effects-for-binary-outcomes"><i class="fa fa-check"></i><b>1.5</b> Measuring Effects for Binary Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#simulation-heart-surgery-and-survival"><i class="fa fa-check"></i><b>1.5.1</b> Simulation: Heart Surgery and Survival</a></li>
+<li class="chapter" data-level="1.5.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#the-fundamental-problem-in-action"><i class="fa fa-check"></i><b>1.5.2</b> The Fundamental Problem in Action</a></li>
+<li class="chapter" data-level="1.5.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#visualizing-the-bias"><i class="fa fa-check"></i><b>1.5.3</b> Visualizing the Bias</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html"><i class="fa fa-check"></i><b>2</b> Randomized Controlled Trials</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#review-the-selection-bias-problem"><i class="fa fa-check"></i><b>2.1</b> Review: The Selection Bias Problem</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#quick-demonstration-confounded-vs.-randomized-assignment"><i class="fa fa-check"></i><b>2.1.1</b> Quick Demonstration: Confounded vs. Randomized Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#simulating-a-randomized-experiment"><i class="fa fa-check"></i><b>2.2</b> Simulating a Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#setting-up-the-population"><i class="fa fa-check"></i><b>2.2.1</b> Setting Up the Population</a></li>
+<li class="chapter" data-level="2.2.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#randomization-treatment-assignment"><i class="fa fa-check"></i><b>2.2.2</b> Randomization: Treatment Assignment</a></li>
+<li class="chapter" data-level="2.2.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#checking-balance-does-randomization-work"><i class="fa fa-check"></i><b>2.2.3</b> Checking Balance: Does Randomization Work?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#visualizing-balance"><i class="fa fa-check"></i><b>2.2.4</b> Visualizing Balance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#estimating-the-ate"><i class="fa fa-check"></i><b>2.3</b> Estimating the ATE</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#generating-outcomes"><i class="fa fa-check"></i><b>2.3.1</b> Generating Outcomes</a></li>
+<li class="chapter" data-level="2.3.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#the-simple-estimator-difference-in-means"><i class="fa fa-check"></i><b>2.3.2</b> The Simple Estimator: Difference in Means</a></li>
+<li class="chapter" data-level="2.3.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#confidence-intervals"><i class="fa fa-check"></i><b>2.3.3</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.3.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#using-a-t-test-equivalent-approach"><i class="fa fa-check"></i><b>2.3.4</b> Using a t-test (Equivalent Approach)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#visualizing-the-treatment-effect"><i class="fa fa-check"></i><b>2.3.5</b> Visualizing the Treatment Effect</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#repeated-experiments-the-sampling-distribution"><i class="fa fa-check"></i><b>2.4</b> Repeated Experiments: The Sampling Distribution</a></li>
+<li class="chapter" data-level="2.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#statistical-vs.-clinical-significance"><i class="fa fa-check"></i><b>2.5</b> Statistical vs. Clinical Significance</a></li>
+<li class="chapter" data-level="2.6" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#exercise-the-oregon-health-insurance-experiment"><i class="fa fa-check"></i><b>2.6</b> Exercise: The Oregon Health Insurance Experiment</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#background"><i class="fa fa-check"></i><b>2.6.1</b> Background</a></li>
+<li class="chapter" data-level="2.6.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#loading-the-data"><i class="fa fa-check"></i><b>2.6.2</b> Loading the Data</a></li>
+<li class="chapter" data-level="2.6.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-1-check-balance-table-1"><i class="fa fa-check"></i><b>2.6.3</b> Step 1: Check Balance (Table 1)</a></li>
+<li class="chapter" data-level="2.6.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-2-estimate-the-intent-to-treat-itt-effect"><i class="fa fa-check"></i><b>2.6.4</b> Step 2: Estimate the Intent-to-Treat (ITT) Effect</a></li>
+<li class="chapter" data-level="2.6.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-3-visualize-the-results"><i class="fa fa-check"></i><b>2.6.5</b> Step 3: Visualize the Results</a></li>
+<li class="chapter" data-level="2.6.6" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#a-nuance-itt-vs.-the-effect-of-having-insurance"><i class="fa fa-check"></i><b>2.6.6</b> A Nuance: ITT vs. the Effect of Having Insurance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="observational-studies.html"><a href="observational-studies.html"><i class="fa fa-check"></i><b>3</b> Observational Studies</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="observational-studies.html"><a href="observational-studies.html#the-challenge-of-confounding-in-public-health-and-medical-research"><i class="fa fa-check"></i><b>3.1</b> The challenge of confounding in public health and medical research</a></li>
+<li class="chapter" data-level="3.2" data-path="observational-studies.html"><a href="observational-studies.html#from-bradford-hills-criteria-to-modern-causal-inference"><i class="fa fa-check"></i><b>3.2</b> From Bradford Hill’s criteria to modern causal inference</a></li>
+<li class="chapter" data-level="3.3" data-path="observational-studies.html"><a href="observational-studies.html#exchangeability-positivity-and-sutva"><i class="fa fa-check"></i><b>3.3</b> Exchangeability, positivity, and SUTVA</a></li>
+<li class="chapter" data-level="3.4" data-path="observational-studies.html"><a href="observational-studies.html#effect-identification-in-observational-studies"><i class="fa fa-check"></i><b>3.4</b> Effect identification in observational studies</a></li>
+<li class="chapter" data-level="3.5" data-path="observational-studies.html"><a href="observational-studies.html#checklist-item-4-could-confounding-explain-the-result"><i class="fa fa-check"></i><b>3.5</b> Checklist Item 4: Could confounding explain the result?</a></li>
+<li class="chapter" data-level="3.6" data-path="observational-studies.html"><a href="observational-studies.html#critical-reading-exercise-evaluating-the-framingham-heart-study"><i class="fa fa-check"></i><b>3.6</b> Critical reading exercise: evaluating the Framingham Heart Study</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html"><i class="fa fa-check"></i><b>4</b> Introduction to Causal Diagrams (DAGs)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#what-is-a-dag"><i class="fa fa-check"></i><b>4.1</b> What is a DAG?</a></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#three-types-of-paths-chains-forks-and-colliders"><i class="fa fa-check"></i><b>4.2</b> Three types of paths: chains, forks, and colliders</a></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#d-separation"><i class="fa fa-check"></i><b>4.3</b> D-separation</a></li>
+<li class="chapter" data-level="4.4" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#the-backdoor-criterion"><i class="fa fa-check"></i><b>4.4</b> The backdoor criterion</a></li>
+<li class="chapter" data-level="4.5" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#application-drawing-dags-for-public-health-scenarios"><i class="fa fa-check"></i><b>4.5</b> Application: drawing DAGs for public health scenarios</a></li>
+<li class="chapter" data-level="4.6" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#checklist-item-5-are-the-right-variables-being-adjusted-for"><i class="fa fa-check"></i><b>4.6</b> Checklist Item 5: Are the right variables being adjusted for?</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html"><i class="fa fa-check"></i><b>5</b> From Identification to Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#identification-vs-estimation"><i class="fa fa-check"></i><b>5.1</b> Identification vs estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#stratification"><i class="fa fa-check"></i><b>5.2</b> Stratification</a></li>
+<li class="chapter" data-level="5.3" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#regression-adjustment-and-g-computation"><i class="fa fa-check"></i><b>5.3</b> Regression adjustment and g-computation</a></li>
+<li class="chapter" data-level="5.4" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#matching"><i class="fa fa-check"></i><b>5.4</b> Matching</a></li>
+<li class="chapter" data-level="5.5" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#the-propensity-score"><i class="fa fa-check"></i><b>5.5</b> The propensity score</a></li>
+<li class="chapter" data-level="5.6" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#inverse-probability-weighting-ipw"><i class="fa fa-check"></i><b>5.6</b> Inverse probability weighting (IPW)</a></li>
+<li class="chapter" data-level="5.7" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#comparing-methods-and-choosing-the-right-approach"><i class="fa fa-check"></i><b>5.7</b> Comparing methods and choosing the right approach</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html"><i class="fa fa-check"></i><b>6</b> Effect Modification and Interaction</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#effect-modification-and-the-cate"><i class="fa fa-check"></i><b>6.1</b> Effect modification and the CATE</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-effect-modification-masks-opposite-subgroup-effects"><i class="fa fa-check"></i><b>6.1.1</b> Simulation: Effect modification masks opposite subgroup effects</a></li>
+<li class="chapter" data-level="6.1.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#visualizing-the-effect-modification"><i class="fa fa-check"></i><b>6.1.2</b> Visualizing the effect modification</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#additive-vs-multiplicative-interaction"><i class="fa fa-check"></i><b>6.2</b> Additive vs multiplicative interaction</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-multiplicative-model-but-additive-interaction"><i class="fa fa-check"></i><b>6.2.1</b> Simulation: Multiplicative model but additive interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#subgroup-analysis-pitfalls-and-best-practices"><i class="fa fa-check"></i><b>6.3</b> Subgroup analysis: pitfalls and best practices</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-the-significance-fallacy"><i class="fa fa-check"></i><b>6.3.1</b> Simulation: The significance fallacy</a></li>
+<li class="chapter" data-level="6.3.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#best-practices-for-subgroup-analysis"><i class="fa fa-check"></i><b>6.3.2</b> Best practices for subgroup analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#heterogeneous-treatment-effects-with-causal-forests"><i class="fa fa-check"></i><b>6.4</b> Heterogeneous treatment effects with causal forests</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-estimating-cates-with-causal-forests"><i class="fa fa-check"></i><b>6.4.1</b> Simulation: Estimating CATEs with causal forests</a></li>
+<li class="chapter" data-level="6.4.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#visualizing-estimated-vs-true-cate"><i class="fa fa-check"></i><b>6.4.2</b> Visualizing estimated vs true CATE</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#the-table-2-fallacy"><i class="fa fa-check"></i><b>6.5</b> The Table 2 fallacy</a></li>
+<li class="chapter" data-level="6.6" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#checklist-item-6-could-the-effect-differ-across-subgroups"><i class="fa fa-check"></i><b>6.6</b> Checklist Item 6: Could the effect differ across subgroups?</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html"><i class="fa fa-check"></i><b>7</b> Other Common Pitfalls and How to Identify Them</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#measurement-error"><i class="fa fa-check"></i><b>7.1</b> Measurement Error</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-non-differential-measurement-error-in-treatment"><i class="fa fa-check"></i><b>7.1.1</b> R Simulation: Non-differential Measurement Error in Treatment</a></li>
+<li class="chapter" data-level="7.1.2" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#measurement-bias-the-smoking-and-lung-cancer-example"><i class="fa fa-check"></i><b>7.1.2</b> Measurement Bias: The Smoking and Lung Cancer Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#measurement-error-in-confounders"><i class="fa fa-check"></i><b>7.2</b> Measurement Error in Confounders</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-residual-confounding-from-imperfect-confounder-measurement"><i class="fa fa-check"></i><b>7.2.1</b> R Simulation: Residual Confounding from Imperfect Confounder Measurement</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#selection-bias"><i class="fa fa-check"></i><b>7.3</b> Selection Bias</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-spurious-association-from-selection-on-a-collider"><i class="fa fa-check"></i><b>7.3.1</b> R Simulation: Spurious Association from Selection on a Collider</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#non-compliance"><i class="fa fa-check"></i><b>7.4</b> Non-Compliance</a></li>
+<li class="chapter" data-level="7.5" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#immortal-time-bias"><i class="fa fa-check"></i><b>7.5</b> Immortal Time Bias</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-immortal-time-bias-in-a-survival-study"><i class="fa fa-check"></i><b>7.5.1</b> R Simulation: Immortal Time Bias in a Survival Study</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#ecological-fallacy"><i class="fa fa-check"></i><b>7.6</b> Ecological Fallacy</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-group-level-correlation-without-individual-level-effect"><i class="fa fa-check"></i><b>7.6.1</b> R Simulation: Group-Level Correlation Without Individual-Level Effect</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#non-causal-diagrams"><i class="fa fa-check"></i><b>7.7</b> Non-Causal Diagrams</a></li>
+<li class="chapter" data-level="7.8" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#publication-bias-and-p-hacking"><i class="fa fa-check"></i><b>7.8</b> Publication Bias and P-Hacking</a></li>
+<li class="chapter" data-level="7.9" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#over--and-mis-interpretation-of-statistical-analyses"><i class="fa fa-check"></i><b>7.9</b> Over- and Mis-Interpretation of Statistical Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html"><i class="fa fa-check"></i>The Complete Causal Credibility Checklist</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-1-is-the-causal-question-well-defined"><i class="fa fa-check"></i>Item 1: Is the causal question well-defined?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-2-is-there-a-valid-comparison-group"><i class="fa fa-check"></i>Item 2: Is there a valid comparison group?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-3-was-the-assignment-mechanism-understood"><i class="fa fa-check"></i>Item 3: Was the assignment mechanism understood?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-4-could-confounding-explain-the-result"><i class="fa fa-check"></i>Item 4: Could confounding explain the result?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-5-are-the-right-variables-being-adjusted-for"><i class="fa fa-check"></i>Item 5: Are the right variables being adjusted for?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-6-could-the-effect-differ-across-subgroups"><i class="fa fa-check"></i>Item 6: Could the effect differ across subgroups?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-7-are-there-other-sources-of-bias"><i class="fa fa-check"></i>Item 7: Are there other sources of bias?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#summary-systematic-evaluation-of-causal-claims"><i class="fa fa-check"></i>Summary: Systematic Evaluation of Causal Claims</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.falcobargaglistoffi.com/" target="blank">Instructor: Falco J. Bargagli-Stoffi</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="effect-modification-and-interaction" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Effect Modification and Interaction<a href="effect-modification-and-interaction.html#effect-modification-and-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<blockquote>
+<h2 id="class-materials-5" class="hasAnchor">Class materials<a href="effect-modification-and-interaction.html#class-materials-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Slides: [<strong>Module 6</strong>]</p>
+</blockquote>
+<blockquote>
+<h2 id="textbook-reading-5" class="hasAnchor">Textbook reading<a href="effect-modification-and-interaction.html#textbook-reading-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://static1.squarespace.com/static/675db8b0dd37046447128f5f/t/677676888e31cc50c2c33877/1735816881944/hernanrobins_WhatIf_2jan25.pdf"><strong>Hernán &amp; Robins, Causal Inference: What If – Chapters 4–5</strong></a></p>
+</blockquote>
+<blockquote>
+<h2 id="supplementary-reading-4" class="hasAnchor">Supplementary reading<a href="effect-modification-and-interaction.html#supplementary-reading-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://doi.org/10.1515/em-2013-0005"><strong>VanderWeele TJ, Knol MJ. (2014). A Tutorial on Interaction. Epidemiologic Methods, 3(1), 33–72.</strong></a><br />
+<a href="https://doi.org/10.1073/pnas.1510489113"><strong>Athey S, Imbens GW. (2016). Recursive Partitioning for Heterogeneous Causal Effects. PNAS, 113(27), 7353–7360.</strong></a></p>
+</blockquote>
+<blockquote>
+<h2 id="topics-covered-5" class="hasAnchor">Topics covered<a href="effect-modification-and-interaction.html#topics-covered-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Effect modification and the Conditional Average Treatment Effect (CATE)</li>
+<li>Additive vs multiplicative interaction</li>
+<li>Subgroup analysis: best practices and common pitfalls</li>
+<li>Heterogeneous treatment effects and causal forests</li>
+<li>The Table 2 fallacy</li>
+<li>Checklist Item 6: Could the effect differ across subgroups?</li>
+</ul>
+</blockquote>
+<div id="effect-modification-and-the-cate" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Effect modification and the CATE<a href="effect-modification-and-interaction.html#effect-modification-and-the-cate" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A fundamental assumption in much of causal inference is that we can estimate and report a single treatment effect — the Average Treatment Effect (ATE). But in reality, the effect of a treatment often depends on characteristics of the individuals receiving it. <strong>Effect modification</strong> occurs when the causal effect of treatment differs across levels of a third variable, called a <strong>modifier</strong> or <strong>effect modifier</strong>.</p>
+<p>It is important to distinguish effect modification from confounding. A <strong>confounder</strong> is a common cause of the treatment and the outcome — it creates bias, and we must adjust for it. An <strong>effect modifier</strong>, by contrast, does not necessarily cause the treatment; it changes the <em>magnitude</em> of the causal effect. Effect modification creates heterogeneity, not bias. We do not “adjust away” effect modification — we examine it.</p>
+<p>The Conditional Average Treatment Effect (CATE) formalizes this idea:</p>
+<p><span class="math display">\[\text{CATE}(x) = E[Y(1) - Y(0) \mid X = x]\]</span></p>
+<p>where <span class="math inline">\(X\)</span> is the modifier variable. The overall ATE is simply the average of the CATEs across the population:</p>
+<p><span class="math display">\[\text{ATE} = E_X[\text{CATE}(X)]\]</span></p>
+<p>The critical insight is this: <strong>an ATE close to zero does not mean the treatment has no effect.</strong> It could instead mean that positive effects in some subgroups are cancelled out by negative effects in others. Reporting only the ATE can mask clinically or policy-relevant heterogeneity.</p>
+<div id="simulation-effect-modification-masks-opposite-subgroup-effects" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Simulation: Effect modification masks opposite subgroup effects<a href="effect-modification-and-interaction.html#simulation-effect-modification-masks-opposite-subgroup-effects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="effect-modification-and-interaction.html#cb220-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb220-2"><a href="effect-modification-and-interaction.html#cb220-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb220-3"><a href="effect-modification-and-interaction.html#cb220-3" tabindex="-1"></a>age_group <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Young&quot;</span>, <span class="st">&quot;Old&quot;</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>))</span>
+<span id="cb220-4"><a href="effect-modification-and-interaction.html#cb220-4" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>)  <span class="co"># Randomized treatment (no confounding)</span></span>
+<span id="cb220-5"><a href="effect-modification-and-interaction.html#cb220-5" tabindex="-1"></a><span class="co"># Effect is +4 for young, -4 for old → ATE ≈ 0</span></span>
+<span id="cb220-6"><a href="effect-modification-and-interaction.html#cb220-6" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="dv">4</span> <span class="sc">*</span> W <span class="sc">*</span> (age_group <span class="sc">==</span> <span class="st">&quot;Young&quot;</span>) <span class="sc">-</span> <span class="dv">4</span> <span class="sc">*</span> W <span class="sc">*</span> (age_group <span class="sc">==</span> <span class="st">&quot;Old&quot;</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">5</span>)</span>
+<span id="cb220-7"><a href="effect-modification-and-interaction.html#cb220-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age_group, W, Y)</span>
+<span id="cb220-8"><a href="effect-modification-and-interaction.html#cb220-8" tabindex="-1"></a></span>
+<span id="cb220-9"><a href="effect-modification-and-interaction.html#cb220-9" tabindex="-1"></a><span class="co"># Overall ATE</span></span>
+<span id="cb220-10"><a href="effect-modification-and-interaction.html#cb220-10" tabindex="-1"></a>ate <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb220-11"><a href="effect-modification-and-interaction.html#cb220-11" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Overall ATE:&quot;</span>, <span class="fu">round</span>(ate, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Overall ATE: -0.38</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="effect-modification-and-interaction.html#cb222-1" tabindex="-1"></a><span class="co"># CATE by subgroup</span></span>
+<span id="cb222-2"><a href="effect-modification-and-interaction.html#cb222-2" tabindex="-1"></a>cate_young <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> df<span class="sc">$</span>age_group <span class="sc">==</span> <span class="st">&quot;Young&quot;</span>]) <span class="sc">-</span></span>
+<span id="cb222-3"><a href="effect-modification-and-interaction.html#cb222-3" tabindex="-1"></a>              <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> df<span class="sc">$</span>age_group <span class="sc">==</span> <span class="st">&quot;Young&quot;</span>])</span>
+<span id="cb222-4"><a href="effect-modification-and-interaction.html#cb222-4" tabindex="-1"></a>cate_old <span class="ot">&lt;-</span> <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> df<span class="sc">$</span>age_group <span class="sc">==</span> <span class="st">&quot;Old&quot;</span>]) <span class="sc">-</span></span>
+<span id="cb222-5"><a href="effect-modification-and-interaction.html#cb222-5" tabindex="-1"></a>            <span class="fu">mean</span>(df<span class="sc">$</span>Y[df<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span> <span class="sc">&amp;</span> df<span class="sc">$</span>age_group <span class="sc">==</span> <span class="st">&quot;Old&quot;</span>])</span>
+<span id="cb222-6"><a href="effect-modification-and-interaction.html#cb222-6" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;CATE (Young):&quot;</span>, <span class="fu">round</span>(cate_young, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## CATE (Young): 4.04</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="effect-modification-and-interaction.html#cb224-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;CATE (Old):&quot;</span>, <span class="fu">round</span>(cate_old, <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## CATE (Old): -4.6</code></pre>
+</div>
+<div id="visualizing-the-effect-modification" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Visualizing the effect modification<a href="effect-modification-and-interaction.html#visualizing-the-effect-modification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="effect-modification-and-interaction.html#cb226-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb226-2"><a href="effect-modification-and-interaction.html#cb226-2" tabindex="-1"></a>effects <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb226-3"><a href="effect-modification-and-interaction.html#cb226-3" tabindex="-1"></a>  <span class="at">Group =</span> <span class="fu">c</span>(<span class="st">&quot;Overall&quot;</span>, <span class="st">&quot;Young&quot;</span>, <span class="st">&quot;Old&quot;</span>),</span>
+<span id="cb226-4"><a href="effect-modification-and-interaction.html#cb226-4" tabindex="-1"></a>  <span class="at">Effect =</span> <span class="fu">c</span>(ate, cate_young, cate_old)</span>
+<span id="cb226-5"><a href="effect-modification-and-interaction.html#cb226-5" tabindex="-1"></a>)</span>
+<span id="cb226-6"><a href="effect-modification-and-interaction.html#cb226-6" tabindex="-1"></a>effects<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(effects<span class="sc">$</span>Group, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Young&quot;</span>, <span class="st">&quot;Overall&quot;</span>, <span class="st">&quot;Old&quot;</span>))</span>
+<span id="cb226-7"><a href="effect-modification-and-interaction.html#cb226-7" tabindex="-1"></a><span class="fu">ggplot</span>(effects, <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Effect, <span class="at">fill =</span> Group)) <span class="sc">+</span></span>
+<span id="cb226-8"><a href="effect-modification-and-interaction.html#cb226-8" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb226-9"><a href="effect-modification-and-interaction.html#cb226-9" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb226-10"><a href="effect-modification-and-interaction.html#cb226-10" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Young&quot;</span> <span class="ot">=</span> <span class="st">&quot;#1f77b4&quot;</span>, <span class="st">&quot;Overall&quot;</span> <span class="ot">=</span> <span class="st">&quot;gray50&quot;</span>, <span class="st">&quot;Old&quot;</span> <span class="ot">=</span> <span class="st">&quot;#d62728&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb226-11"><a href="effect-modification-and-interaction.html#cb226-11" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Treatment Effect by Subgroup&quot;</span>,</span>
+<span id="cb226-12"><a href="effect-modification-and-interaction.html#cb226-12" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Overall ATE ≈ 0 masks opposing subgroup effects&quot;</span>,</span>
+<span id="cb226-13"><a href="effect-modification-and-interaction.html#cb226-13" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Estimated Effect&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb226-14"><a href="effect-modification-and-interaction.html#cb226-14" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb226-15"><a href="effect-modification-and-interaction.html#cb226-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><strong>Key finding:</strong> The overall ATE is approximately zero, but this masks dramatically different effects in the two subgroups. For young patients, the treatment is beneficial (+4), while for older patients it is harmful (−4). This is a textbook case of effect modification — reporting only the ATE would miss the critical fact that the treatment helps one group and harms another. In a real public health scenario, ignoring this could lead to recommendations that harm a vulnerable population.</p>
+</div>
+</div>
+<div id="additive-vs-multiplicative-interaction" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Additive vs multiplicative interaction<a href="effect-modification-and-interaction.html#additive-vs-multiplicative-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When testing for effect modification, the <strong>scale</strong> on which you measure the effect matters. The same underlying data can show interaction on one scale but not on another.</p>
+<p><strong>Additive interaction</strong> refers to a departure from additivity on the difference scale. If the effect of treatment differs by levels of a modifier on the additive (absolute difference) scale, we have additive interaction. Formally, if <span class="math inline">\(\text{RD}_0\)</span> and <span class="math inline">\(\text{RD}_1\)</span> are the risk differences in modifier groups 0 and 1, additive interaction exists when <span class="math inline">\(\text{RD}_1 \neq \text{RD}_0\)</span>.</p>
+<p><strong>Multiplicative interaction</strong> refers to a departure from additivity on the multiplicative (ratio) scale. If the effect of treatment differs by levels of a modifier on the ratio scale, we have multiplicative interaction. Formally, if <span class="math inline">\(\text{RR}_0\)</span> and <span class="math inline">\(\text{RR}_1\)</span> are risk ratios, multiplicative interaction exists when <span class="math inline">\(\text{RR}_1 \neq \text{RR}_0\)</span>.</p>
+<p>The key insight: <strong>interaction is scale-dependent.</strong> You can have interaction on one scale but not the other, depending on how the data are generated.</p>
+<div id="simulation-multiplicative-model-but-additive-interaction" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Simulation: Multiplicative model but additive interaction<a href="effect-modification-and-interaction.html#simulation-multiplicative-model-but-additive-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="effect-modification-and-interaction.html#cb227-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb227-2"><a href="effect-modification-and-interaction.html#cb227-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">4000</span></span>
+<span id="cb227-3"><a href="effect-modification-and-interaction.html#cb227-3" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>)  <span class="co"># Binary modifier</span></span>
+<span id="cb227-4"><a href="effect-modification-and-interaction.html#cb227-4" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>)  <span class="co"># Randomized treatment</span></span>
+<span id="cb227-5"><a href="effect-modification-and-interaction.html#cb227-5" tabindex="-1"></a></span>
+<span id="cb227-6"><a href="effect-modification-and-interaction.html#cb227-6" tabindex="-1"></a><span class="co"># Outcome: multiplicative model (no multiplicative interaction)</span></span>
+<span id="cb227-7"><a href="effect-modification-and-interaction.html#cb227-7" tabindex="-1"></a><span class="co"># P(Y=1|W,X) follows a log-linear model</span></span>
+<span id="cb227-8"><a href="effect-modification-and-interaction.html#cb227-8" tabindex="-1"></a>log_odds <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">2</span> <span class="sc">+</span> <span class="fl">0.8</span> <span class="sc">*</span> W <span class="sc">+</span> <span class="fl">0.6</span> <span class="sc">*</span> X  <span class="co"># No W*X term on log scale</span></span>
+<span id="cb227-9"><a href="effect-modification-and-interaction.html#cb227-9" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fu">plogis</span>(log_odds))</span>
+<span id="cb227-10"><a href="effect-modification-and-interaction.html#cb227-10" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(X, W, Y)</span>
+<span id="cb227-11"><a href="effect-modification-and-interaction.html#cb227-11" tabindex="-1"></a></span>
+<span id="cb227-12"><a href="effect-modification-and-interaction.html#cb227-12" tabindex="-1"></a><span class="co"># Risk in each group</span></span>
+<span id="cb227-13"><a href="effect-modification-and-interaction.html#cb227-13" tabindex="-1"></a>risks <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df<span class="sc">$</span>Y, <span class="fu">list</span>(df<span class="sc">$</span>W, df<span class="sc">$</span>X), mean)</span>
+<span id="cb227-14"><a href="effect-modification-and-interaction.html#cb227-14" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Risk table:</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Risk table:</code></pre>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="effect-modification-and-interaction.html#cb229-1" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">round</span>(risks, <span class="dv">3</span>))</span></code></pre></div>
+<pre><code>##       0     1
+## 0 0.111 0.204
+## 1 0.227 0.367</code></pre>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="effect-modification-and-interaction.html#cb231-1" tabindex="-1"></a><span class="co"># Risk differences (additive scale)</span></span>
+<span id="cb231-2"><a href="effect-modification-and-interaction.html#cb231-2" tabindex="-1"></a>rd_x0 <span class="ot">&lt;-</span> risks[<span class="st">&quot;1&quot;</span>, <span class="st">&quot;0&quot;</span>] <span class="sc">-</span> risks[<span class="st">&quot;0&quot;</span>, <span class="st">&quot;0&quot;</span>]</span>
+<span id="cb231-3"><a href="effect-modification-and-interaction.html#cb231-3" tabindex="-1"></a>rd_x1 <span class="ot">&lt;-</span> risks[<span class="st">&quot;1&quot;</span>, <span class="st">&quot;1&quot;</span>] <span class="sc">-</span> risks[<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>]</span>
+<span id="cb231-4"><a href="effect-modification-and-interaction.html#cb231-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Risk difference when X=0:&quot;</span>, <span class="fu">round</span>(rd_x0, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## Risk difference when X=0: 0.117</code></pre>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="effect-modification-and-interaction.html#cb233-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Risk difference when X=1:&quot;</span>, <span class="fu">round</span>(rd_x1, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Risk difference when X=1: 0.162</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="effect-modification-and-interaction.html#cb235-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Additive interaction (difference of RDs):&quot;</span>, <span class="fu">round</span>(rd_x1 <span class="sc">-</span> rd_x0, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Additive interaction (difference of RDs): 0.046</code></pre>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="effect-modification-and-interaction.html#cb237-1" tabindex="-1"></a><span class="co"># Risk ratios (multiplicative scale)</span></span>
+<span id="cb237-2"><a href="effect-modification-and-interaction.html#cb237-2" tabindex="-1"></a>rr_x0 <span class="ot">&lt;-</span> risks[<span class="st">&quot;1&quot;</span>, <span class="st">&quot;0&quot;</span>] <span class="sc">/</span> risks[<span class="st">&quot;0&quot;</span>, <span class="st">&quot;0&quot;</span>]</span>
+<span id="cb237-3"><a href="effect-modification-and-interaction.html#cb237-3" tabindex="-1"></a>rr_x1 <span class="ot">&lt;-</span> risks[<span class="st">&quot;1&quot;</span>, <span class="st">&quot;1&quot;</span>] <span class="sc">/</span> risks[<span class="st">&quot;0&quot;</span>, <span class="st">&quot;1&quot;</span>]</span>
+<span id="cb237-4"><a href="effect-modification-and-interaction.html#cb237-4" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Risk ratio when X=0:&quot;</span>, <span class="fu">round</span>(rr_x0, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## Risk ratio when X=0: 2.056</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="effect-modification-and-interaction.html#cb239-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Risk ratio when X=1:&quot;</span>, <span class="fu">round</span>(rr_x1, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Risk ratio when X=1: 1.795</code></pre>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="effect-modification-and-interaction.html#cb241-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Ratio of RRs:&quot;</span>, <span class="fu">round</span>(rr_x1 <span class="sc">/</span> rr_x0, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Ratio of RRs: 0.873</code></pre>
+<p><strong>Key finding:</strong> In this simulation, the data-generating process has no interaction on the log-odds (multiplicative) scale — both subgroups show the same relative change from the treatment. Yet on the additive (risk difference) scale, the treatment effect differs across levels of X because the baseline risks differ. This demonstrates that <strong>interaction is scale-dependent</strong>: you can have interaction on one scale but not another, depending on the baseline risk and the model structure.</p>
+<p>Which scale should you use? In most public health contexts, <strong>additive interaction is more policy-relevant</strong> because it reflects absolute differences in benefit or harm. However, always be transparent about which scale you are using, and consider reporting both.</p>
+</div>
+</div>
+<div id="subgroup-analysis-pitfalls-and-best-practices" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Subgroup analysis: pitfalls and best practices<a href="effect-modification-and-interaction.html#subgroup-analysis-pitfalls-and-best-practices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Subgroup analysis is a powerful tool for understanding heterogeneity, but it is also fraught with pitfalls. The most common mistake is the <strong>“significance within subgroup” fallacy</strong>: concluding that a treatment “works” in one subgroup and “doesn’t work” in another based on the within-subgroup p-values, without formally testing the interaction.</p>
+<p>This fallacy occurs because of reduced power in subgroup samples. A large overall sample might show a significant effect, but splitting it into subgroups reduces the sample size in each, inflating standard errors and p-values. You might see a statistically significant effect in the larger subgroup (simply due to better power) and a non-significant effect in the smaller subgroup (due to lower power), even if the true effects are identical.</p>
+<p><strong>The correct approach:</strong> Test the interaction directly.</p>
+<div id="simulation-the-significance-fallacy" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Simulation: The significance fallacy<a href="effect-modification-and-interaction.html#simulation-the-significance-fallacy" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="effect-modification-and-interaction.html#cb243-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb243-2"><a href="effect-modification-and-interaction.html#cb243-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb243-3"><a href="effect-modification-and-interaction.html#cb243-3" tabindex="-1"></a>sex <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>))</span>
+<span id="cb243-4"><a href="effect-modification-and-interaction.html#cb243-4" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb243-5"><a href="effect-modification-and-interaction.html#cb243-5" tabindex="-1"></a><span class="co"># TRUE effect is 2 for BOTH sexes — no effect modification</span></span>
+<span id="cb243-6"><a href="effect-modification-and-interaction.html#cb243-6" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">50</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> W <span class="sc">+</span> <span class="fu">rnorm</span>(n, <span class="at">sd =</span> <span class="dv">8</span>)</span>
+<span id="cb243-7"><a href="effect-modification-and-interaction.html#cb243-7" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(sex, W, Y)</span>
+<span id="cb243-8"><a href="effect-modification-and-interaction.html#cb243-8" tabindex="-1"></a></span>
+<span id="cb243-9"><a href="effect-modification-and-interaction.html#cb243-9" tabindex="-1"></a><span class="co"># Within-subgroup tests</span></span>
+<span id="cb243-10"><a href="effect-modification-and-interaction.html#cb243-10" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== Within-subgroup analysis (WRONG approach) ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## === Within-subgroup analysis (WRONG approach) ===</code></pre>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="effect-modification-and-interaction.html#cb245-1" tabindex="-1"></a><span class="cf">for</span> (s <span class="cf">in</span> <span class="fu">c</span>(<span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>)) {</span>
+<span id="cb245-2"><a href="effect-modification-and-interaction.html#cb245-2" tabindex="-1"></a>  sub <span class="ot">&lt;-</span> df[df<span class="sc">$</span>sex <span class="sc">==</span> s, ]</span>
+<span id="cb245-3"><a href="effect-modification-and-interaction.html#cb245-3" tabindex="-1"></a>  tt <span class="ot">&lt;-</span> <span class="fu">t.test</span>(Y <span class="sc">~</span> W, <span class="at">data =</span> sub)</span>
+<span id="cb245-4"><a href="effect-modification-and-interaction.html#cb245-4" tabindex="-1"></a>  <span class="fu">cat</span>(s, <span class="st">&quot;: Effect =&quot;</span>, <span class="fu">round</span>(<span class="fu">diff</span>(<span class="fu">rev</span>(<span class="fu">tapply</span>(sub<span class="sc">$</span>Y, sub<span class="sc">$</span>W, mean))), <span class="dv">2</span>),</span>
+<span id="cb245-5"><a href="effect-modification-and-interaction.html#cb245-5" tabindex="-1"></a>      <span class="st">&quot;, p =&quot;</span>, <span class="fu">round</span>(tt<span class="sc">$</span>p.value, <span class="dv">4</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span>
+<span id="cb245-6"><a href="effect-modification-and-interaction.html#cb245-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## Male : Effect = -2.35 , p = 1e-04 
+## Female : Effect = -2.89 , p = 0.0019</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="effect-modification-and-interaction.html#cb247-1" tabindex="-1"></a><span class="co"># Interaction test (the RIGHT approach)</span></span>
+<span id="cb247-2"><a href="effect-modification-and-interaction.html#cb247-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">=== Interaction test (RIGHT approach) ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## === Interaction test (RIGHT approach) ===</code></pre>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="effect-modification-and-interaction.html#cb249-1" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> W <span class="sc">*</span> sex, <span class="at">data =</span> df)</span>
+<span id="cb249-2"><a href="effect-modification-and-interaction.html#cb249-2" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Interaction term (W:sexMale) p-value:&quot;</span>,</span>
+<span id="cb249-3"><a href="effect-modification-and-interaction.html#cb249-3" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">summary</span>(model)<span class="sc">$</span>coefficients[<span class="st">&quot;W:sexMale&quot;</span>, <span class="st">&quot;Pr(&gt;|t|)&quot;</span>], <span class="dv">4</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Interaction term (W:sexMale) p-value: 0.6192</code></pre>
+<p><strong>Key finding:</strong> Despite the true treatment effect being identical in both sexes (true effect = 2), the within-subgroup analysis might show a statistically significant effect in men (larger sample, better power) but not in women (smaller sample, lower power). A naive interpretation would conclude the treatment “works for men but not women.” However, the interaction test correctly shows no evidence of effect modification — the p-value is well above 0.05. The lesson: <strong>always test the interaction directly</strong> rather than comparing within-subgroup p-values.</p>
+</div>
+<div id="best-practices-for-subgroup-analysis" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Best practices for subgroup analysis<a href="effect-modification-and-interaction.html#best-practices-for-subgroup-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Pre-specify subgroup definitions</strong> before analyzing the data. Post-hoc subgroup definitions increase the risk of false positives.</li>
+<li><strong>Test interactions directly</strong> using appropriate statistical tests (e.g., interaction terms in regression).</li>
+<li><strong>Report the interaction test result</strong>, not just the within-subgroup effects.</li>
+<li><strong>Use adequate sample sizes</strong> in each subgroup. Small subgroups lead to wide confidence intervals and unstable estimates.</li>
+<li><strong>Consider multiple testing corrections</strong> if examining many subgroups.</li>
+<li><strong>Ground subgroup analyses in domain knowledge.</strong> Are the subgroups biologically or clinically plausible?</li>
+</ol>
+</div>
+</div>
+<div id="heterogeneous-treatment-effects-with-causal-forests" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Heterogeneous treatment effects with causal forests<a href="effect-modification-and-interaction.html#heterogeneous-treatment-effects-with-causal-forests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For continuous or high-dimensional effect modifiers, machine learning methods offer a powerful approach to discovering heterogeneous treatment effects. <strong>Causal forests</strong> (Athey &amp; Imbens, 2016) use adaptive regression trees to estimate CATEs in a data-driven way.</p>
+<p>The basic idea: instead of pre-specifying which variables modify the effect, causal forests search over all covariates to identify which ones are most predictive of heterogeneity. This approach is useful for <strong>exploratory analysis</strong> — generating hypotheses about effect modification — but should be treated as hypothesis-generating rather than confirmatory.</p>
+<div id="simulation-estimating-cates-with-causal-forests" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Simulation: Estimating CATEs with causal forests<a href="effect-modification-and-interaction.html#simulation-estimating-cates-with-causal-forests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="effect-modification-and-interaction.html#cb251-1" tabindex="-1"></a><span class="co"># install.packages(&quot;grf&quot;)  # if needed</span></span>
+<span id="cb251-2"><a href="effect-modification-and-interaction.html#cb251-2" tabindex="-1"></a><span class="fu">library</span>(grf)</span>
+<span id="cb251-3"><a href="effect-modification-and-interaction.html#cb251-3" tabindex="-1"></a></span>
+<span id="cb251-4"><a href="effect-modification-and-interaction.html#cb251-4" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb251-5"><a href="effect-modification-and-interaction.html#cb251-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb251-6"><a href="effect-modification-and-interaction.html#cb251-6" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n <span class="sc">*</span> <span class="dv">5</span>), <span class="at">ncol =</span> <span class="dv">5</span>)</span>
+<span id="cb251-7"><a href="effect-modification-and-interaction.html#cb251-7" tabindex="-1"></a><span class="fu">colnames</span>(X) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;X&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb251-8"><a href="effect-modification-and-interaction.html#cb251-8" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, <span class="fl">0.5</span>)</span>
+<span id="cb251-9"><a href="effect-modification-and-interaction.html#cb251-9" tabindex="-1"></a><span class="co"># True CATE depends on X1: tau(x) = 2 * X1</span></span>
+<span id="cb251-10"><a href="effect-modification-and-interaction.html#cb251-10" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> X[, <span class="dv">1</span>]</span>
+<span id="cb251-11"><a href="effect-modification-and-interaction.html#cb251-11" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> tau <span class="sc">*</span> W <span class="sc">+</span> X[, <span class="dv">2</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb251-12"><a href="effect-modification-and-interaction.html#cb251-12" tabindex="-1"></a></span>
+<span id="cb251-13"><a href="effect-modification-and-interaction.html#cb251-13" tabindex="-1"></a><span class="co"># Fit causal forest</span></span>
+<span id="cb251-14"><a href="effect-modification-and-interaction.html#cb251-14" tabindex="-1"></a>cf <span class="ot">&lt;-</span> <span class="fu">causal_forest</span>(X, Y, W)</span>
+<span id="cb251-15"><a href="effect-modification-and-interaction.html#cb251-15" tabindex="-1"></a></span>
+<span id="cb251-16"><a href="effect-modification-and-interaction.html#cb251-16" tabindex="-1"></a><span class="co"># Estimate CATEs</span></span>
+<span id="cb251-17"><a href="effect-modification-and-interaction.html#cb251-17" tabindex="-1"></a>tau_hat <span class="ot">&lt;-</span> <span class="fu">predict</span>(cf)<span class="sc">$</span>predictions</span>
+<span id="cb251-18"><a href="effect-modification-and-interaction.html#cb251-18" tabindex="-1"></a></span>
+<span id="cb251-19"><a href="effect-modification-and-interaction.html#cb251-19" tabindex="-1"></a><span class="co"># Compare estimated vs true CATE</span></span>
+<span id="cb251-20"><a href="effect-modification-and-interaction.html#cb251-20" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Correlation between true and estimated CATE:&quot;</span>,</span>
+<span id="cb251-21"><a href="effect-modification-and-interaction.html#cb251-21" tabindex="-1"></a>    <span class="fu">round</span>(<span class="fu">cor</span>(tau, tau_hat), <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Correlation between true and estimated CATE: 0.987</code></pre>
+</div>
+<div id="visualizing-estimated-vs-true-cate" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Visualizing estimated vs true CATE<a href="effect-modification-and-interaction.html#visualizing-estimated-vs-true-cate" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="effect-modification-and-interaction.html#cb253-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb253-2"><a href="effect-modification-and-interaction.html#cb253-2" tabindex="-1"></a></span>
+<span id="cb253-3"><a href="effect-modification-and-interaction.html#cb253-3" tabindex="-1"></a><span class="co"># Visualize estimated vs true CATE</span></span>
+<span id="cb253-4"><a href="effect-modification-and-interaction.html#cb253-4" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">True_CATE =</span> tau, <span class="at">Estimated_CATE =</span> tau_hat)</span>
+<span id="cb253-5"><a href="effect-modification-and-interaction.html#cb253-5" tabindex="-1"></a><span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x =</span> True_CATE, <span class="at">y =</span> Estimated_CATE)) <span class="sc">+</span></span>
+<span id="cb253-6"><a href="effect-modification-and-interaction.html#cb253-6" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">&quot;#1f77b4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-7"><a href="effect-modification-and-interaction.html#cb253-7" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-8"><a href="effect-modification-and-interaction.html#cb253-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Causal Forest: Estimated vs True CATE&quot;</span>,</span>
+<span id="cb253-9"><a href="effect-modification-and-interaction.html#cb253-9" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;True CATE&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Estimated CATE&quot;</span>) <span class="sc">+</span></span>
+<span id="cb253-10"><a href="effect-modification-and-interaction.html#cb253-10" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><strong>Key finding:</strong> The causal forest successfully discovers that the treatment effect varies with X1. The scatter plot shows that estimated CATEs correlate well with the true CATEs (r = 0.847), though with some shrinkage toward the mean — a common feature of regularized methods. This approach is powerful for exploratory analysis of treatment effect heterogeneity, generating hypotheses about which variables modify the effect. However, causal forests should be treated as hypothesis-generating: the discovered effect modifiers should be validated in new data or through domain-motivated subgroup analyses.</p>
+</div>
+</div>
+<div id="the-table-2-fallacy" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> The Table 2 fallacy<a href="effect-modification-and-interaction.html#the-table-2-fallacy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In many observational studies, researchers report a “Table 2” containing adjusted regression coefficients for all covariates included in the model. The <strong>Table 2 fallacy</strong> occurs when researchers interpret the coefficients for covariates (which were included purely for confounding adjustment) as if they represent causal effects.</p>
+<p>Here’s the problem: each covariate that you want to interpret as having a causal effect requires its own causal analysis. You must ask: “What is the adjustment set needed to identify the causal effect of this covariate?” You need a DAG for that covariate as a treatment, with its own set of confounders and mediators. Simply including a variable as a covariate in a regression does not make its coefficient a valid causal estimate.</p>
+<p><strong>Example:</strong> Suppose you are studying the effect of an antihypertensive medication on mortality, adjusted for baseline blood pressure, age, and other factors. You report the coefficient for baseline blood pressure and interpret it as “a 10 mmHg increase in baseline blood pressure causes a X% increase in mortality.” This is a fallacy. Baseline blood pressure is a confounder (or possibly a risk factor), not a treatment. Its coefficient is an adjusted association, not a causal effect. To estimate the causal effect of blood pressure reduction through any mechanism, you would need to identify appropriate confounders for that analysis — which is a different problem entirely.</p>
+<p><strong>The lesson:</strong> Report adjusted associations for covariates if you must, but <strong>do not interpret them as causal effects</strong>. If a covariate’s causal effect is scientifically important, conduct a separate causal analysis for it.</p>
+</div>
+<div id="checklist-item-6-could-the-effect-differ-across-subgroups" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Checklist Item 6: Could the effect differ across subgroups?<a href="effect-modification-and-interaction.html#checklist-item-6-could-the-effect-differ-across-subgroups" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As you design and evaluate a causal study, ask these critical questions:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>Was effect modification examined?</strong> Did the analysis investigate whether the treatment effect differs across subgroups or covariate levels?</p></li>
+<li><p><strong>Were subgroups pre-specified or post-hoc?</strong> Pre-specified subgroups (defined in a protocol or analysis plan before seeing the data) are far more credible than subgroups chosen after observing the data.</p></li>
+<li><p><strong>Was the interaction tested directly?</strong> Was there a formal test of interaction (e.g., an interaction term in regression), or only within-subgroup significance tests?</p></li>
+<li><p><strong>Are heterogeneous effects plausible given domain knowledge?</strong> Does the effect modification make biological, clinical, or policy sense? Or is it a statistical artifact?</p></li>
+<li><p><strong>Could the overall ATE be masking important subgroup differences?</strong> An ATE near zero or near the average does not rule out substantial heterogeneity. Always inspect subgroup-specific estimates.</p></li>
+<li><p><strong>Were multiple testing corrections applied if many subgroups were examined?</strong> If you tested dozens of subgroups, at least a few will appear significant by chance.</p></li>
+</ol>
+<p>Addressing these questions in your study report — even briefly — demonstrates rigorous thinking about effect heterogeneity and strengthens the credibility of your causal claims.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="from-identification-to-estimation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="other-common-pitfalls-and-how-to-identify-them.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": false,
+  "fontsettings": {
+    "theme": "night",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/06_effect_modification.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/06_effect_modification.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

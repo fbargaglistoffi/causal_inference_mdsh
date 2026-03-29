@@ -1,0 +1,22 @@
+book_filename: "Causal-Inference-Graduate"
+output_dir: docs
+delete_merged_file: true
+edit: https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/%s
+view: https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/%s
+
+rmd_files:
+  - index.Rmd
+  - setup.Rmd
+  - 01_potential_outcomes.Rmd
+  - 02_rcts.Rmd
+  - 03_observational_studies.Rmd
+  - 04_dags.Rmd
+  - 05_identification_estimation.Rmd
+  - 06_effect_modification.Rmd
+  - 07_common_pitfalls.Rmd
+  - causal_credibility_checklist.Rmd
+
+language:
+  ui:
+    chapter_name: ""
+

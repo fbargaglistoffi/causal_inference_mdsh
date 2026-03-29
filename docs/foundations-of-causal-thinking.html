@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 Foundations of Causal Thinking | Causal-Inference-Graduate.knit</title>
+  <meta name="description" content="An undergraduate course on causal inference" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 Foundations of Causal Thinking | Causal-Inference-Graduate.knit" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An undergraduate course on causal inference" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 Foundations of Causal Thinking | Causal-Inference-Graduate.knit" />
+  
+  <meta name="twitter:description" content="An undergraduate course on causal inference" />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="setup.html"/>
+<link rel="next" href="randomized-controlled-trials.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Causal Inference</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i>Course Description</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#instructor"><i class="fa fa-check"></i>Instructor</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#teaching-assistants"><i class="fa fa-check"></i>Teaching Assistants</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#course-logistics"><i class="fa fa-check"></i>Course Logistics</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#materials"><i class="fa fa-check"></i>Materials</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#learning-objectives"><i class="fa fa-check"></i>Learning Objectives</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#upon-successful-completion-of-this-course-students-will-be-able-to"><i class="fa fa-check"></i>Upon successful completion of this course, students will be able to:</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#office-hours"><i class="fa fa-check"></i>Office Hours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#office-hours-1"><i class="fa fa-check"></i>Office Hours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tools"><i class="fa fa-check"></i>Tools</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#useful-links"><i class="fa fa-check"></i>Useful Links</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#acknowledgments"><i class="fa fa-check"></i>Acknowledgments</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html"><i class="fa fa-check"></i>Setup</a>
+<ul>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#installing-and-using-required-packages"><i class="fa fa-check"></i>Installing and Using Required Packages</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#loading-packages"><i class="fa fa-check"></i>Loading Packages</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#difference-between-install.packages-and-library"><i class="fa fa-check"></i>Difference Between install.packages() and library()</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#session-information"><i class="fa fa-check"></i>Session Information</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#why-include-this"><i class="fa fa-check"></i>Why include this?</a></li>
+<li class="chapter" data-level="" data-path="setup.html"><a href="setup.html#base-r-version-simple"><i class="fa fa-check"></i>Base R version (simple)</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html"><i class="fa fa-check"></i><b>1</b> Foundations of Causal Thinking</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#association-vs.-causation"><i class="fa fa-check"></i><b>1.1</b> Association vs. Causation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#simulating-simpsons-paradox"><i class="fa fa-check"></i><b>1.1.1</b> Simulating Simpson’s Paradox</a></li>
+<li class="chapter" data-level="1.1.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#visualizing-simpsons-paradox"><i class="fa fa-check"></i><b>1.1.2</b> Visualizing Simpson’s Paradox</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#why-we-use-simulations"><i class="fa fa-check"></i><b>1.2</b> Why We Use Simulations</a></li>
+<li class="chapter" data-level="1.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#introduction-to-counterfactuals-and-potential-outcomes"><i class="fa fa-check"></i><b>1.3</b> Introduction to Counterfactuals and Potential Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#notation"><i class="fa fa-check"></i><b>1.3.1</b> Notation</a></li>
+<li class="chapter" data-level="1.3.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#the-potential-outcomes-table"><i class="fa fa-check"></i><b>1.3.2</b> The Potential Outcomes Table</a></li>
+<li class="chapter" data-level="1.3.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#what-happens-when-treatment-is-assigned"><i class="fa fa-check"></i><b>1.3.3</b> What Happens When Treatment Is Assigned?</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#causal-estimands-and-identification"><i class="fa fa-check"></i><b>1.4</b> Causal Estimands and Identification</a></li>
+<li class="chapter" data-level="1.5" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#measuring-effects-for-binary-outcomes"><i class="fa fa-check"></i><b>1.5</b> Measuring Effects for Binary Outcomes</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#simulation-heart-surgery-and-survival"><i class="fa fa-check"></i><b>1.5.1</b> Simulation: Heart Surgery and Survival</a></li>
+<li class="chapter" data-level="1.5.2" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#the-fundamental-problem-in-action"><i class="fa fa-check"></i><b>1.5.2</b> The Fundamental Problem in Action</a></li>
+<li class="chapter" data-level="1.5.3" data-path="foundations-of-causal-thinking.html"><a href="foundations-of-causal-thinking.html#visualizing-the-bias"><i class="fa fa-check"></i><b>1.5.3</b> Visualizing the Bias</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html"><i class="fa fa-check"></i><b>2</b> Randomized Controlled Trials</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#review-the-selection-bias-problem"><i class="fa fa-check"></i><b>2.1</b> Review: The Selection Bias Problem</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#quick-demonstration-confounded-vs.-randomized-assignment"><i class="fa fa-check"></i><b>2.1.1</b> Quick Demonstration: Confounded vs. Randomized Assignment</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#simulating-a-randomized-experiment"><i class="fa fa-check"></i><b>2.2</b> Simulating a Randomized Experiment</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#setting-up-the-population"><i class="fa fa-check"></i><b>2.2.1</b> Setting Up the Population</a></li>
+<li class="chapter" data-level="2.2.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#randomization-treatment-assignment"><i class="fa fa-check"></i><b>2.2.2</b> Randomization: Treatment Assignment</a></li>
+<li class="chapter" data-level="2.2.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#checking-balance-does-randomization-work"><i class="fa fa-check"></i><b>2.2.3</b> Checking Balance: Does Randomization Work?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#visualizing-balance"><i class="fa fa-check"></i><b>2.2.4</b> Visualizing Balance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#estimating-the-ate"><i class="fa fa-check"></i><b>2.3</b> Estimating the ATE</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#generating-outcomes"><i class="fa fa-check"></i><b>2.3.1</b> Generating Outcomes</a></li>
+<li class="chapter" data-level="2.3.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#the-simple-estimator-difference-in-means"><i class="fa fa-check"></i><b>2.3.2</b> The Simple Estimator: Difference in Means</a></li>
+<li class="chapter" data-level="2.3.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#confidence-intervals"><i class="fa fa-check"></i><b>2.3.3</b> Confidence Intervals</a></li>
+<li class="chapter" data-level="2.3.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#using-a-t-test-equivalent-approach"><i class="fa fa-check"></i><b>2.3.4</b> Using a t-test (Equivalent Approach)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#visualizing-the-treatment-effect"><i class="fa fa-check"></i><b>2.3.5</b> Visualizing the Treatment Effect</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#repeated-experiments-the-sampling-distribution"><i class="fa fa-check"></i><b>2.4</b> Repeated Experiments: The Sampling Distribution</a></li>
+<li class="chapter" data-level="2.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#statistical-vs.-clinical-significance"><i class="fa fa-check"></i><b>2.5</b> Statistical vs. Clinical Significance</a></li>
+<li class="chapter" data-level="2.6" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#exercise-the-oregon-health-insurance-experiment"><i class="fa fa-check"></i><b>2.6</b> Exercise: The Oregon Health Insurance Experiment</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#background"><i class="fa fa-check"></i><b>2.6.1</b> Background</a></li>
+<li class="chapter" data-level="2.6.2" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#loading-the-data"><i class="fa fa-check"></i><b>2.6.2</b> Loading the Data</a></li>
+<li class="chapter" data-level="2.6.3" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-1-check-balance-table-1"><i class="fa fa-check"></i><b>2.6.3</b> Step 1: Check Balance (Table 1)</a></li>
+<li class="chapter" data-level="2.6.4" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-2-estimate-the-intent-to-treat-itt-effect"><i class="fa fa-check"></i><b>2.6.4</b> Step 2: Estimate the Intent-to-Treat (ITT) Effect</a></li>
+<li class="chapter" data-level="2.6.5" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#step-3-visualize-the-results"><i class="fa fa-check"></i><b>2.6.5</b> Step 3: Visualize the Results</a></li>
+<li class="chapter" data-level="2.6.6" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#a-nuance-itt-vs.-the-effect-of-having-insurance"><i class="fa fa-check"></i><b>2.6.6</b> A Nuance: ITT vs. the Effect of Having Insurance</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="randomized-controlled-trials.html"><a href="randomized-controlled-trials.html#summary"><i class="fa fa-check"></i><b>2.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="observational-studies.html"><a href="observational-studies.html"><i class="fa fa-check"></i><b>3</b> Observational Studies</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="observational-studies.html"><a href="observational-studies.html#the-challenge-of-confounding-in-public-health-and-medical-research"><i class="fa fa-check"></i><b>3.1</b> The challenge of confounding in public health and medical research</a></li>
+<li class="chapter" data-level="3.2" data-path="observational-studies.html"><a href="observational-studies.html#from-bradford-hills-criteria-to-modern-causal-inference"><i class="fa fa-check"></i><b>3.2</b> From Bradford Hill’s criteria to modern causal inference</a></li>
+<li class="chapter" data-level="3.3" data-path="observational-studies.html"><a href="observational-studies.html#exchangeability-positivity-and-sutva"><i class="fa fa-check"></i><b>3.3</b> Exchangeability, positivity, and SUTVA</a></li>
+<li class="chapter" data-level="3.4" data-path="observational-studies.html"><a href="observational-studies.html#effect-identification-in-observational-studies"><i class="fa fa-check"></i><b>3.4</b> Effect identification in observational studies</a></li>
+<li class="chapter" data-level="3.5" data-path="observational-studies.html"><a href="observational-studies.html#checklist-item-4-could-confounding-explain-the-result"><i class="fa fa-check"></i><b>3.5</b> Checklist Item 4: Could confounding explain the result?</a></li>
+<li class="chapter" data-level="3.6" data-path="observational-studies.html"><a href="observational-studies.html#critical-reading-exercise-evaluating-the-framingham-heart-study"><i class="fa fa-check"></i><b>3.6</b> Critical reading exercise: evaluating the Framingham Heart Study</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html"><i class="fa fa-check"></i><b>4</b> Introduction to Causal Diagrams (DAGs)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#what-is-a-dag"><i class="fa fa-check"></i><b>4.1</b> What is a DAG?</a></li>
+<li class="chapter" data-level="4.2" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#three-types-of-paths-chains-forks-and-colliders"><i class="fa fa-check"></i><b>4.2</b> Three types of paths: chains, forks, and colliders</a></li>
+<li class="chapter" data-level="4.3" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#d-separation"><i class="fa fa-check"></i><b>4.3</b> D-separation</a></li>
+<li class="chapter" data-level="4.4" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#the-backdoor-criterion"><i class="fa fa-check"></i><b>4.4</b> The backdoor criterion</a></li>
+<li class="chapter" data-level="4.5" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#application-drawing-dags-for-public-health-scenarios"><i class="fa fa-check"></i><b>4.5</b> Application: drawing DAGs for public health scenarios</a></li>
+<li class="chapter" data-level="4.6" data-path="introduction-to-causal-diagrams-dags.html"><a href="introduction-to-causal-diagrams-dags.html#checklist-item-5-are-the-right-variables-being-adjusted-for"><i class="fa fa-check"></i><b>4.6</b> Checklist Item 5: Are the right variables being adjusted for?</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html"><i class="fa fa-check"></i><b>5</b> From Identification to Estimation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#identification-vs-estimation"><i class="fa fa-check"></i><b>5.1</b> Identification vs estimation</a></li>
+<li class="chapter" data-level="5.2" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#stratification"><i class="fa fa-check"></i><b>5.2</b> Stratification</a></li>
+<li class="chapter" data-level="5.3" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#regression-adjustment-and-g-computation"><i class="fa fa-check"></i><b>5.3</b> Regression adjustment and g-computation</a></li>
+<li class="chapter" data-level="5.4" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#matching"><i class="fa fa-check"></i><b>5.4</b> Matching</a></li>
+<li class="chapter" data-level="5.5" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#the-propensity-score"><i class="fa fa-check"></i><b>5.5</b> The propensity score</a></li>
+<li class="chapter" data-level="5.6" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#inverse-probability-weighting-ipw"><i class="fa fa-check"></i><b>5.6</b> Inverse probability weighting (IPW)</a></li>
+<li class="chapter" data-level="5.7" data-path="from-identification-to-estimation.html"><a href="from-identification-to-estimation.html#comparing-methods-and-choosing-the-right-approach"><i class="fa fa-check"></i><b>5.7</b> Comparing methods and choosing the right approach</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html"><i class="fa fa-check"></i><b>6</b> Effect Modification and Interaction</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#effect-modification-and-the-cate"><i class="fa fa-check"></i><b>6.1</b> Effect modification and the CATE</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-effect-modification-masks-opposite-subgroup-effects"><i class="fa fa-check"></i><b>6.1.1</b> Simulation: Effect modification masks opposite subgroup effects</a></li>
+<li class="chapter" data-level="6.1.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#visualizing-the-effect-modification"><i class="fa fa-check"></i><b>6.1.2</b> Visualizing the effect modification</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#additive-vs-multiplicative-interaction"><i class="fa fa-check"></i><b>6.2</b> Additive vs multiplicative interaction</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-multiplicative-model-but-additive-interaction"><i class="fa fa-check"></i><b>6.2.1</b> Simulation: Multiplicative model but additive interaction</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#subgroup-analysis-pitfalls-and-best-practices"><i class="fa fa-check"></i><b>6.3</b> Subgroup analysis: pitfalls and best practices</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-the-significance-fallacy"><i class="fa fa-check"></i><b>6.3.1</b> Simulation: The significance fallacy</a></li>
+<li class="chapter" data-level="6.3.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#best-practices-for-subgroup-analysis"><i class="fa fa-check"></i><b>6.3.2</b> Best practices for subgroup analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#heterogeneous-treatment-effects-with-causal-forests"><i class="fa fa-check"></i><b>6.4</b> Heterogeneous treatment effects with causal forests</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#simulation-estimating-cates-with-causal-forests"><i class="fa fa-check"></i><b>6.4.1</b> Simulation: Estimating CATEs with causal forests</a></li>
+<li class="chapter" data-level="6.4.2" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#visualizing-estimated-vs-true-cate"><i class="fa fa-check"></i><b>6.4.2</b> Visualizing estimated vs true CATE</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#the-table-2-fallacy"><i class="fa fa-check"></i><b>6.5</b> The Table 2 fallacy</a></li>
+<li class="chapter" data-level="6.6" data-path="effect-modification-and-interaction.html"><a href="effect-modification-and-interaction.html#checklist-item-6-could-the-effect-differ-across-subgroups"><i class="fa fa-check"></i><b>6.6</b> Checklist Item 6: Could the effect differ across subgroups?</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html"><i class="fa fa-check"></i><b>7</b> Other Common Pitfalls and How to Identify Them</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#measurement-error"><i class="fa fa-check"></i><b>7.1</b> Measurement Error</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-non-differential-measurement-error-in-treatment"><i class="fa fa-check"></i><b>7.1.1</b> R Simulation: Non-differential Measurement Error in Treatment</a></li>
+<li class="chapter" data-level="7.1.2" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#measurement-bias-the-smoking-and-lung-cancer-example"><i class="fa fa-check"></i><b>7.1.2</b> Measurement Bias: The Smoking and Lung Cancer Example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#measurement-error-in-confounders"><i class="fa fa-check"></i><b>7.2</b> Measurement Error in Confounders</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-residual-confounding-from-imperfect-confounder-measurement"><i class="fa fa-check"></i><b>7.2.1</b> R Simulation: Residual Confounding from Imperfect Confounder Measurement</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#selection-bias"><i class="fa fa-check"></i><b>7.3</b> Selection Bias</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-spurious-association-from-selection-on-a-collider"><i class="fa fa-check"></i><b>7.3.1</b> R Simulation: Spurious Association from Selection on a Collider</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#non-compliance"><i class="fa fa-check"></i><b>7.4</b> Non-Compliance</a></li>
+<li class="chapter" data-level="7.5" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#immortal-time-bias"><i class="fa fa-check"></i><b>7.5</b> Immortal Time Bias</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-immortal-time-bias-in-a-survival-study"><i class="fa fa-check"></i><b>7.5.1</b> R Simulation: Immortal Time Bias in a Survival Study</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#ecological-fallacy"><i class="fa fa-check"></i><b>7.6</b> Ecological Fallacy</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#r-simulation-group-level-correlation-without-individual-level-effect"><i class="fa fa-check"></i><b>7.6.1</b> R Simulation: Group-Level Correlation Without Individual-Level Effect</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#non-causal-diagrams"><i class="fa fa-check"></i><b>7.7</b> Non-Causal Diagrams</a></li>
+<li class="chapter" data-level="7.8" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#publication-bias-and-p-hacking"><i class="fa fa-check"></i><b>7.8</b> Publication Bias and P-Hacking</a></li>
+<li class="chapter" data-level="7.9" data-path="other-common-pitfalls-and-how-to-identify-them.html"><a href="other-common-pitfalls-and-how-to-identify-them.html#over--and-mis-interpretation-of-statistical-analyses"><i class="fa fa-check"></i><b>7.9</b> Over- and Mis-Interpretation of Statistical Analyses</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html"><i class="fa fa-check"></i>The Complete Causal Credibility Checklist</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-1-is-the-causal-question-well-defined"><i class="fa fa-check"></i>Item 1: Is the causal question well-defined?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-2-is-there-a-valid-comparison-group"><i class="fa fa-check"></i>Item 2: Is there a valid comparison group?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-3-was-the-assignment-mechanism-understood"><i class="fa fa-check"></i>Item 3: Was the assignment mechanism understood?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-4-could-confounding-explain-the-result"><i class="fa fa-check"></i>Item 4: Could confounding explain the result?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-5-are-the-right-variables-being-adjusted-for"><i class="fa fa-check"></i>Item 5: Are the right variables being adjusted for?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-6-could-the-effect-differ-across-subgroups"><i class="fa fa-check"></i>Item 6: Could the effect differ across subgroups?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#item-7-are-there-other-sources-of-bias"><i class="fa fa-check"></i>Item 7: Are there other sources of bias?</a></li>
+<li class="chapter" data-level="" data-path="the-complete-causal-credibility-checklist.html"><a href="the-complete-causal-credibility-checklist.html#summary-systematic-evaluation-of-causal-claims"><i class="fa fa-check"></i>Summary: Systematic Evaluation of Causal Claims</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://www.falcobargaglistoffi.com/" target="blank">Instructor: Falco J. Bargagli-Stoffi</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="foundations-of-causal-thinking" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> Foundations of Causal Thinking<a href="foundations-of-causal-thinking.html#foundations-of-causal-thinking" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<blockquote>
+<h2 id="class-materials" class="hasAnchor">Class materials<a href="foundations-of-causal-thinking.html#class-materials" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Slides: <a href="https://drive.google.com/file/d/1cDgTAxA05Z87-gjDN3Ooljl2bF1Cc4ug/view?usp=sharing"><strong>Module 1</strong></a></p>
+</blockquote>
+<blockquote>
+<h2 id="textbook-reading" class="hasAnchor">Textbook Reading<a href="foundations-of-causal-thinking.html#textbook-reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://static1.squarespace.com/static/675db8b0dd37046447128f5f/t/677676888e31cc50c2c33877/1735816881944/hernanrobins_WhatIf_2jan25.pdf">Hernán &amp; Robins, <em>Causal Inference: What If</em> – Chapter 1</a></p>
+</blockquote>
+<blockquote>
+<h2 id="supplementary-reading" class="hasAnchor">Supplementary Reading<a href="foundations-of-causal-thinking.html#supplementary-reading" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://bayes.cs.ucla.edu/WHY/why-ch1.pdf">Pearl, J. and Mackenzie, D. (2018) <em>The Book of Why: The New Science of Cause and Effect</em>. Basic Books.</a> Selected public health news articles (provided on the course site).</p>
+</blockquote>
+<blockquote>
+<h2 id="topics-covered" class="hasAnchor">Topics Covered<a href="foundations-of-causal-thinking.html#topics-covered" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Association vs. Causation</li>
+<li>Introduction to Counterfactuals and Potential Outcomes</li>
+<li>Causal Estimands and Identification</li>
+<li>Measuring Effects for Binary Outcomes</li>
+<li>Critical reading exercise: analyzing causal claims in public health news</li>
+</ul>
+</blockquote>
+<hr />
+<div id="association-vs.-causation" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Association vs. Causation<a href="foundations-of-causal-thinking.html#association-vs.-causation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Association</strong> refers to a statistical relationship where two variables move together, but one doesn’t necessarily cause the other. For instance, ice cream sales and drowning incidents both rise in the summer, not because one causes the other, but because they share a third factor: temperature. In contrast, <strong>causation</strong> implies a direct cause-and-effect relationship, where changing one variable leads to changes in another. Establishing causation requires rigorous methods, such as randomized controlled trials, to rule out confounding factors.</p>
+<p><strong>Simpson’s Paradox</strong> occurs when a trend appears in separate groups but reverses when the data are combined. This paradox is driven by <strong>confounding variables</strong>, unaccounted factors that influence both the treatment and the outcome. It illustrates how aggregated data can be misleading and emphasizes the importance of analyzing relationships within subgroups to avoid drawing incorrect conclusions.</p>
+<p>To demonstrate this paradox, we simulate a study comparing two pneumonia treatments across 2,000 people. Treatment A was mostly given to mild cases, while Treatment B was given to severe cases. When data are analyzed without considering severity, Treatment A seems more effective. However, when stratified by severity, Treatment B consistently shows lower death rates in both mild and severe groups.</p>
+<blockquote>
+<p><strong>Checklist Item 1: What is the causal question?</strong> Before looking at the data, let’s define the question: <em>What is the effect of Treatment B (vs. Treatment A) on mortality risk in pneumonia patients?</em> Treatment (<span class="math inline">\(W\)</span>): Treatment B vs. Treatment A. Outcome (<span class="math inline">\(Y\)</span>): Death (binary). Population: Pneumonia patients. Estimand: Risk difference.</p>
+</blockquote>
+<div id="simulating-simpsons-paradox" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Simulating Simpson’s Paradox<a href="foundations-of-causal-thinking.html#simulating-simpsons-paradox" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="foundations-of-causal-thinking.html#cb5-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb5-2"><a href="foundations-of-causal-thinking.html#cb5-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2050</span></span>
+<span id="cb5-3"><a href="foundations-of-causal-thinking.html#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="foundations-of-causal-thinking.html#cb5-4" tabindex="-1"></a>severity <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Mild&quot;</span>, <span class="st">&quot;Severe&quot;</span>), <span class="at">times =</span> <span class="fu">c</span>(<span class="dv">1450</span>, <span class="dv">600</span>))</span>
+<span id="cb5-5"><a href="foundations-of-causal-thinking.html#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="foundations-of-causal-thinking.html#cb5-6" tabindex="-1"></a>treatment <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Treatment A&quot;</span>, <span class="dv">1400</span>), <span class="fu">rep</span>(<span class="st">&quot;Treatment B&quot;</span>, <span class="dv">50</span>),</span>
+<span id="cb5-7"><a href="foundations-of-causal-thinking.html#cb5-7" tabindex="-1"></a>               <span class="fu">rep</span>(<span class="st">&quot;Treatment A&quot;</span>, <span class="dv">100</span>), <span class="fu">rep</span>(<span class="st">&quot;Treatment B&quot;</span>, <span class="dv">500</span>))</span>
+<span id="cb5-8"><a href="foundations-of-causal-thinking.html#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="foundations-of-causal-thinking.html#cb5-9" tabindex="-1"></a>outcome <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rbinom</span>(<span class="dv">1400</span>, <span class="dv">1</span>, <span class="fl">0.15</span>),  <span class="co"># Mild + A (15% death rate)</span></span>
+<span id="cb5-10"><a href="foundations-of-causal-thinking.html#cb5-10" tabindex="-1"></a>             <span class="fu">rbinom</span>(<span class="dv">50</span>, <span class="dv">1</span>, <span class="fl">0.10</span>),    <span class="co"># Mild + B (10% death rate)</span></span>
+<span id="cb5-11"><a href="foundations-of-causal-thinking.html#cb5-11" tabindex="-1"></a>             <span class="fu">rbinom</span>(<span class="dv">100</span>, <span class="dv">1</span>, <span class="fl">0.30</span>),   <span class="co"># Severe + A (30% death rate)</span></span>
+<span id="cb5-12"><a href="foundations-of-causal-thinking.html#cb5-12" tabindex="-1"></a>             <span class="fu">rbinom</span>(<span class="dv">500</span>, <span class="dv">1</span>, <span class="fl">0.20</span>))   <span class="co"># Severe + B (20% death rate)</span></span>
+<span id="cb5-13"><a href="foundations-of-causal-thinking.html#cb5-13" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="foundations-of-causal-thinking.html#cb5-14" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb5-15"><a href="foundations-of-causal-thinking.html#cb5-15" tabindex="-1"></a>  <span class="at">Severity =</span> severity,</span>
+<span id="cb5-16"><a href="foundations-of-causal-thinking.html#cb5-16" tabindex="-1"></a>  <span class="at">Treatment =</span> treatment,</span>
+<span id="cb5-17"><a href="foundations-of-causal-thinking.html#cb5-17" tabindex="-1"></a>  <span class="at">Outcome =</span> outcome</span>
+<span id="cb5-18"><a href="foundations-of-causal-thinking.html#cb5-18" tabindex="-1"></a>)</span>
+<span id="cb5-19"><a href="foundations-of-causal-thinking.html#cb5-19" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="foundations-of-causal-thinking.html#cb5-20" tabindex="-1"></a><span class="co"># Compute death rates by severity and treatment</span></span>
+<span id="cb5-21"><a href="foundations-of-causal-thinking.html#cb5-21" tabindex="-1"></a>death_counts <span class="ot">&lt;-</span> <span class="fu">tapply</span>(df<span class="sc">$</span>Outcome, <span class="fu">list</span>(df<span class="sc">$</span>Severity, df<span class="sc">$</span>Treatment), sum)</span>
+<span id="cb5-22"><a href="foundations-of-causal-thinking.html#cb5-22" tabindex="-1"></a>table_counts <span class="ot">&lt;-</span> <span class="fu">table</span>(df<span class="sc">$</span>Severity, df<span class="sc">$</span>Treatment)</span>
+<span id="cb5-23"><a href="foundations-of-causal-thinking.html#cb5-23" tabindex="-1"></a>death_rates <span class="ot">&lt;-</span> <span class="fu">round</span>(death_counts <span class="sc">/</span> table_counts, <span class="dv">3</span>)</span>
+<span id="cb5-24"><a href="foundations-of-causal-thinking.html#cb5-24" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="foundations-of-causal-thinking.html#cb5-25" tabindex="-1"></a>overall_a <span class="ot">&lt;-</span> <span class="fu">sum</span>(df<span class="sc">$</span>Outcome[df<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;Treatment A&quot;</span>]) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;Treatment A&quot;</span>)</span>
+<span id="cb5-26"><a href="foundations-of-causal-thinking.html#cb5-26" tabindex="-1"></a>overall_b <span class="ot">&lt;-</span> <span class="fu">sum</span>(df<span class="sc">$</span>Outcome[df<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;Treatment B&quot;</span>]) <span class="sc">/</span> <span class="fu">sum</span>(df<span class="sc">$</span>Treatment <span class="sc">==</span> <span class="st">&quot;Treatment B&quot;</span>)</span>
+<span id="cb5-27"><a href="foundations-of-causal-thinking.html#cb5-27" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="foundations-of-causal-thinking.html#cb5-28" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Death rates by severity and treatment:&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Death rates by severity and treatment:&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="foundations-of-causal-thinking.html#cb7-1" tabindex="-1"></a><span class="fu">print</span>(death_rates)</span></code></pre></div>
+<pre><code>##        Treatment A Treatment B
+## Mild         0.136       0.120
+## Severe       0.380       0.204</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="foundations-of-causal-thinking.html#cb9-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Overall death rate (Treatment A):&quot;</span>, <span class="fu">round</span>(overall_a, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Overall death rate (Treatment A): 0.153</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="foundations-of-causal-thinking.html#cb11-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Overall death rate (Treatment B):&quot;</span>, <span class="fu">round</span>(overall_b, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Overall death rate (Treatment B): 0.196</code></pre>
+</div>
+<div id="visualizing-simpsons-paradox" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Visualizing Simpson’s Paradox<a href="foundations-of-causal-thinking.html#visualizing-simpsons-paradox" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The plots below mirror the side-by-side comparison from the slides: the left panel shows the <strong>aggregated</strong> (misleading) view, while the right panel <strong>stratifies by severity</strong> to reveal the truth.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="foundations-of-causal-thinking.html#cb13-1" tabindex="-1"></a><span class="co"># Compute stratified death rates</span></span>
+<span id="cb13-2"><a href="foundations-of-causal-thinking.html#cb13-2" tabindex="-1"></a>group_rates <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="foundations-of-causal-thinking.html#cb13-3" tabindex="-1"></a>  <span class="fu">group_by</span>(Severity, Treatment) <span class="sc">%&gt;%</span></span>
+<span id="cb13-4"><a href="foundations-of-causal-thinking.html#cb13-4" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">Death_rate =</span> <span class="fu">mean</span>(Outcome), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>)</span>
+<span id="cb13-5"><a href="foundations-of-causal-thinking.html#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="foundations-of-causal-thinking.html#cb13-6" tabindex="-1"></a><span class="co"># Build the two panels as separate data frames</span></span>
+<span id="cb13-7"><a href="foundations-of-causal-thinking.html#cb13-7" tabindex="-1"></a>overall_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb13-8"><a href="foundations-of-causal-thinking.html#cb13-8" tabindex="-1"></a>  <span class="at">Panel =</span> <span class="st">&quot;Aggregated (Misleading)&quot;</span>,</span>
+<span id="cb13-9"><a href="foundations-of-causal-thinking.html#cb13-9" tabindex="-1"></a>  <span class="at">Group =</span> <span class="fu">c</span>(<span class="st">&quot;Treatment A&quot;</span>, <span class="st">&quot;Treatment B&quot;</span>),</span>
+<span id="cb13-10"><a href="foundations-of-causal-thinking.html#cb13-10" tabindex="-1"></a>  <span class="at">Treatment =</span> <span class="fu">c</span>(<span class="st">&quot;Treatment A&quot;</span>, <span class="st">&quot;Treatment B&quot;</span>),</span>
+<span id="cb13-11"><a href="foundations-of-causal-thinking.html#cb13-11" tabindex="-1"></a>  <span class="at">Death_rate =</span> <span class="fu">c</span>(overall_a, overall_b)</span>
+<span id="cb13-12"><a href="foundations-of-causal-thinking.html#cb13-12" tabindex="-1"></a>)</span>
+<span id="cb13-13"><a href="foundations-of-causal-thinking.html#cb13-13" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="foundations-of-causal-thinking.html#cb13-14" tabindex="-1"></a>stratified_df <span class="ot">&lt;-</span> group_rates <span class="sc">%&gt;%</span></span>
+<span id="cb13-15"><a href="foundations-of-causal-thinking.html#cb13-15" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-16"><a href="foundations-of-causal-thinking.html#cb13-16" tabindex="-1"></a>    <span class="at">Panel =</span> <span class="st">&quot;Stratified by Severity (Truth)&quot;</span>,</span>
+<span id="cb13-17"><a href="foundations-of-causal-thinking.html#cb13-17" tabindex="-1"></a>    <span class="at">Group =</span> <span class="fu">paste</span>(Severity, <span class="st">&quot;-&quot;</span>, Treatment)</span>
+<span id="cb13-18"><a href="foundations-of-causal-thinking.html#cb13-18" tabindex="-1"></a>  )</span>
+<span id="cb13-19"><a href="foundations-of-causal-thinking.html#cb13-19" tabindex="-1"></a></span>
+<span id="cb13-20"><a href="foundations-of-causal-thinking.html#cb13-20" tabindex="-1"></a><span class="co"># Combine</span></span>
+<span id="cb13-21"><a href="foundations-of-causal-thinking.html#cb13-21" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(</span>
+<span id="cb13-22"><a href="foundations-of-causal-thinking.html#cb13-22" tabindex="-1"></a>  overall_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(Panel, Group, Treatment, Death_rate),</span>
+<span id="cb13-23"><a href="foundations-of-causal-thinking.html#cb13-23" tabindex="-1"></a>  stratified_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(Panel, Group, Treatment, Death_rate)</span>
+<span id="cb13-24"><a href="foundations-of-causal-thinking.html#cb13-24" tabindex="-1"></a>)</span>
+<span id="cb13-25"><a href="foundations-of-causal-thinking.html#cb13-25" tabindex="-1"></a></span>
+<span id="cb13-26"><a href="foundations-of-causal-thinking.html#cb13-26" tabindex="-1"></a><span class="co"># Set factor order so panels and bars appear in the right sequence</span></span>
+<span id="cb13-27"><a href="foundations-of-causal-thinking.html#cb13-27" tabindex="-1"></a>plot_df<span class="sc">$</span>Panel <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_df<span class="sc">$</span>Panel,</span>
+<span id="cb13-28"><a href="foundations-of-causal-thinking.html#cb13-28" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Aggregated (Misleading)&quot;</span>,</span>
+<span id="cb13-29"><a href="foundations-of-causal-thinking.html#cb13-29" tabindex="-1"></a>                                   <span class="st">&quot;Stratified by Severity (Truth)&quot;</span>))</span>
+<span id="cb13-30"><a href="foundations-of-causal-thinking.html#cb13-30" tabindex="-1"></a>plot_df<span class="sc">$</span>Group <span class="ot">&lt;-</span> <span class="fu">factor</span>(plot_df<span class="sc">$</span>Group,</span>
+<span id="cb13-31"><a href="foundations-of-causal-thinking.html#cb13-31" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Treatment A&quot;</span>, <span class="st">&quot;Treatment B&quot;</span>,</span>
+<span id="cb13-32"><a href="foundations-of-causal-thinking.html#cb13-32" tabindex="-1"></a>                                   <span class="st">&quot;Mild - Treatment A&quot;</span>, <span class="st">&quot;Mild - Treatment B&quot;</span>,</span>
+<span id="cb13-33"><a href="foundations-of-causal-thinking.html#cb13-33" tabindex="-1"></a>                                   <span class="st">&quot;Severe - Treatment A&quot;</span>, <span class="st">&quot;Severe - Treatment B&quot;</span>))</span>
+<span id="cb13-34"><a href="foundations-of-causal-thinking.html#cb13-34" tabindex="-1"></a></span>
+<span id="cb13-35"><a href="foundations-of-causal-thinking.html#cb13-35" tabindex="-1"></a><span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x =</span> Group, <span class="at">y =</span> Death_rate, <span class="at">fill =</span> Treatment)) <span class="sc">+</span></span>
+<span id="cb13-36"><a href="foundations-of-causal-thinking.html#cb13-36" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.65</span>, <span class="at">alpha =</span> <span class="fl">0.85</span>) <span class="sc">+</span></span>
+<span id="cb13-37"><a href="foundations-of-causal-thinking.html#cb13-37" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste0</span>(<span class="fu">round</span>(Death_rate <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>), <span class="st">&quot;%&quot;</span>)),</span>
+<span id="cb13-38"><a href="foundations-of-causal-thinking.html#cb13-38" tabindex="-1"></a>            <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.5</span>, <span class="at">size =</span> <span class="fl">3.5</span>) <span class="sc">+</span></span>
+<span id="cb13-39"><a href="foundations-of-causal-thinking.html#cb13-39" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Panel, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-40"><a href="foundations-of-causal-thinking.html#cb13-40" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;Treatment A&quot;</span> <span class="ot">=</span> <span class="st">&quot;#1F77B4&quot;</span>,</span>
+<span id="cb13-41"><a href="foundations-of-causal-thinking.html#cb13-41" tabindex="-1"></a>                                <span class="st">&quot;Treatment B&quot;</span> <span class="ot">=</span> <span class="st">&quot;#D62728&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb13-42"><a href="foundations-of-causal-thinking.html#cb13-42" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">percent_format</span>(),</span>
+<span id="cb13-43"><a href="foundations-of-causal-thinking.html#cb13-43" tabindex="-1"></a>                     <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fu">max</span>(plot_df<span class="sc">$</span>Death_rate) <span class="sc">*</span> <span class="fl">1.15</span>)) <span class="sc">+</span></span>
+<span id="cb13-44"><a href="foundations-of-causal-thinking.html#cb13-44" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Simpson&#39;s Paradox: Aggregated vs. Stratified Results&quot;</span>,</span>
+<span id="cb13-45"><a href="foundations-of-causal-thinking.html#cb13-45" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Death Rate&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-46"><a href="foundations-of-causal-thinking.html#cb13-46" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-47"><a href="foundations-of-causal-thinking.html#cb13-47" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>, <span class="at">angle =</span> <span class="dv">20</span>, <span class="at">hjust =</span> <span class="dv">1</span>),</span>
+<span id="cb13-48"><a href="foundations-of-causal-thinking.html#cb13-48" tabindex="-1"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">face =</span> <span class="st">&quot;bold&quot;</span>, <span class="at">size =</span> <span class="dv">11</span>))</span></code></pre></div>
+<p><img src="Causal-Inference-Graduate_files/figure-html/simpsons-viz-1.png" width="960" /></p>
+<p>Only after stratifying by the severity of the case are we able to observe that Treatment B is actually more effective than Treatment A for both mild and severe pneumonia cases. The confounding variable (severity) was distorting the overall comparison.</p>
+<hr />
+</div>
+</div>
+<div id="why-we-use-simulations" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Why We Use Simulations<a href="foundations-of-causal-thinking.html#why-we-use-simulations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Throughout this course, we use <strong>simulations</strong>. Simulations are computer-generated datasets where <em>we</em> control the true data-generating process. In the real world, we never know the true causal effect. In a simulation, we do. This lets us:</p>
+<ul>
+<li>See <em>both</em> potential outcomes <span class="math inline">\(Y(0)\)</span> and <span class="math inline">\(Y(1)\)</span> for every person (impossible in reality)</li>
+<li>Compute the true causal effect and compare it to what an analyst would estimate from observed data</li>
+<li>Understand exactly when and why naive methods go wrong</li>
+</ul>
+<p>Think of a simulation as a laboratory for causal reasoning: we build a miniature world, set the rules, and then test whether our statistical tools recover the truth. The code below builds that intuition step by step.</p>
+<hr />
+</div>
+<div id="introduction-to-counterfactuals-and-potential-outcomes" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Introduction to Counterfactuals and Potential Outcomes<a href="foundations-of-causal-thinking.html#introduction-to-counterfactuals-and-potential-outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>At the heart of causal inference lies a simple yet powerful idea: <strong>counterfactuals</strong>, meaning what would have happened if something else had occurred. However, we can never observe both outcomes for the same person. This is known as the <strong>Fundamental Problem of Causal Inference</strong>. We only observe the outcome under the condition that actually occurred, and everything else is unobserved, or counterfactual.</p>
+<p>Building on the concept of counterfactuals, the <strong>Average Treatment Effect (ATE)</strong> provides a formal way to quantify the impact of a treatment or intervention across a population. Since we cannot observe both potential outcomes (treated and untreated) for the same individual, ATE instead compares the average outcome we would see if everyone received the treatment versus if no one did. Mathematically, it is the difference between the expected value of the potential outcome under treatment and the expected value under control. While individual causal effects remain unobservable, the ATE offers a population-level summary of the treatment’s impact, a cornerstone of policy evaluation, randomized experiments, and observational causal analysis.</p>
+<div id="notation" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Notation<a href="foundations-of-causal-thinking.html#notation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Counterfactuals can be represented using <strong>potential outcomes notation</strong>:</p>
+<ul>
+<li><span class="math inline">\(Y\)</span> = the observed outcome</li>
+<li><span class="math inline">\(Y(0)\)</span> = the potential outcome under no treatment</li>
+<li><span class="math inline">\(Y(1)\)</span> = the potential outcome under treatment</li>
+<li><span class="math inline">\(W\)</span> = a binary variable that represents whether a unit was treated or not. If <span class="math inline">\(W = 1\)</span>, then the unit was treated. If <span class="math inline">\(W = 0\)</span>, then the unit was not treated.</li>
+</ul>
+<p>Notice that the observed outcome can be expressed in terms of potential outcomes:</p>
+<p><span class="math display">\[Y = W \cdot Y(1) + (1 - W) \cdot Y(0)\]</span></p>
+<p>So <span class="math inline">\(Y = Y(1)\)</span> if the unit was treated and <span class="math inline">\(Y = Y(0)\)</span> if the unit was not treated. This equation is known as <strong>consistency</strong>.</p>
+</div>
+<div id="the-potential-outcomes-table" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> The Potential Outcomes Table<a href="foundations-of-causal-thinking.html#the-potential-outcomes-table" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s make this concrete. We simulate 6 patients and, because this is a simulation, we get to see <strong>both</strong> potential outcomes for each person. This mirrors the HRT table from the slides.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="foundations-of-causal-thinking.html#cb14-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">42</span>)</span>
+<span id="cb14-2"><a href="foundations-of-causal-thinking.html#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="foundations-of-causal-thinking.html#cb14-3" tabindex="-1"></a><span class="co"># Six patients with known potential outcomes (headache intensity, 0-100)</span></span>
+<span id="cb14-4"><a href="foundations-of-causal-thinking.html#cb14-4" tabindex="-1"></a>po_table <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb14-5"><a href="foundations-of-causal-thinking.html#cb14-5" tabindex="-1"></a>  <span class="at">Patient =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb14-6"><a href="foundations-of-causal-thinking.html#cb14-6" tabindex="-1"></a>  <span class="at">Y0 =</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">50</span>, <span class="dv">70</span>, <span class="dv">85</span>),   <span class="co"># outcome without aspirin</span></span>
+<span id="cb14-7"><a href="foundations-of-causal-thinking.html#cb14-7" tabindex="-1"></a>  <span class="at">Y1 =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">40</span>, <span class="dv">55</span>, <span class="dv">30</span>, <span class="dv">50</span>, <span class="dv">60</span>)    <span class="co"># outcome with aspirin</span></span>
+<span id="cb14-8"><a href="foundations-of-causal-thinking.html#cb14-8" tabindex="-1"></a>)</span>
+<span id="cb14-9"><a href="foundations-of-causal-thinking.html#cb14-9" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="foundations-of-causal-thinking.html#cb14-10" tabindex="-1"></a>po_table<span class="sc">$</span>Causal_Effect <span class="ot">&lt;-</span> po_table<span class="sc">$</span>Y1 <span class="sc">-</span> po_table<span class="sc">$</span>Y0</span>
+<span id="cb14-11"><a href="foundations-of-causal-thinking.html#cb14-11" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="foundations-of-causal-thinking.html#cb14-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== God&#39;s-Eye View: Both Potential Outcomes ===</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## === God&#39;s-Eye View: Both Potential Outcomes ===</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="foundations-of-causal-thinking.html#cb16-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(po_table,</span>
+<span id="cb16-2"><a href="foundations-of-causal-thinking.html#cb16-2" tabindex="-1"></a>             <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Patient&quot;</span>, <span class="st">&quot;Y(0)&quot;</span>, <span class="st">&quot;Y(1)&quot;</span>, <span class="st">&quot;Causal Effect&quot;</span>),</span>
+<span id="cb16-3"><a href="foundations-of-causal-thinking.html#cb16-3" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;Complete potential outcomes table (only possible in a simulation)&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:po-table">Table 1.1: </span>Complete potential outcomes table (only possible in a simulation)</caption>
+<thead>
+<tr class="header">
+<th align="right">Patient</th>
+<th align="right">Y(0)</th>
+<th align="right">Y(1)</th>
+<th align="right">Causal Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">75</td>
+<td align="right">25</td>
+<td align="right">-50</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">60</td>
+<td align="right">40</td>
+<td align="right">-20</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">80</td>
+<td align="right">55</td>
+<td align="right">-25</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">50</td>
+<td align="right">30</td>
+<td align="right">-20</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">70</td>
+<td align="right">50</td>
+<td align="right">-20</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">85</td>
+<td align="right">60</td>
+<td align="right">-25</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="foundations-of-causal-thinking.html#cb17-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">True ATE:&quot;</span>, <span class="fu">mean</span>(po_table<span class="sc">$</span>Causal_Effect), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## True ATE: -26.66667</code></pre>
+<p>Every patient benefits from aspirin (all causal effects are negative). The ATE tells us the average benefit. But in the real world, we cannot see both columns. Each patient either takes aspirin or doesn’t.</p>
+</div>
+<div id="what-happens-when-treatment-is-assigned" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> What Happens When Treatment Is Assigned?<a href="foundations-of-causal-thinking.html#what-happens-when-treatment-is-assigned" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now let’s assign treatment and see how the table changes. We mask the counterfactual outcome with “?”. This is the <strong>Fundamental Problem of Causal Inference</strong> in action.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="foundations-of-causal-thinking.html#cb19-1" tabindex="-1"></a><span class="co"># Assign treatment (not randomly; sicker patients more likely to get aspirin)</span></span>
+<span id="cb19-2"><a href="foundations-of-causal-thinking.html#cb19-2" tabindex="-1"></a>po_table<span class="sc">$</span>W <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)  <span class="co"># patients 1, 3, 5 get aspirin</span></span>
+<span id="cb19-3"><a href="foundations-of-causal-thinking.html#cb19-3" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="foundations-of-causal-thinking.html#cb19-4" tabindex="-1"></a><span class="co"># What we actually observe</span></span>
+<span id="cb19-5"><a href="foundations-of-causal-thinking.html#cb19-5" tabindex="-1"></a>po_table<span class="sc">$</span>Y_obs <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(po_table<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>, po_table<span class="sc">$</span>Y1, po_table<span class="sc">$</span>Y0)</span>
+<span id="cb19-6"><a href="foundations-of-causal-thinking.html#cb19-6" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="foundations-of-causal-thinking.html#cb19-7" tabindex="-1"></a><span class="co"># Build the &quot;observed&quot; table with ?&#39;s</span></span>
+<span id="cb19-8"><a href="foundations-of-causal-thinking.html#cb19-8" tabindex="-1"></a>obs_display <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb19-9"><a href="foundations-of-causal-thinking.html#cb19-9" tabindex="-1"></a>  <span class="at">Patient =</span> po_table<span class="sc">$</span>Patient,</span>
+<span id="cb19-10"><a href="foundations-of-causal-thinking.html#cb19-10" tabindex="-1"></a>  <span class="at">W =</span> <span class="fu">ifelse</span>(po_table<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&quot;Aspirin&quot;</span>, <span class="st">&quot;No aspirin&quot;</span>),</span>
+<span id="cb19-11"><a href="foundations-of-causal-thinking.html#cb19-11" tabindex="-1"></a>  <span class="at">Y0_obs =</span> <span class="fu">ifelse</span>(po_table<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>, po_table<span class="sc">$</span>Y0, <span class="st">&quot;?&quot;</span>),</span>
+<span id="cb19-12"><a href="foundations-of-causal-thinking.html#cb19-12" tabindex="-1"></a>  <span class="at">Y1_obs =</span> <span class="fu">ifelse</span>(po_table<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>, po_table<span class="sc">$</span>Y1, <span class="st">&quot;?&quot;</span>),</span>
+<span id="cb19-13"><a href="foundations-of-causal-thinking.html#cb19-13" tabindex="-1"></a>  <span class="at">Y_observed =</span> po_table<span class="sc">$</span>Y_obs</span>
+<span id="cb19-14"><a href="foundations-of-causal-thinking.html#cb19-14" tabindex="-1"></a>)</span>
+<span id="cb19-15"><a href="foundations-of-causal-thinking.html#cb19-15" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="foundations-of-causal-thinking.html#cb19-16" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== What We Actually See ===</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## === What We Actually See ===</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="foundations-of-causal-thinking.html#cb21-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(obs_display,</span>
+<span id="cb21-2"><a href="foundations-of-causal-thinking.html#cb21-2" tabindex="-1"></a>             <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Patient&quot;</span>, <span class="st">&quot;Treatment&quot;</span>, <span class="st">&quot;Y(0)&quot;</span>, <span class="st">&quot;Y(1)&quot;</span>, <span class="st">&quot;Observed Y&quot;</span>),</span>
+<span id="cb21-3"><a href="foundations-of-causal-thinking.html#cb21-3" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;After treatment assignment: counterfactuals become &#39;?&#39;&quot;</span>)</span></code></pre></div>
+<table>
+<caption><span id="tab:po-masked">Table 1.2: </span>After treatment assignment: counterfactuals become ‘?’</caption>
+<thead>
+<tr class="header">
+<th align="right">Patient</th>
+<th align="left">Treatment</th>
+<th align="left">Y(0)</th>
+<th align="left">Y(1)</th>
+<th align="right">Observed Y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="left">Aspirin</td>
+<td align="left">?</td>
+<td align="left">25</td>
+<td align="right">25</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="left">No aspirin</td>
+<td align="left">60</td>
+<td align="left">?</td>
+<td align="right">60</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="left">Aspirin</td>
+<td align="left">?</td>
+<td align="left">55</td>
+<td align="right">55</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="left">No aspirin</td>
+<td align="left">50</td>
+<td align="left">?</td>
+<td align="right">50</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="left">Aspirin</td>
+<td align="left">?</td>
+<td align="left">50</td>
+<td align="right">50</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="left">No aspirin</td>
+<td align="left">85</td>
+<td align="left">?</td>
+<td align="right">85</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="foundations-of-causal-thinking.html#cb22-1" tabindex="-1"></a><span class="co"># Naive comparison</span></span>
+<span id="cb22-2"><a href="foundations-of-causal-thinking.html#cb22-2" tabindex="-1"></a>mean_treated <span class="ot">&lt;-</span> <span class="fu">mean</span>(po_table<span class="sc">$</span>Y_obs[po_table<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">1</span>])</span>
+<span id="cb22-3"><a href="foundations-of-causal-thinking.html#cb22-3" tabindex="-1"></a>mean_control <span class="ot">&lt;-</span> <span class="fu">mean</span>(po_table<span class="sc">$</span>Y_obs[po_table<span class="sc">$</span>W <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb22-4"><a href="foundations-of-causal-thinking.html#cb22-4" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="foundations-of-causal-thinking.html#cb22-5" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">Mean outcome (treated):&quot;</span>, mean_treated, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## Mean outcome (treated): 43.33333</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="foundations-of-causal-thinking.html#cb24-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Mean outcome (control):&quot;</span>, mean_control, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Mean outcome (control): 65</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="foundations-of-causal-thinking.html#cb26-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Naive estimate (treated - control):&quot;</span>, mean_treated <span class="sc">-</span> mean_control, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Naive estimate (treated - control): -21.66667</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="foundations-of-causal-thinking.html#cb28-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;True ATE:&quot;</span>, <span class="fu">mean</span>(po_table<span class="sc">$</span>Causal_Effect), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## True ATE: -26.66667</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="foundations-of-causal-thinking.html#cb30-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\n</span><span class="st">The naive estimate differs from the true ATE because treatment was</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## 
+## The naive estimate differs from the true ATE because treatment was</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="foundations-of-causal-thinking.html#cb32-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;not randomly assigned. Sicker patients received aspirin.</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## not randomly assigned. Sicker patients received aspirin.</code></pre>
+<p>Notice the gap: the naive comparison and the true ATE don’t match. This is because patients 1, 3, and 5 (who got aspirin) had <em>higher</em> baseline headache scores than patients 2, 4, and 6. The naive comparison confounds the drug’s effect with pre-existing differences between the groups, and this is exactly the problem that motivates everything in this course.</p>
+<hr />
+</div>
+</div>
+<div id="causal-estimands-and-identification" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Causal Estimands and Identification<a href="foundations-of-causal-thinking.html#causal-estimands-and-identification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Causal estimands</strong> are the quantities we aim to estimate to understand the effect of a treatment or intervention. The most common estimands include:</p>
+<ul>
+<li><strong>Average Treatment Effect (ATE):</strong> Measures the average difference in outcomes if everyone received the treatment versus if no one did.</li>
+</ul>
+<p><span class="math display">\[ATE = E[Y(1) - Y(0)]\]</span></p>
+<ul>
+<li><strong>Average Treatment Effect on the Treated (ATT):</strong> Measures the effect of treatment for those who actually received the treatment.</li>
+</ul>
+<p><span class="math display">\[ATT = E[Y(1) - Y(0) \mid W = 1]\]</span></p>
+<ul>
+<li><strong>Conditional Average Treatment Effect (CATE):</strong> Measures the treatment effect for subgroups defined by observed characteristics (e.g., older vs. younger patients).</li>
+</ul>
+<p><span class="math display">\[CATE = E[Y(1) - Y(0) \mid X = x]\]</span></p>
+<p>Think of <span class="math inline">\(X = x\)</span> where <span class="math inline">\(X\)</span> is some form of age classification and <span class="math inline">\(x\)</span> could be a value of the age classification, such as younger or older.</p>
+<p><strong>Identification</strong> is the process of linking a causal estimand (like ATE) to observable data. Without valid identification, any estimates we produce may be biased or incorrect. One major challenge in causal inference is that we can never observe both potential outcomes for the same person, only the outcome under the actual treatment they received. This is the Fundamental Problem of Causal Inference.</p>
+<hr />
+</div>
+<div id="measuring-effects-for-binary-outcomes" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Measuring Effects for Binary Outcomes<a href="foundations-of-causal-thinking.html#measuring-effects-for-binary-outcomes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Often in public health settings, we have to estimate the causal effect on a binary outcome such as survival. For example, if we are trying to measure the effect of a heart surgery on a patient’s survival status, we can say that the outcome <span class="math inline">\(Y = 1\)</span> means that the patient died and <span class="math inline">\(Y = 0\)</span> means that the patient survived. There are only two possible outcomes. In this case, we try to quantify or measure the causal effect using two main <strong>effect measures</strong>.</p>
+<p><strong>Risk Difference</strong> (additive scale):</p>
+<p><span class="math display">\[Pr[Y(1) = 1] - Pr[Y(0) = 1]\]</span></p>
+<p>For example, if we estimated the heart surgery to have a risk difference of <span class="math inline">\(-0.5\)</span>, then on average, the surgery reduced the probability of death by 0.5.</p>
+<p><strong>Risk Ratio</strong> (multiplicative scale):</p>
+<p><span class="math display">\[\frac{Pr[Y(1) = 1]}{Pr[Y(0) = 1]}\]</span></p>
+<p>For example, if the heart surgery was estimated to have a risk ratio of 0.5, then the risk of death under surgery is half compared to the risk of death under no surgery.</p>
+<div id="simulation-heart-surgery-and-survival" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> Simulation: Heart Surgery and Survival<a href="foundations-of-causal-thinking.html#simulation-heart-surgery-and-survival" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s put these measures to work. We simulate a study of 500 patients where we know the true potential outcomes for a heart surgery. Since this is a simulation, we can see <em>both</em> <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span> for every patient, something we can never do in the real world. This lets us compute the true risk difference and risk ratio, and then see how the naive comparison (which ignores confounding) gets it wrong.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="foundations-of-causal-thinking.html#cb34-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb34-2"><a href="foundations-of-causal-thinking.html#cb34-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">500</span></span>
+<span id="cb34-3"><a href="foundations-of-causal-thinking.html#cb34-3" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="foundations-of-causal-thinking.html#cb34-4" tabindex="-1"></a><span class="co"># Simulate covariates</span></span>
+<span id="cb34-5"><a href="foundations-of-causal-thinking.html#cb34-5" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">60</span>, <span class="dv">12</span>)</span>
+<span id="cb34-6"><a href="foundations-of-causal-thinking.html#cb34-6" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="dv">25</span>, <span class="fu">pmin</span>(<span class="dv">90</span>, age))</span>
+<span id="cb34-7"><a href="foundations-of-causal-thinking.html#cb34-7" tabindex="-1"></a>health_score <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, <span class="dv">60</span>, <span class="dv">15</span>)</span>
+<span id="cb34-8"><a href="foundations-of-causal-thinking.html#cb34-8" tabindex="-1"></a>health_score <span class="ot">&lt;-</span> <span class="fu">pmax</span>(<span class="dv">0</span>, <span class="fu">pmin</span>(<span class="dv">100</span>, health_score))</span>
+<span id="cb34-9"><a href="foundations-of-causal-thinking.html#cb34-9" tabindex="-1"></a></span>
+<span id="cb34-10"><a href="foundations-of-causal-thinking.html#cb34-10" tabindex="-1"></a><span class="co"># True potential outcome probabilities</span></span>
+<span id="cb34-11"><a href="foundations-of-causal-thinking.html#cb34-11" tabindex="-1"></a><span class="co"># Higher age and lower health → higher risk of death</span></span>
+<span id="cb34-12"><a href="foundations-of-causal-thinking.html#cb34-12" tabindex="-1"></a>p0 <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="sc">-</span><span class="fl">0.98</span> <span class="sc">+</span> <span class="fl">0.034</span> <span class="sc">*</span> age <span class="sc">-</span> <span class="fl">0.036</span> <span class="sc">*</span> health_score)</span>
+<span id="cb34-13"><a href="foundations-of-causal-thinking.html#cb34-13" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="sc">-</span><span class="fl">0.98</span> <span class="sc">+</span> <span class="fl">0.034</span> <span class="sc">*</span> age <span class="sc">-</span> <span class="fl">0.036</span> <span class="sc">*</span> health_score <span class="sc">-</span> <span class="fl">0.51</span>)  <span class="co"># surgery helps</span></span>
+<span id="cb34-14"><a href="foundations-of-causal-thinking.html#cb34-14" tabindex="-1"></a></span>
+<span id="cb34-15"><a href="foundations-of-causal-thinking.html#cb34-15" tabindex="-1"></a><span class="co"># Generate BOTH potential outcomes (God&#39;s-eye view)</span></span>
+<span id="cb34-16"><a href="foundations-of-causal-thinking.html#cb34-16" tabindex="-1"></a>Y0 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p0)</span>
+<span id="cb34-17"><a href="foundations-of-causal-thinking.html#cb34-17" tabindex="-1"></a>Y1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, p1)</span>
+<span id="cb34-18"><a href="foundations-of-causal-thinking.html#cb34-18" tabindex="-1"></a></span>
+<span id="cb34-19"><a href="foundations-of-causal-thinking.html#cb34-19" tabindex="-1"></a><span class="co"># True causal quantities (using potential outcomes directly)</span></span>
+<span id="cb34-20"><a href="foundations-of-causal-thinking.html#cb34-20" tabindex="-1"></a>true_rd <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y1) <span class="sc">-</span> <span class="fu">mean</span>(Y0)</span>
+<span id="cb34-21"><a href="foundations-of-causal-thinking.html#cb34-21" tabindex="-1"></a>true_rr <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y1) <span class="sc">/</span> <span class="fu">mean</span>(Y0)</span>
+<span id="cb34-22"><a href="foundations-of-causal-thinking.html#cb34-22" tabindex="-1"></a></span>
+<span id="cb34-23"><a href="foundations-of-causal-thinking.html#cb34-23" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== True Causal Effects (from potential outcomes) ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## === True Causal Effects (from potential outcomes) ===</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="foundations-of-causal-thinking.html#cb36-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Pr[Y(1)=1] (risk under surgery):&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(Y1), <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Pr[Y(1)=1] (risk under surgery): 0.202</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="foundations-of-causal-thinking.html#cb38-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Pr[Y(0)=1] (risk without surgery):&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(Y0), <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Pr[Y(0)=1] (risk without surgery): 0.31</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="foundations-of-causal-thinking.html#cb40-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Risk Difference:&quot;</span>, <span class="fu">round</span>(true_rd, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Risk Difference: -0.108</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="foundations-of-causal-thinking.html#cb42-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Risk Ratio:&quot;</span>, <span class="fu">round</span>(true_rr, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Risk Ratio: 0.652</code></pre>
+<p>The surgery reduces the risk of death: the risk difference is negative and the risk ratio is below 1. But remember: in reality we never see both <span class="math inline">\(Y(1)\)</span> and <span class="math inline">\(Y(0)\)</span>. Each patient walks only one path.</p>
+</div>
+<div id="the-fundamental-problem-in-action" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> The Fundamental Problem in Action<a href="foundations-of-causal-thinking.html#the-fundamental-problem-in-action" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now let’s see what happens when treatment is <em>not</em> randomly assigned. Sicker patients (older, lower health scores) are more likely to receive the surgery, just as in the real world.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="foundations-of-causal-thinking.html#cb44-1" tabindex="-1"></a><span class="co"># Confounded treatment assignment: sicker patients get surgery</span></span>
+<span id="cb44-2"><a href="foundations-of-causal-thinking.html#cb44-2" tabindex="-1"></a>W_prob <span class="ot">&lt;-</span> <span class="fu">plogis</span>(<span class="sc">-</span><span class="dv">1</span> <span class="sc">+</span> <span class="fl">0.03</span> <span class="sc">*</span> age <span class="sc">-</span> <span class="fl">0.03</span> <span class="sc">*</span> health_score)</span>
+<span id="cb44-3"><a href="foundations-of-causal-thinking.html#cb44-3" tabindex="-1"></a>W <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(n, <span class="dv">1</span>, W_prob)</span>
+<span id="cb44-4"><a href="foundations-of-causal-thinking.html#cb44-4" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="foundations-of-causal-thinking.html#cb44-5" tabindex="-1"></a><span class="co"># Observed outcome: we only see Y(1) for treated, Y(0) for untreated</span></span>
+<span id="cb44-6"><a href="foundations-of-causal-thinking.html#cb44-6" tabindex="-1"></a>Y_obs <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(W <span class="sc">==</span> <span class="dv">1</span>, Y1, Y0)</span>
+<span id="cb44-7"><a href="foundations-of-causal-thinking.html#cb44-7" tabindex="-1"></a></span>
+<span id="cb44-8"><a href="foundations-of-causal-thinking.html#cb44-8" tabindex="-1"></a><span class="co"># Naive comparison: difference in observed means</span></span>
+<span id="cb44-9"><a href="foundations-of-causal-thinking.html#cb44-9" tabindex="-1"></a>naive_rd <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_obs[W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">-</span> <span class="fu">mean</span>(Y_obs[W <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb44-10"><a href="foundations-of-causal-thinking.html#cb44-10" tabindex="-1"></a>naive_rr <span class="ot">&lt;-</span> <span class="fu">mean</span>(Y_obs[W <span class="sc">==</span> <span class="dv">1</span>]) <span class="sc">/</span> <span class="fu">mean</span>(Y_obs[W <span class="sc">==</span> <span class="dv">0</span>])</span>
+<span id="cb44-11"><a href="foundations-of-causal-thinking.html#cb44-11" tabindex="-1"></a></span>
+<span id="cb44-12"><a href="foundations-of-causal-thinking.html#cb44-12" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== Naive Comparison (what we observe) ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## === Naive Comparison (what we observe) ===</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="foundations-of-causal-thinking.html#cb46-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Death rate among treated:&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(Y_obs[W <span class="sc">==</span> <span class="dv">1</span>]), <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Death rate among treated: 0.243</code></pre>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="foundations-of-causal-thinking.html#cb48-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Death rate among untreated:&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(Y_obs[W <span class="sc">==</span> <span class="dv">0</span>]), <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Death rate among untreated: 0.269</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="foundations-of-causal-thinking.html#cb50-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Naive Risk Difference:&quot;</span>, <span class="fu">round</span>(naive_rd, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Naive Risk Difference: -0.027</code></pre>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="foundations-of-causal-thinking.html#cb52-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Naive Risk Ratio:&quot;</span>, <span class="fu">round</span>(naive_rr, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Naive Risk Ratio: 0.901</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="foundations-of-causal-thinking.html#cb54-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;=== Comparison ===</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## === Comparison ===</code></pre>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="foundations-of-causal-thinking.html#cb56-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;True Risk Difference:&quot;</span>, <span class="fu">round</span>(true_rd, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## True Risk Difference: -0.108</code></pre>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="foundations-of-causal-thinking.html#cb58-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Naive Risk Difference:&quot;</span>, <span class="fu">round</span>(naive_rd, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Naive Risk Difference: -0.027</code></pre>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="foundations-of-causal-thinking.html#cb60-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Bias:&quot;</span>, <span class="fu">round</span>(naive_rd <span class="sc">-</span> true_rd, <span class="dv">3</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<pre><code>## Bias: 0.081</code></pre>
+<p>The naive comparison is biased. It may even reverse the sign of the effect, making it look like the surgery <em>hurts</em> when it actually helps. This is exactly the HRT story from the slides: healthier women chose HRT, so the naive comparison confounded the treatment effect with pre-existing health differences.</p>
+</div>
+<div id="visualizing-the-bias" class="section level3 hasAnchor" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> Visualizing the Bias<a href="foundations-of-causal-thinking.html#visualizing-the-bias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="foundations-of-causal-thinking.html#cb62-1" tabindex="-1"></a>plot_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb62-2"><a href="foundations-of-causal-thinking.html#cb62-2" tabindex="-1"></a>  <span class="at">Measure =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Risk Difference&quot;</span>, <span class="st">&quot;Risk Ratio&quot;</span>), <span class="at">each =</span> <span class="dv">2</span>),</span>
+<span id="cb62-3"><a href="foundations-of-causal-thinking.html#cb62-3" tabindex="-1"></a>  <span class="at">Type =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;True (potential outcomes)&quot;</span>, <span class="st">&quot;Naive (observed)&quot;</span>), <span class="dv">2</span>),</span>
+<span id="cb62-4"><a href="foundations-of-causal-thinking.html#cb62-4" tabindex="-1"></a>  <span class="at">Value =</span> <span class="fu">c</span>(true_rd, naive_rd, true_rr, naive_rr)</span>
+<span id="cb62-5"><a href="foundations-of-causal-thinking.html#cb62-5" tabindex="-1"></a>)</span>
+<span id="cb62-6"><a href="foundations-of-causal-thinking.html#cb62-6" tabindex="-1"></a></span>
+<span id="cb62-7"><a href="foundations-of-causal-thinking.html#cb62-7" tabindex="-1"></a><span class="fu">ggplot</span>(plot_df, <span class="fu">aes</span>(<span class="at">x =</span> Type, <span class="at">y =</span> Value, <span class="at">fill =</span> Type)) <span class="sc">+</span></span>
+<span id="cb62-8"><a href="foundations-of-causal-thinking.html#cb62-8" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.6</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb62-9"><a href="foundations-of-causal-thinking.html#cb62-9" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> Measure, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb62-10"><a href="foundations-of-causal-thinking.html#cb62-10" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;True (potential outcomes)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#2CA02C&quot;</span>,</span>
+<span id="cb62-11"><a href="foundations-of-causal-thinking.html#cb62-11" tabindex="-1"></a>                                <span class="st">&quot;Naive (observed)&quot;</span> <span class="ot">=</span> <span class="st">&quot;#D62728&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb62-12"><a href="foundations-of-causal-thinking.html#cb62-12" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>, <span class="at">color =</span> <span class="st">&quot;gray50&quot;</span>) <span class="sc">+</span></span>
+<span id="cb62-13"><a href="foundations-of-causal-thinking.html#cb62-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;True vs. Naive Effect Estimates Under Confounding&quot;</span>,</span>
+<span id="cb62-14"><a href="foundations-of-causal-thinking.html#cb62-14" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Confounded treatment assignment biases both measures&quot;</span>,</span>
+<span id="cb62-15"><a href="foundations-of-causal-thinking.html#cb62-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Estimate&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb62-16"><a href="foundations-of-causal-thinking.html#cb62-16" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb62-17"><a href="foundations-of-causal-thinking.html#cb62-17" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>, <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>))</span></code></pre></div>
+<p><img src="Causal-Inference-Graduate_files/figure-html/binary-plot-1.png" width="672" /></p>
+<p>This is the core challenge of causal inference with binary outcomes: without a valid study design, our estimates of risk differences and risk ratios can be severely misleading. Starting in module 2, we will learn how <strong>randomization</strong> solves this problem, and in later modules, we will learn estimation strategies for settings where randomization is not possible.</p>
+<hr />
+<p><em>Next module: Randomized Controlled Trials: why randomization solves the confounding problem, and we add Checklist Items 2-3 to our toolkit.</em></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="setup.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="randomized-controlled-trials.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": false,
+  "fontsettings": {
+    "theme": "night",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/01_potential_outcomes.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/01_potential_outcomes.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
