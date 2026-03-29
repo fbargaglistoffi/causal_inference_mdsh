@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7 Other Common Pitfalls and How to Identify Them | Causal-Inference-Graduate.knit</title>
+  <title>7 Other Common Pitfalls and How to Identify Them | Causal-Inference-MDSH.knit</title>
   <meta name="description" content="An undergraduate course on causal inference" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7 Other Common Pitfalls and How to Identify Them | Causal-Inference-Graduate.knit" />
+  <meta property="og:title" content="7 Other Common Pitfalls and How to Identify Them | Causal-Inference-MDSH.knit" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="An undergraduate course on causal inference" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7 Other Common Pitfalls and How to Identify Them | Causal-Inference-Graduate.knit" />
+  <meta name="twitter:title" content="7 Other Common Pitfalls and How to Identify Them | Causal-Inference-MDSH.knit" />
   
   <meta name="twitter:description" content="An undergraduate course on causal inference" />
   
@@ -423,7 +423,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb266-11"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb266-11" tabindex="-1"></a>  <span class="at">vertex.label.color =</span> <span class="st">&quot;black&quot;</span>,</span>
 <span id="cb266-12"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb266-12" tabindex="-1"></a>  <span class="at">edge.arrow.size =</span> <span class="dv">1</span></span>
 <span id="cb266-13"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb266-13" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
 </div>
 </div>
 <div id="measurement-error-in-confounders" class="section level2 hasAnchor" number="7.2">
@@ -503,7 +503,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb281-13"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb281-13" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Treatment&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Outcome&quot;</span>) <span class="sc">+</span></span>
 <span id="cb281-14"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb281-14" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb281-15"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb281-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p><strong>What we learn:</strong> In the full population, treatment and outcome are completely independent — the true effect is zero. However, when selection into the study depends on both treatment and outcome, analyzing only the selected sample creates a spurious negative association. This occurs because the sample selection mechanism created a collider: those who are treated were “allowed in” to the study even without high outcomes, while untreated individuals needed high outcomes to be selected. This negative correlation is purely a feature of the selection process, not a true causal effect.</p>
 <p>Selection bias is particularly concerning in:
 - Studies with low response rates (who refuses to participate?)
@@ -545,7 +545,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb282-26"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb282-26" tabindex="-1"></a>  <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>),</span>
 <span id="cb282-27"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb282-27" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
 <span id="cb282-28"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb282-28" tabindex="-1"></a>)</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
 </div>
 <div id="immortal-time-bias" class="section level2 hasAnchor" number="7.5">
 <h2><span class="header-section-number">7.5</span> Immortal Time Bias<a href="other-common-pitfalls-and-how-to-identify-them.html#immortal-time-bias" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -640,7 +640,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb303-7"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb303-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Average Chocolate Consumption&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Average Achievement Score&quot;</span>) <span class="sc">+</span></span>
 <span id="cb303-8"><a href="other-common-pitfalls-and-how-to-identify-them.html#cb303-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p><strong>What we learn:</strong> At the individual level, chocolate consumption has essentially zero effect on achievement even before controlling for wealth — and the effect remains near zero after adjusting for wealth. But at the country level, there is a clear positive correlation between average chocolate consumption and average achievement. This group-level association arises entirely from country wealth, which influences both variables. Interpreting the country-level association as an individual-level causal effect would be the ecological fallacy.</p>
 <p>Ecological fallacies commonly occur in:
 - Policy analyses based on cross-sectional country or region comparisons
@@ -693,7 +693,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/07_common_pitfalls.Rmd",
+    "link": "https://github.com/fbargaglistoffi/causal_inference_mdsh/edit/main/07_common_pitfalls.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -701,7 +701,7 @@ gitbook.start({
     "text": null
   },
   "view": {
-    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/07_common_pitfalls.Rmd",
+    "link": "https://github.com/fbargaglistoffi/causal_inference_mdsh/blob/main/07_common_pitfalls.Rmd",
     "text": null
   },
   "download": null,

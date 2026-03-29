@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Effect Modification and Interaction | Causal-Inference-Graduate.knit</title>
+  <title>6 Effect Modification and Interaction | Causal-Inference-MDSH.knit</title>
   <meta name="description" content="An undergraduate course on causal inference" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Effect Modification and Interaction | Causal-Inference-Graduate.knit" />
+  <meta property="og:title" content="6 Effect Modification and Interaction | Causal-Inference-MDSH.knit" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="An undergraduate course on causal inference" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Effect Modification and Interaction | Causal-Inference-Graduate.knit" />
+  <meta name="twitter:title" content="6 Effect Modification and Interaction | Causal-Inference-MDSH.knit" />
   
   <meta name="twitter:description" content="An undergraduate course on causal inference" />
   
@@ -405,7 +405,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb226-13"><a href="effect-modification-and-interaction.html#cb226-13" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Estimated Effect&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
 <span id="cb226-14"><a href="effect-modification-and-interaction.html#cb226-14" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb226-15"><a href="effect-modification-and-interaction.html#cb226-15" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p><strong>Key finding:</strong> The overall ATE is approximately zero, but this masks dramatically different effects in the two subgroups. For young patients, the treatment is beneficial (+4), while for older patients it is harmful (−4). This is a textbook case of effect modification — reporting only the ATE would miss the critical fact that the treatment helps one group and harms another. In a real public health scenario, ignoring this could lead to recommendations that harm a vulnerable population.</p>
 </div>
 </div>
@@ -549,7 +549,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb253-8"><a href="effect-modification-and-interaction.html#cb253-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Causal Forest: Estimated vs True CATE&quot;</span>,</span>
 <span id="cb253-9"><a href="effect-modification-and-interaction.html#cb253-9" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;True CATE&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Estimated CATE&quot;</span>) <span class="sc">+</span></span>
 <span id="cb253-10"><a href="effect-modification-and-interaction.html#cb253-10" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p><strong>Key finding:</strong> The causal forest successfully discovers that the treatment effect varies with X1. The scatter plot shows that estimated CATEs correlate well with the true CATEs (r = 0.847), though with some shrinkage toward the mean — a common feature of regularized methods. This approach is powerful for exploratory analysis of treatment effect heterogeneity, generating hypotheses about which variables modify the effect. However, causal forests should be treated as hypothesis-generating: the discovered effect modifiers should be validated in new data or through domain-motivated subgroup analyses.</p>
 </div>
 </div>
@@ -602,7 +602,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/06_effect_modification.Rmd",
+    "link": "https://github.com/fbargaglistoffi/causal_inference_mdsh/edit/main/06_effect_modification.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -610,7 +610,7 @@ gitbook.start({
     "text": null
   },
   "view": {
-    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/06_effect_modification.Rmd",
+    "link": "https://github.com/fbargaglistoffi/causal_inference_mdsh/blob/main/06_effect_modification.Rmd",
     "text": null
   },
   "download": null,

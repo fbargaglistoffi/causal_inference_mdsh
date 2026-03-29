@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 Randomized Controlled Trials | Causal-Inference-Graduate.knit</title>
+  <title>2 Randomized Controlled Trials | Causal-Inference-MDSH.knit</title>
   <meta name="description" content="An undergraduate course on causal inference" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 Randomized Controlled Trials | Causal-Inference-Graduate.knit" />
+  <meta property="og:title" content="2 Randomized Controlled Trials | Causal-Inference-MDSH.knit" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="An undergraduate course on causal inference" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 Randomized Controlled Trials | Causal-Inference-Graduate.knit" />
+  <meta name="twitter:title" content="2 Randomized Controlled Trials | Causal-Inference-MDSH.knit" />
   
   <meta name="twitter:description" content="An undergraduate course on causal inference" />
   
@@ -534,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb84-6"><a href="randomized-controlled-trials.html#cb84-6" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Under randomization, distributions should overlap substantially&quot;</span>,</span>
 <span id="cb84-7"><a href="randomized-controlled-trials.html#cb84-7" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Age&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>) <span class="sc">+</span></span>
 <span id="cb84-8"><a href="randomized-controlled-trials.html#cb84-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/balance-plot-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/balance-plot-1.png" width="672" /></p>
 <blockquote>
 <p><strong>Checklist Item 3 in practice:</strong> When you read an RCT, look at Table 1. If the baseline characteristics are similar across groups, the comparison is likely fair. Large imbalances, especially in a randomized study, suggest something may have gone wrong.</p>
 </blockquote>
@@ -633,7 +633,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb106-8"><a href="randomized-controlled-trials.html#cb106-8" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Systolic Blood Pressure (mmHg)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb106-9"><a href="randomized-controlled-trials.html#cb106-9" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
 <span id="cb106-10"><a href="randomized-controlled-trials.html#cb106-10" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/rct-boxplot-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/rct-boxplot-1.png" width="672" /></p>
 <hr />
 </div>
 </div>
@@ -660,7 +660,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb107-18"><a href="randomized-controlled-trials.html#cb107-18" tabindex="-1"></a>                         <span class="fu">round</span>(<span class="fu">mean</span>(estimates), <span class="dv">2</span>), <span class="st">&quot; | True ATE: &quot;</span>, true_ate),</span>
 <span id="cb107-19"><a href="randomized-controlled-trials.html#cb107-19" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Estimated ATE&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
 <span id="cb107-20"><a href="randomized-controlled-trials.html#cb107-20" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/sampling-dist-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/sampling-dist-1.png" width="672" /></p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="randomized-controlled-trials.html#cb108-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Mean of 1,000 estimates:&quot;</span>, <span class="fu">round</span>(<span class="fu">mean</span>(estimates), <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## Mean of 1,000 estimates: -10</code></pre>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="randomized-controlled-trials.html#cb110-1" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;SD of estimates:&quot;</span>, <span class="fu">round</span>(<span class="fu">sd</span>(estimates), <span class="dv">2</span>), <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
@@ -894,7 +894,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb164-15"><a href="randomized-controlled-trials.html#cb164-15" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Effect (proportion)&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
 <span id="cb164-16"><a href="randomized-controlled-trials.html#cb164-16" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
 <span id="cb164-17"><a href="randomized-controlled-trials.html#cb164-17" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/ohie-plot-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/ohie-plot-1.png" width="672" /></p>
 </div>
 <div id="a-nuance-itt-vs.-the-effect-of-having-insurance" class="section level3 hasAnchor" number="2.6.6">
 <h3><span class="header-section-number">2.6.6</span> A Nuance: ITT vs. the Effect of Having Insurance<a href="randomized-controlled-trials.html#a-nuance-itt-vs.-the-effect-of-having-insurance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -949,7 +949,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/02_rcts.Rmd",
+    "link": "https://github.com/fbargaglistoffi/causal_inference_mdsh/edit/main/02_rcts.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -957,7 +957,7 @@ gitbook.start({
     "text": null
   },
   "view": {
-    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/02_rcts.Rmd",
+    "link": "https://github.com/fbargaglistoffi/causal_inference_mdsh/blob/main/02_rcts.Rmd",
     "text": null
   },
   "download": null,

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 From Identification to Estimation | Causal-Inference-Graduate.knit</title>
+  <title>5 From Identification to Estimation | Causal-Inference-MDSH.knit</title>
   <meta name="description" content="An undergraduate course on causal inference" />
   <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 From Identification to Estimation | Causal-Inference-Graduate.knit" />
+  <meta property="og:title" content="5 From Identification to Estimation | Causal-Inference-MDSH.knit" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="An undergraduate course on causal inference" />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 From Identification to Estimation | Causal-Inference-Graduate.knit" />
+  <meta name="twitter:title" content="5 From Identification to Estimation | Causal-Inference-MDSH.knit" />
   
   <meta name="twitter:description" content="An undergraduate course on causal inference" />
   
@@ -511,7 +511,7 @@ Y_i = \beta_0 + \beta_1 W_i + \beta_2 X_i + \varepsilon_i
 <span id="cb210-25"><a href="from-identification-to-estimation.html#cb210-25" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Covariate Balance Before and After Matching&quot;</span>,</span>
 <span id="cb210-26"><a href="from-identification-to-estimation.html#cb210-26" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Standardized Mean Difference&quot;</span>, <span class="at">x =</span> <span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
 <span id="cb210-27"><a href="from-identification-to-estimation.html#cb210-27" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>The naive estimate overestimates the treatment effect because confounders <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> are associated with both treatment and outcome. After propensity score matching, the standardized mean differences drop below the 0.1 threshold, indicating good balance. The matched estimate recovers a value close to the true effect of 3. The balance plot makes it easy to assess whether matching succeeded — a key advantage of matching as a design strategy.</p>
 </div>
 <div id="the-propensity-score" class="section level2 hasAnchor" number="5.5">
@@ -565,7 +565,7 @@ Y(0), Y(1) \perp W \mid X \quad \Longrightarrow \quad Y(0), Y(1) \perp W \mid e(
 <span id="cb219-6"><a href="from-identification-to-estimation.html#cb219-6" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;0&quot;</span> <span class="ot">=</span> <span class="st">&quot;#d62728&quot;</span>, <span class="st">&quot;1&quot;</span> <span class="ot">=</span> <span class="st">&quot;#1f77b4&quot;</span>),</span>
 <span id="cb219-7"><a href="from-identification-to-estimation.html#cb219-7" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;Control&quot;</span>, <span class="st">&quot;Treated&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb219-8"><a href="from-identification-to-estimation.html#cb219-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<p><img src="Causal-Inference-Graduate_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="Causal-Inference-MDSH_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p>The propensity score histogram reveals the overlap between treated and control groups. Good overlap (substantial region where both distributions have mass) is essential for IPW to work well. When propensity scores are near 0 or 1, weights become extreme and estimates become unstable — a signal of positivity violation. Practical remedies include trimming (dropping units with extreme scores) and stabilized weights (multiplying by the marginal probability of treatment).</p>
 </div>
 <div id="comparing-methods-and-choosing-the-right-approach" class="section level2 hasAnchor" number="5.7">
@@ -603,7 +603,7 @@ gitbook.start({
     "size": 2
   },
   "edit": {
-    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/05_identification_estimation.Rmd",
+    "link": "https://github.com/fbargaglistoffi/causal_inference_mdsh/edit/main/05_identification_estimation.Rmd",
     "text": "Edit"
   },
   "history": {
@@ -611,7 +611,7 @@ gitbook.start({
     "text": null
   },
   "view": {
-    "link": "https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/05_identification_estimation.Rmd",
+    "link": "https://github.com/fbargaglistoffi/causal_inference_mdsh/blob/main/05_identification_estimation.Rmd",
     "text": null
   },
   "download": null,

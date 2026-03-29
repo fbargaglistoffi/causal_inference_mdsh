@@ -1,5 +1,5 @@
 ---
-# title: "The Science of Why: Causal Inference for Public Health"
+# title: "Causal Inference (MDSH)"
 # author: "Falco J. Bargagli-Stoffi"
 # date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
@@ -15,7 +15,7 @@ description: |
 
 # Welcome {.unnumbered}
 
-Welcome to the course website for **The Science of Why: Causal Inference for Public Health**. This course introduces the foundations of causal inference in public health and medical sciences, with an emphasis on distinguishing between association and causation in real-world research.
+Welcome to the course website for **Causal Inference** course. This course introduces the foundations of causal inference in public health and medical sciences, with an emphasis on distinguishing between association and causation in real-world research.
 
 ## Course Description {.unnumbered}
 
@@ -38,12 +38,12 @@ UCLA Fielding School of Public Health
 
 ## Teaching Assistants {.unnumbered}  
 
-**[Cindy Pang](https://cindyjpang.github.io/)**
+**Xinghua Tao**
 
 PhD Candidate
 Department of Biostatistics  
 UCLA Fielding School of Public Health  
-[cindypang@g.ucla.edu](mailto:cindypang@g.ucla.edu)  
+[xhtao@g.ucla.edu](mailto:xhtao@g.ucla.edu)  
 
 
 ## Course Logistics {.unnumbered}  
@@ -89,9 +89,9 @@ Falco J. Bargagli-Stoffi (course, final project):
 
 - Wednesdays: 2:00pm to 3:00pm on [Zoom](https://ucla.zoom.us/my/falco)
 
-Cindy Pang (assignments, grading):
+Xinghua Tao (assignments, grading):
 
-- Via email at [cindypang@g.ucla.edu](mailto:cindypang@g.ucla.edu)  
+- Via email at [xhtao@g.ucla.edu](mailto:xhtao@g.ucla.edu)  
 
 
 ## Tools {.unnumbered}  
