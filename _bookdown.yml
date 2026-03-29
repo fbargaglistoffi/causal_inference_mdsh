@@ -1,8 +1,8 @@
-book_filename: "Causal-Inference-Graduate"
+book_filename: "Causal-Inference-MDSH"
 output_dir: docs
 delete_merged_file: true
-edit: https://github.com/fbargaglistoffi/causal_inference_graduate/edit/main/%s
-view: https://github.com/fbargaglistoffi/causal_inference_graduate/blob/main/%s
+edit: https://github.com/fbargaglistoffi/causal_inference_mdsh/edit/main/%s
+view: https://github.com/fbargaglistoffi/causal_inference_mdsh/blob/main/%s
 
 rmd_files:
   - index.Rmd
