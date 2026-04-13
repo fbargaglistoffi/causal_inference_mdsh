@@ -2,7 +2,9 @@
 
 > ## Class materials
 >
-> Slides: [**Module 3**]
+> Slides: [**Module 3**](https://drive.google.com/file/d/1D-fRdsWGCj7oWROQPgaLbWZdJcNBT114/view?usp=sharing)
+>
+> Interactive: [**Sensitivity Analysis Explorer**](sensitivity-analysis.Rhtml)
 
 > ## Textbook reading
 >
