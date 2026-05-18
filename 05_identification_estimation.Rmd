@@ -3,6 +3,8 @@
 > ## Class materials
 >
 > Slides: [**Module 5**](https://drive.google.com/file/d/1NgVc_1jLJR_aCDIgoI6N6tSSAOwSkOA4/view?usp=sharing)
+>
+> Interactive: [**Causal Inference Playground**](https://causalapp.streamlit.app/)
 
 > ## Textbook reading
 >
